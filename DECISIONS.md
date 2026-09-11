@@ -67,3 +67,11 @@ A running log of every call made on my own while building this repo, per stage, 
 4. **First deploy from the CLI** (`netlify deploy --build --prod`) rather than waiting for the GitHub link, so the preview URL exists now. Linking the repository for automatic deploys on push needs Netlify's GitHub app authorised in your browser, which only you can do (two clicks, steps in the README).
 5. **Server-side phone check tightened for +1 numbers.** The brief asked to keep the E.164 check; that stays, plus the North American rule that area code and exchange start with 2–9, so a direct call to the function cannot store a number the page would have rejected.
 6. **Custom domain not added by me.** PROMPT.md's Part A has you add `guides.lifeuntox.com` in Netlify's domain settings after deploy; the CNAME record is in the README.
+
+## Post-launch fixes (2026-09-12)
+
+1. **Partner lockup image replaces the text pill.** The supplied 2400×660 banner had a transparent background and lots of empty space, so it is cropped to its content (1748×399), flattened on white and drawn with the same multiply blend as the covers, at a 340px max width under the meta line. It is in the template, so every guide gets it; `check-guide` now looks for the image instead of the pill text. The link still goes to notoxchef.com.
+2. **Gate transparency was a paint-order bug, not opacity.** The blurred content has a CSS `filter`, which creates a stacking context painted after the earlier gate box, so blurred text showed through it. The gate now has `z-index: 2`. Same fix serves mobile.
+3. **Phone form stuck on "Saving…":** the success handler sets `hidden` on the form, but the CSS `display:flex` on `.phone form` overrode it. Added `.phone form[hidden]{display:none}`.
+4. **SMS copy rewritten for occasional marketing** (new guides, notable recalls, partner discounts, "a few a month at most, and one word stops them"); consent line now says "occasional marketing texts". Success heading: "Added. We will keep it occasional."
+5. **Mobile gate:** box starts at 36px instead of 60px, tighter padding, slightly smaller heading, blurred area 600px tall so the box always sits inside it; phone form wraps to two rows with a full-width button.

@@ -155,6 +155,7 @@ scripts/new-guide.js  scaffold a guide      npm run new-guide -- "Title" --code 
 scripts/make-cover.js Kie.ai covers         npm run cover -- <slug>
 templates/cover-reference.png  the approved house-style cover; make-cover sends it as a reference on every run
 scripts/check-guide.js lint                 npm run check -- <slug>
+site/assets/partner-notoxchef.png  the NOTOXCHEF × Lifeuntox lockup shown in every guide header (replaces the text pill)
 scripts/dev.js        local preview with functions   npm run dev  → http://localhost:8888
 netlify/functions/    subscribe.js (the gate posts here → Beehiiv API v2)
                       phone-save.js (Beehiiv custom fields, server-side E.164 check)

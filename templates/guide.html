@@ -66,10 +66,8 @@
   .ahead .sub{margin:0 0 16px;font-size:20px;font-weight:300;color:var(--ink-soft);}
   .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--ink-soft);}
   .meta b{font-weight:500;color:var(--ink);}
-  .partner{display:inline-flex;align-items:center;gap:9px;margin-top:16px;padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:100px;font-size:13.5px;color:var(--ink-soft);text-decoration:none;}
-  .partner:hover{border-color:var(--moss);color:var(--forest);}
-  .partner b{font-weight:700;color:var(--ink);letter-spacing:.02em;}
-  .partner .dot{width:8px;height:8px;border-radius:50%;background:var(--leaf);}
+  .partner{display:block;width:100%;max-width:340px;margin-top:18px;}
+  .partner img{width:100%;height:auto;display:block;mix-blend-mode:multiply;}
   .promo{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);padding:18px 20px;margin:30px 0;font-size:16px;}
   .promo .mark{font-weight:700;letter-spacing:.02em;color:var(--forest);font-size:14px;white-space:nowrap;}
   .promo .mark small{font-weight:300;display:block;color:var(--ink-mute);font-size:12px;letter-spacing:0;}
@@ -113,9 +111,9 @@
 
   /* the gate */
   .locked{position:relative;}
-  .locked .content{filter:blur(6px);user-select:none;pointer-events:none;max-height:520px;overflow:hidden;
+  .locked .content{filter:blur(6px);user-select:none;pointer-events:none;max-height:560px;overflow:hidden;
     -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent);}
-  .gate{position:absolute;left:0;right:0;top:120px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--leaf);padding:30px;box-shadow:0 20px 50px rgba(26,26,26,.12);}
+  .gate{position:absolute;z-index:2;left:0;right:0;top:120px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--leaf);padding:30px;box-shadow:0 20px 50px rgba(26,26,26,.12);}
   .gate h3{margin:0 0 6px;font-size:24px;font-weight:600;color:var(--forest);letter-spacing:-.02em;}
   .gate p{margin:0 0 16px;font-size:16px;color:var(--ink-soft);}
   .gate form{display:flex;gap:8px;}
@@ -129,6 +127,7 @@
   .phone h3 span{font-size:12px;font-weight:500;color:var(--ink-mute);border:1px solid var(--line);border-radius:100px;padding:2px 8px;vertical-align:middle;margin-left:6px;}
   .phone p{margin:0 0 14px;font-size:15px;color:var(--ink-soft);}
   .phone form{display:flex;gap:8px;margin-bottom:10px;}
+  .phone form[hidden]{display:none;}
   .phone input,.phone select{height:46px;font-family:inherit;font-size:16px;padding:0 12px;border:1.5px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);}
   .phone input{flex:1;min-width:0;}
   .phone select{flex:0 0 auto;max-width:150px;}
@@ -158,7 +157,9 @@
     .masthead .wrap{height:62px;}.logo img{height:28px;}.nav a:not(.btn){display:none;}
     .ahead{grid-template-columns:1fr;gap:22px;}.book{width:150px;}
     .body{font-size:17px;}
-    .gate{top:60px;padding:22px;}.gate form{flex-direction:column;}
+    .locked .content{max-height:600px;}
+    .gate{top:36px;padding:22px 18px;}.gate h3{font-size:22px;}.gate p{font-size:15px;}.gate form{flex-direction:column;}
+    .phone{padding:20px 18px;}.phone form{flex-wrap:wrap;}.phone select{max-width:none;flex:1 1 120px;}.phone input{flex:1 1 160px;}.phone form .btn{flex:1 1 100%;}
     .more ul{grid-template-columns:1fr 1fr;}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
@@ -192,7 +193,7 @@
         <span><b>{{READ_MIN}} min</b> read</span>
         <span>By <b>The Lifeuntox Team</b></span>
       </div>
-      <a class="partner" href="https://notoxchef.com" rel="noopener"><span class="dot"></span>Lifeuntox is an official partner of <b>NOTOXCHEF</b></a>
+      <a class="partner" href="https://notoxchef.com" rel="noopener" title="Lifeuntox is an official partner of NOTOXCHEF"><img src="assets/partner-notoxchef.png" alt="NOTOXCHEF, official partner of Lifeuntox" width="1748" height="399"></a>
     </div>
   </header>
 
@@ -217,8 +218,8 @@
 
       <!-- Optional phone step: shown after the email unlock -->
       <div class="phone" id="phone" hidden>
-        <h3>Want recall alerts by text? <span>Optional</span></h3>
-        <p>We text only when something you might have at home is recalled. A few times a year, never marketing.</p>
+        <h3>Want the best of Lifeuntox by text? <span>Optional</span></h3>
+        <p>A short text now and then: a new guide, a recall worth knowing about, or a partner discount. A few a month at most, and one word stops them.</p>
         <form id="phoneform" novalidate>
           <label class="sr" for="cc">Country</label>
           <select id="cc" aria-label="Country"></select>
@@ -227,7 +228,7 @@
           <button class="btn btn-solid" type="submit">Add my number</button>
         </form>
         <p class="fine err" id="phone-err" hidden></p>
-        <p class="fine" id="phone-msg">By adding your number you agree to receive recall alerts by SMS from Lifeuntox. Message and data rates may apply. Reply STOP to cancel.</p>
+        <p class="fine" id="phone-msg">By adding your number you agree to receive occasional marketing texts from Lifeuntox. Message and data rates may apply. Reply STOP at any time to cancel.</p>
         <button type="button" class="skipph" id="skipph">No thanks, just the guide</button>
       </div>
       <!-- /gate-ui -->
@@ -385,8 +386,8 @@ document.getElementById('phoneform').addEventListener('submit',async e=>{
   const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
   if(out.ok||out.offline){
     e.target.hidden=true; document.getElementById('phone').classList.add('done');
-    document.querySelector('#phone h3').textContent='Added. We will text you only when it matters.';
-    document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any message to leave.';
+    document.querySelector('#phone h3').textContent='Added. We will keep it occasional.';
+    document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any text to leave.';
     document.getElementById('skipph').hidden=true;
   } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
 });

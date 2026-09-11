@@ -96,6 +96,6 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 ## Gate behaviour
 
-The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step appears and posts to `/.netlify/functions/phone-save`.
+The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step (occasional marketing texts, opt-in) appears and posts to `/.netlify/functions/phone-save`.
 
 Why a function and not the Beehiiv embed: Beehiiv's current subscribe forms render inside an iframe with a bot challenge, so there is no form action URL a static page can post to. The API key stays on the server; the browser only ever talks to the site's own functions.

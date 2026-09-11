@@ -202,7 +202,7 @@ async function checkGuide(slug, net) {
   else {
     const html = fs.readFileSync(built, 'utf8');
     if (!/<meta property="og:image" content="[^"]+"/.test(html)) fail('OG image missing');
-    if (!/Lifeuntox is an official partner of/.test(html)) fail('partner pill missing from the built page');
+    if (!/assets/partner-notoxchef.png/.test(html)) fail('partner lockup missing from the built page');
     if (!/assets\/lifeuntox-logo\.png/.test(html)) fail('logo missing from the built page');
     if (!/class="fine">[^<]*education/.test(html)) fail('footer disclosure missing from the built page');
     if (/JetBrains/.test(html)) fail('JetBrains Mono is loaded on the page');
