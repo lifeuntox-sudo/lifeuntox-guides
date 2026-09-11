@@ -1,0 +1,17 @@
+# Secrets: never commit
+.env
+
+# Dependencies and Netlify local state
+node_modules/
+.netlify/
+
+# Built pages (Netlify runs `npm run build`); assets in site/assets are source and stay tracked
+site/*.html
+
+# Large reference files that do not belong in the repo
+dr-berg-guides-reference.png
+mockup/lifeuntox-guides-site.zip
+
+# OS noise
+.DS_Store
+Thumbs.db

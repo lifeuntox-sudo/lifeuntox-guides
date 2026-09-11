@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Guides &amp; Resources · Lifeuntox</title>
+<meta name="description" content="Every free Lifeuntox guide in one place. Type the word you commented on our post, or browse by topic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;--ink-soft:#5f5f5c;--ink-mute:#8d8a80;
+    --forest:#1a4a1a;--moss:#2d5a2d;--leaf:#7cb342;
+    --paper:#faf8f3;--paper-2:#f5f2ea;--line:#e2ded1;--gold:#a8871c;
+    --maxw:1120px;--tap:44px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'League Spartan',system-ui,sans-serif;line-height:1.55;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+  .skip{position:absolute;left:12px;top:-60px;z-index:30;background:var(--forest);color:#fff;padding:12px 18px;border-radius:2px;text-decoration:none;}
+  .skip:focus{top:12px;}
+  :focus-visible{outline:2.5px solid var(--leaf);outline-offset:2px;}
+  a{color:inherit;}
+
+  /* masthead */
+  .masthead{background:#fff;border-bottom:1px solid var(--line);}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .nav{display:flex;align-items:center;gap:26px;font-size:15px;}
+  .nav a{text-decoration:none;color:var(--ink-soft);}
+  .nav a[aria-current]{color:var(--forest);font-weight:500;}
+  .nav a:hover{color:var(--forest);}
+  .nav a.btn-solid,.nav a.btn-solid:hover{color:#fff;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:0 18px;border-radius:2px;font-family:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;border:0;}
+  .btn-solid{background:var(--forest);color:#fff;}
+  .btn-solid:hover{background:var(--moss);}
+
+  /* page head */
+  .crumbs{font-size:13px;color:var(--ink-mute);padding:18px 0 0;}
+  .crumbs a{color:var(--ink-mute);text-decoration:none;}
+  .crumbs a:hover{color:var(--moss);}
+  .phead{padding:14px 0 26px;}
+  .phead h1{margin:0 0 10px;font-size:clamp(30px,4.6vw,44px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--forest);}
+  .phead p{margin:0;max-width:60ch;font-size:17px;font-weight:300;color:var(--ink-soft);}
+
+  /* toolbar */
+  .toolbar{position:sticky;top:0;z-index:10;background:rgba(250,248,243,.94);backdrop-filter:saturate(150%) blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;}
+  .toolrow{display:flex;gap:12px;align-items:stretch;}
+  .field{position:relative;flex:1 1 auto;min-width:0;}
+  .field input{width:100%;height:50px;font-family:inherit;font-size:17px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:2px;padding:0 84px 0 18px;outline:none;appearance:none;-webkit-appearance:none;}
+  .field input::-webkit-search-cancel-button{display:none;}
+  .field input::placeholder{color:#a8a49a;font-weight:300;}
+  .field input:focus{border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
+  .field .ico{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#a8a49a;fill:none;stroke-width:1.8;pointer-events:none;}
+  .field .clear{position:absolute;right:40px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:none;place-items:center;background:none;border:0;border-radius:50%;cursor:pointer;color:var(--ink-mute);font-size:19px;line-height:1;font-family:inherit;}
+  .field.has-value .clear{display:grid;}
+  .sortwrap{position:relative;flex:0 0 auto;}
+  .sortwrap select{height:50px;padding:0 34px 0 14px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:2px;appearance:none;-webkit-appearance:none;cursor:pointer;}
+  .sortwrap::after{content:"";position:absolute;right:14px;top:50%;width:7px;height:7px;margin-top:-5px;border-right:1.5px solid var(--ink-soft);border-bottom:1.5px solid var(--ink-soft);transform:rotate(45deg);pointer-events:none;}
+  .chiprow{display:flex;gap:8px;margin-top:10px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+  .chiprow::-webkit-scrollbar{display:none;}
+  .chip{flex:0 0 auto;font-family:inherit;font-size:14px;min-height:36px;padding:0 15px;color:var(--moss);background:#fff;border:1px solid var(--line);border-radius:100px;cursor:pointer;}
+  .chip:hover{border-color:var(--moss);}
+  .chip[aria-pressed="true"]{background:var(--forest);border-color:var(--forest);color:#fff;}
+
+  /* results head */
+  .rhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 14px;padding:22px 0 6px;}
+  .count{font-size:14px;color:var(--ink-soft);margin:0;}
+  .quick{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:14px;color:var(--ink-soft);font-weight:300;}
+  .quick button{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;color:var(--gold);background:#fff;border:1px solid var(--line);border-radius:2px;padding:6px 10px;cursor:pointer;min-height:32px;}
+  .quick button:hover{border-color:var(--gold);}
+  .applied{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:6px 0 0;}
+  .applied:empty{display:none;}
+  .tag{display:inline-flex;align-items:center;gap:7px;font-family:inherit;font-size:13px;color:var(--moss);background:var(--paper-2);border:1px solid var(--line);border-radius:100px;padding:5px 9px 5px 12px;cursor:pointer;}
+  .tag b{font-weight:500;}
+  .tag .x{font-size:15px;line-height:1;color:var(--ink-mute);}
+  .reset{font-family:inherit;font-size:13px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0 0 1px;cursor:pointer;}
+  .didyoumean{margin:10px 0 0;font-size:15px;font-weight:300;color:var(--ink-soft);}
+  .didyoumean b{font-weight:500;color:var(--forest);}
+  .didyoumean button{font-family:inherit;font-size:15px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
+
+  /* grid */
+  .grid{list-style:none;margin:0;padding:22px 0 10px;display:grid;grid-template-columns:repeat(4,1fr);gap:40px 28px;}
+  .card a{display:block;text-decoration:none;color:inherit;}
+  .card h2{margin:18px 0 8px;font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.25;color:var(--ink);}
+  .card a:hover h2{color:var(--forest);}
+  .card p{margin:0 0 10px;font-size:14.5px;font-weight:300;color:var(--ink-soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+  .card time{font-size:12.5px;color:var(--ink-mute);}
+  .card .snip{display:block;margin-top:8px;font-size:13px;color:var(--ink-soft);font-weight:300;border-left:2px solid var(--leaf);padding-left:8px;}
+  mark{background:rgba(124,179,66,.3);color:inherit;padding:0 1px;border-radius:2px;}
+
+  /* 3D cover: replaced by <img> once real covers exist */
+  .book{position:relative;aspect-ratio:3/4;perspective:1400px;}
+  .book .face{
+    position:absolute;inset:0 6% 0 0;border-radius:2px 5px 5px 2px;
+    transform:rotateY(-14deg);transform-origin:left center;
+    box-shadow:14px 18px 34px rgba(26,26,26,.22),1px 1px 0 rgba(255,255,255,.35) inset;
+    display:flex;flex-direction:column;padding:11% 10% 10%;color:#fff;overflow:hidden;
+    background:var(--c,#2d5a2d);
+    transition:transform .25s ease,box-shadow .25s ease;
+  }
+  .book .face::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0));}
+  .book .face::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,rgba(255,255,255,.14),rgba(255,255,255,0) 45%);pointer-events:none;}
+  .book img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;}
+  .card a:hover .face{transform:rotateY(-8deg) translateY(-3px);box-shadow:20px 24px 40px rgba(26,26,26,.26);}
+  .book .brand{font-size:11px;font-weight:700;letter-spacing:.02em;opacity:.85;margin-bottom:auto;}
+  .book .kicker{font-size:11px;font-weight:400;opacity:.85;margin-bottom:6px;}
+  .book .t{font-size:clamp(17px,1.7vw,22px);font-weight:800;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;}
+  .book .s{font-size:11.5px;font-weight:300;line-height:1.3;margin-top:10px;opacity:.92;}
+  .book .badge{position:absolute;right:9%;top:9%;width:52px;height:52px;border-radius:50%;background:var(--leaf);color:#fff;display:grid;place-items:center;font-size:9.5px;font-weight:700;text-align:center;line-height:1.05;padding:6px;transform:rotate(8deg);}
+  .book.light .face{color:var(--forest);}
+  .book.light .badge{background:var(--forest);}
+
+  /* pagination */
+  .pager{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:26px 0 0;border-top:1px solid var(--line);margin-top:18px;}
+  .pager .pages{display:flex;gap:6px;}
+  .pager button{font-family:inherit;font-size:14px;min-width:40px;min-height:40px;padding:0 12px;background:#fff;border:1px solid var(--line);border-radius:2px;cursor:pointer;color:var(--ink);}
+  .pager button[aria-current="page"]{background:var(--forest);border-color:var(--forest);color:#fff;}
+  .pager button:disabled{opacity:.4;cursor:default;}
+  .pager .range{font-size:14px;color:var(--ink-soft);}
+
+  /* zero */
+  .zero{padding:34px 0 8px;}
+  .zero h2{margin:0 0 10px;font-size:23px;font-weight:500;color:var(--forest);}
+  .zero p{margin:0 0 20px;font-size:16px;font-weight:300;color:var(--ink-soft);max-width:52ch;}
+  .zero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px;}
+  .zero .ghost{font-family:inherit;font-size:15px;color:var(--moss);background:#fff;border:1px solid var(--line);border-radius:2px;padding:0 20px;min-height:var(--tap);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;}
+  .zero h3{margin:0;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:14px;font-weight:400;color:var(--ink-soft);}
+
+  /* footer */
+  .subscribe{background:#fff;border-top:1px solid var(--line);margin-top:64px;padding:44px 0;}
+  .subscribe .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px;}
+  .subscribe h2{margin:0 0 6px;font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--forest);}
+  .subscribe p{margin:0;font-size:15px;font-weight:300;color:var(--ink-soft);max-width:44ch;}
+  .subform{display:flex;gap:8px;flex:1 1 380px;max-width:520px;}
+  .subform input{flex:1;height:46px;font-family:inherit;font-size:15px;padding:0 14px;border:1.5px solid var(--line);border-radius:2px;}
+  .subform input:focus{outline:none;border-color:var(--moss);}
+  footer{background:var(--paper-2);border-top:1px solid var(--line);padding:32px 0 44px;font-size:13.5px;color:var(--ink-soft);}
+  footer .cols{display:flex;flex-wrap:wrap;gap:28px 48px;margin-bottom:28px;}
+  footer .cols div{display:flex;flex-direction:column;gap:7px;}
+  footer .cols b{font-weight:500;color:var(--ink);margin-bottom:2px;}
+  footer .cols a{color:var(--ink-soft);text-decoration:none;}
+  footer .cols a:hover{color:var(--forest);}
+  footer .fine{max-width:80ch;font-weight:300;font-size:12.5px;color:var(--ink-mute);}
+
+  @media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:700px){
+    .masthead .wrap{height:62px;}.logo img{height:28px;}
+    .nav a:not(.btn){display:none;}
+    .grid{grid-template-columns:repeat(2,1fr);gap:32px 18px;}
+    .toolrow{flex-wrap:wrap;}.sortwrap{flex:1 1 100%;}.sortwrap select{width:100%;}
+    .chiprow{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px;}
+    .book .t{font-size:16px;}
+  }
+  @media (max-width:420px){.grid{grid-template-columns:1fr 1fr;gap:26px 14px;}}
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+<a class="skip" href="#results">Skip to the guides</a>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="https://lifeuntox.com" aria-label="Lifeuntox home"><img src="data:image/png;base64,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" alt="Lifeuntox"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#" aria-current="page">Guides</a>
+      <a href="https://lifeuntox.com">Newsletter</a>
+      <a href="https://lifeuntox.com">About</a>
+      <a class="btn btn-solid" href="https://lifeuntox.com">Subscribe free</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; Guides &amp; Resources</p>
+  <div class="phead">
+    <h1>Guides &amp; Resources</h1>
+    <p>Every free guide we have published, written so anyone can act on it. Type the word you commented on our post, or browse by topic.</p>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="wrap">
+    <div class="toolrow">
+      <div class="field" id="field">
+        <label class="sr" for="q">Search guides by comment word or topic</label>
+        <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Type your word, or search a topic" aria-describedby="q-help">
+        <button type="button" class="clear" id="clear" aria-label="Clear search">&times;</button>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      </div>
+      <div class="sortwrap">
+        <label class="sr" for="sort">Order guides by</label>
+        <select id="sort">
+          <option value="newest">Newest first</option>
+          <option value="relevance">Best match</option>
+          <option value="popular">Most read</option>
+          <option value="az">A to Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="chiprow" id="topics" role="group" aria-label="Filter by topic"></div>
+    <p id="q-help" class="sr">Results update as you type. Misspellings are corrected automatically.</p>
+  </div>
+</div>
+
+<main class="wrap" id="results">
+  <div class="rhead">
+    <p class="count" id="count"></p>
+    <div class="quick" id="quick"><span>Most commented words:</span></div>
+  </div>
+  <div class="applied" id="applied"></div>
+  <p class="didyoumean" id="didyoumean" hidden></p>
+
+  <ul class="grid" id="grid"></ul>
+
+  <nav class="pager" id="pager" aria-label="Pages" hidden>
+    <button type="button" id="prev">Previous</button>
+    <div class="pages" id="pages"></div>
+    <button type="button" id="next">Next</button>
+  </nav>
+
+  <section class="zero" id="zero" hidden>
+    <h2 id="zero-head"></h2>
+    <p id="zero-body"></p>
+    <div class="actions">
+      <button type="button" class="btn btn-solid" id="zero-reset">Show all guides</button>
+      <a class="ghost" href="mailto:support@lifeuntox.com?subject=Guide%20request">Ask us for it by email</a>
+    </div>
+    <h3>Guides people open most</h3>
+    <ul class="grid" id="fallback"></ul>
+  </section>
+
+  <p class="sr" role="status" id="live"></p>
+</main>
+
+<section class="subscribe">
+  <div class="wrap">
+    <div>
+      <h2>One clean-living breakdown, every morning.</h2>
+      <p>Join 70,000+ readers who get the research before it hits the headlines. Free, and you can leave any time.</p>
+    </div>
+    <form class="subform" action="#" onsubmit="event.preventDefault();this.querySelector('button').textContent='You\'re in'">
+      <label class="sr" for="fe">Email address</label>
+      <input id="fe" type="email" placeholder="Email address" required>
+      <button class="btn btn-solid" type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><b>Explore</b><a href="#">Water</a><a href="#">Kitchen</a><a href="#">Home</a><a href="#">Personal care</a><a href="#">Family</a><a href="#">Food</a></div>
+      <div><b>About</b><a href="https://lifeuntox.com">Our mission</a><a href="https://lifeuntox.com">How we research</a><a href="mailto:support@lifeuntox.com">support@lifeuntox.com</a></div>
+      <div><b>Partners</b><a href="https://notoxchef.com" rel="noopener">NOTOXCHEF</a><a href="https://lifeuntox.com">Savings codes</a></div>
+      <div><b>Community</b><a href="https://www.instagram.com/lifeuntox" rel="noopener">Instagram</a><a href="https://www.facebook.com/groups/theuntoxclub" rel="noopener">The Untox Club (Facebook)</a></div>
+    </div>
+    <p class="fine">Lifeuntox guides are for education, not medical advice. Every claim links to its source. Some links are affiliate links; they never change what we recommend. © 2026 Lifeuntox LLC.</p>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   ADD A GUIDE: copy a block, change the fields, save.
+   slug   the article page (guide-<slug>.html)
+   code   word people comment on the post
+   cover  URL of the generated cover image; leave "" to use
+          the CSS placeholder book
+   color  placeholder book colour (ignored once cover is set)
+   text   the guide's full body text, used for full-text search.
+          Run  node build-index.js  to fill this in automatically
+          from the guide-*.html files.
+   ========================================================= */
+const GUIDES = [
+  { slug:"clean-meat-directory", code:"CHICKEN", title:"The Clean Meat Directory", sub:"10 safe chicken brands to buy today", cat:"Food", reads:0, added:"2026-09-11", cover:"", color:"#1a4a1a", badge:"10 verified brands",
+    desc:"Your 'organic' chicken might be bathed in chlorine. These ten air-chilled, pasture-raised brands do it differently, with where to buy each one.",
+    keywords:["chicken","meat","poultry","air chilled","chlorine","organic","pasture raised","bell and evans","vital farms","butcher"],
+    text:"Inside: 10 chicken brands we checked ourselves, where to buy each one, a store-by-store cheat sheet, and a four-step test for any brand not on this list. The dirty truth about \"clean\" chicken Walk into any grocery store and the chicken labels are covered in comforting words. Organic. Natural. Hormone-free. Humanely raised. What the labels almost never mention is what happened to that chicken after it was slaughtered. Most chicken sold in America is cooled in a giant shared tank of cold water. That water is treated with chlorine or other germ-killing chemicals, because thousands of birds are sitting in it together. This is called water-chilling . It is fast and cheap, which is why almost everyone does it. Here is the problem. While your chicken sits in that tank, it soaks up water (which you then pay for by the pound), it soaks up chemical residue, and it shares a bath with every other bird that went through that day. There is another way. Air-chilling cools each bird on its own, in a cold room, with no water at all. It takes longer and costs more, so most big producers skip it. But you get chicken with no added water, no chemical bath, and noticeably better texture when you cook it. The one word to look for If the package does not say \"air-chilled\" , assume the chicken was water-chilled with chemicals. \"Natural\", \"organic\", and even \"no antibiotics ever\" tell you nothing about how the bird was cooled. Look for the words air-chilled on the front of the pack. We did the checking so you can skip the detective work. Every brand below meets three tests: air-chilled processing, birds raised on pasture or genuinely free-range, and a company that is open about how it works. The 10 brands 1. Bell & Evans Air-chilled No antibiotics ever Humanely raised Bell & Evans has been air-chilling chicken since the 1990s, long before most shoppers knew the difference. Their birds are raised on family farms in Pennsylvania with access to sunlight and outdoor space, eat an all-vegetable diet, and are processed in the company's own facilities. Where to buy: Whole Foods, Wegmans, ShopRite, Stop & Shop, Giant, and most natural food stores. Also direct at bellandevans.com . 2. Mary's Free Range Air-chilled Free range Organic options Mary's chickens roam California farms with plenty of outdoor access. They sell both a standard and a certified organic line, and every bird is air-chilled. If you want to go further, their heritage-breed birds have flavour most people have never tasted from supermarket chicken. Where to buy: Whole Foods, Sprouts, Bristol Farms, Erewhon, and natural grocers across the West Coast. Expanding nationally through specialty retailers. Get the other 8 brands, free Pop your email in and the rest of this guide unlocks straight away. You will also get one clean-living breakdown every morning from the Lifeuntox team. Leave any time. Email address Unlock the guide No spam, ever. We never sell or share your email. Already a subscriber? Unlock with your email 3. White Oak Pastures Air-chilled Pasture-raised Regenerative farm White Oak Pastures runs a zero-waste regenerative farm in Bluffton, Georgia. Chickens live on open pasture alongside cattle, moving from field to field. The farm processes birds on-site in its own USDA-inspected facility using air-chilling. This is about as close to your great-grandparents' chicken as you can get. Where to buy: Whole Foods (Southeast), or direct from whiteoakpastures.com with nationwide shipping. Use code LIFEUNTOX for a discount. 4. Cooks Venture Air-chilled Pasture-raised Heritage breed Cooks Venture raises its own slow-growing Pioneer breed on regenerative pasture in Arkansas. Slow-growing birds develop richer flavour than the fast-growing breeds used by big producers. All processing is air-chilled at their own facility, and they control every step from hatchery to package. Where to buy: Direct from cooksventure.com with nationwide shipping. Select Whole Foods locations. Also through the ButcherBox subscription. 5. Pasturebird Air-chilled Pasture-raised Moved daily Pasturebird moves its chickens to fresh grass every single day using mobile shelters, so the birds always have new pasture, bugs, and sunshine. Based in Southern California, they have managed to scale pasture-raised chicken without dropping their air-chilled standard. Where to buy: Erewhon, Bristol Farms, Lazy Acres, and select California retailers. Direct shipping via pasturebird.com . 6. Vital Farms Air-chilled Pasture-raised Certified Humane Vital Farms built its name on pasture-raised eggs and applies the same standard to chicken. Birds are raised on partner farms with at least 108 square feet of outdoor pasture each, far more than organic rules require. All processing is air-chilled. Where to buy: Whole Foods, Sprouts, Target (select locations), Kroger, Publix, and most major chains with a natural section. 7. Farmer Focus Air-chilled Certified organic Farmer-owned Farmer Focus is owned by the farmers who raise the birds, which keeps welfare standards high and the whole operation open to scrutiny. Based in Virginia's Shenandoah Valley, they sell both organic and humanely raised lines, all air-chilled. Their website lets you trace your chicken back to the exact farm it came from. Where to buy: Whole Foods, Wegmans, Harris Teeter, Publix, and growing availability on the East Coast. Direct shipping via farmerfocus.com . 8. Joyce Farms Air-chilled Free range Heritage breeds Joyce Farms in North Carolina specialises in heritage poultry, including their well-known Poulet Rouge. These slow-growing birds taste closer to what you would find in France than in a US supermarket, and every one is air-chilled. This is the brand chefs seek out. Where to buy: Direct from joyce-farms.com , select Whole Foods, and specialty butchers. 9. Shenandoah Valley Organic Air-chilled USDA organic 100% traceable Raised on small family farms in Virginia with outdoor access and certified organic feed. What sets them apart from bigger organic brands is that they did not cut the corner on processing: everything is air-chilled, and every pack can be traced from farm to fork. Where to buy: Whole Foods, MOM's Organic Market, and specialty grocers across the Mid-Atlantic. 10. Perdue Harvestland (organic air-chilled line) Air-chilled USDA organic Widely available This is the one for people who cannot get to a Whole Foods. Perdue's Harvestland organic air-chilled line brings clean chicken to mainstream stores at mainstream prices. Be careful here: Perdue also sells water-chilled chicken, so check the pack says air-chilled before it goes in the cart. Where to buy: Walmart, Costco, Kroger, Safeway, and most major chains nationwide. The most accessible option on this list. Quick reference: where to shop Store Clean brands available Whole Foods Bell & Evans, Mary's, Vital Farms, Farmer Focus, Joyce Farms Wegmans Bell & Evans, Farmer Focus Sprouts Mary's Free Range, Vital Farms Target Vital Farms (select locations) Walmart / Costco Perdue Harvestland Organic Air-Chilled Online direct White Oak Pastures, Cooks Venture, Pasturebird, Joyce Farms How to check any brand yourself Shopping somewhere that stocks none of these? Use this four-step test. Look for \"air-chilled\" on the front of the pack. This is the single most important thing. No air-chilled label means water-chilled with chemicals. Check for a third-party stamp. Certified Humane, Animal Welfare Approved, and Global Animal Partnership ratings mean someone outside the company checked the farm. Read the brand's website. Companies that are proud of their process talk about it openly. If you cannot find how they chill their birds, there is usually a reason. Watch the pan. Water-chilled chicken leaks liquid as it cooks and steams instead of browning. Air-chilled chicken holds its weight and gets golden. Clean chicken deserves a clean pan. Non-stick coatings can shed PFAS into your food at the exact temperatures you sear chicken at. Our cookware guide explains which materials are safe and why, in plain English. Read the cookware guide Free, like everything in the library. Sources [Add source] USDA Food Safety and Inspection Service guidance on antimicrobial treatments permitted in poultry chill water. [Add source] Peer-reviewed comparison of water-chilled and air-chilled poultry: moisture uptake and microbial load. Brand processing and welfare claims: taken from each company's published standards (linked above) and to be re-verified before publication. This guide is for education only and is not medical advice. Brand availability varies by location. Some links are affiliate links; they never change what we recommend." },
+  { slug:"tap-water-filter-guide", code:"WATER", title:"The Tap Water Filter Guide", sub:"What is in your water and what removes it", cat:"Water", reads:41200, added:"2026-02-11", cover:"", color:"#2f6f9e", badge:"Top 5 filters",
+    desc:"What is actually in US tap water, which filters remove it, and which certifications are worth paying for.",
+    keywords:["filter","filtration","reverse osmosis","fluoride","chlorine","pfas","lead","boroux","springwell","drinking water"] },
+  { slug:"non-toxic-cookware", code:"PANS", title:"Non-Toxic Cookware Buyer's Guide", sub:"Ceramic, cast iron, stainless and glass compared", cat:"Kitchen", reads:38900, added:"2026-01-22", cover:"", color:"#4a3a2a", badge:"",
+    desc:"Ceramic, cast iron, stainless and glass compared, plus the coatings that quietly still contain PFAS.",
+    keywords:["cookware","pan","frying pan","teflon","nonstick","non stick","pfoa","ceramic","cast iron","stainless","caraway","xtrema","notoxchef"] },
+  { slug:"food-storage-without-plastic", code:"STORAGE", title:"Food Storage Without Plastic", sub:"Where microplastics get into your food at home", cat:"Kitchen", reads:26400, added:"2026-03-04", cover:"", color:"#3d7a5c", badge:"",
+    desc:"Where microplastics enter your food at home, and the swaps that cost almost nothing to make.",
+    keywords:["plastic","microplastics","bpa","containers","cling film","clingfilm","tupperware","glass","leftovers"] },
+  { slug:"clean-laundry-reset", code:"LAUNDRY", title:"The Clean Laundry Reset", sub:"Fragrance, brighteners and quats explained", cat:"Home", reads:22100, added:"2026-02-26", cover:"", color:"#5b6fa6", badge:"",
+    desc:"Fragrance, optical brighteners and quats explained, with detergents that wash just as well without them.",
+    keywords:["detergent","washing","fabric softener","dryer sheets","fragrance","parfum","quats","branch basics"] },
+  { slug:"indoor-air-quality", code:"AIR", title:"Indoor Air Quality Starter Guide", sub:"Why indoor air is often worse than outdoor", cat:"Home", reads:31500, added:"2026-04-08", cover:"", color:"#6b8fa3", badge:"",
+    desc:"Why indoor air is often worse than outdoor air, what to measure, and how to fix the biggest sources first.",
+    keywords:["air purifier","vocs","mould","mold","damp","hepa","radon","jaspr","formaldehyde","ventilation"] },
+  { slug:"cleaning-cupboard-swap", code:"CLEAN", title:"Swap Your Cleaning Cupboard", sub:"The eleven ingredients we avoid", cat:"Home", reads:19800, added:"2026-01-09", cover:"", color:"#7cb342", badge:"",
+    desc:"The eleven ingredients we avoid, why greenwashed labels get away with it, and what to use instead.",
+    keywords:["cleaning products","greenwashing","bleach","ammonia","disinfectant","vinegar","spray","labels"] },
+  { slug:"reading-a-skincare-label", code:"SKIN", title:"Reading a Skincare Label", sub:"Decode an ingredients list in under a minute", cat:"Personal care", reads:35700, added:"2026-03-19", cover:"", color:"#b07a8f", badge:"",
+    desc:"How to decode an ingredients list in under a minute and spot the fillers hiding behind clean branding.",
+    keywords:["skincare","cosmetics","parabens","phthalates","fragrance","sunscreen","spf","deodorant","makeup","shampoo"] },
+  { slug:"low-tox-nursery", code:"KIDS", title:"The Low-Tox Nursery", sub:"Mattresses, bottles, bath products and toys", cat:"Family", reads:17300, added:"2026-05-02", cover:"", color:"#d9a441", badge:"",
+    desc:"Mattresses, bottles, bath products and toys, ranked by how much exposure each one actually drives.",
+    keywords:["baby","nursery","bottles","flame retardants","toys","children","cot","crib","pram","wipes"] },
+  { slug:"what-your-mattress-is-made-of", code:"SLEEP", title:"What Your Mattress Is Made Of", sub:"Flame retardants, foam and off-gassing", cat:"Family", reads:14600, added:"2026-04-21", cover:"", color:"#3f4b63", badge:"",
+    desc:"Flame retardants, polyurethane foam and off-gassing, plus the certifications that mean something.",
+    keywords:["mattress","bed","bedding","foam","off gassing","offgassing","gots","oeko-tex","organic cotton"] },
+  { slug:"pfas-exposure-map", code:"PFAS", title:"The PFAS Exposure Map", sub:"Where forever chemicals show up in a normal week", cat:"Food", reads:29800, added:"2026-05-27", cover:"", color:"#8b2c2c", badge:"",
+    desc:"Where forever chemicals show up in an ordinary week, and the five swaps that cut the most exposure.",
+    keywords:["forever chemicals","pfoa","pfos","contamination","packaging","takeaway","fast food","water"] },
+  { slug:"seed-oils-honestly", code:"OILS", title:"Seed Oils, Honestly", sub:"What the research supports and what it does not", cat:"Food", reads:24900, added:"2026-06-10", cover:"", color:"#c9a227", badge:"",
+    desc:"What the research supports, what it does not, and how to cook without the internet panic.",
+    keywords:["seed oils","canola","rapeseed","sunflower","olive oil","tallow","cooking fat","inflammation"] },
+  { slug:"produce-worth-buying-organic", code:"PRODUCE", title:"Produce Worth Buying Organic", sub:"Pesticide residue data by crop", cat:"Food", reads:21600, added:"2026-03-31", cover:"", color:"#2d5a2d", badge:"",
+    desc:"Pesticide residue data by crop, so your grocery budget goes where it lowers exposure most.",
+    keywords:["organic","pesticides","glyphosate","roundup","dirty dozen","fruit","vegetables","thrive market"] }
+];
+
+const SYNONYMS = {
+  "pots":"pans","saucepan":"pans","skillet":"pans","frypan":"pans",
+  "tap":"water","shower":"water","well water":"water",
+  "washing up":"clean","detergent":"laundry","softener":"laundry",
+  "purifier":"air","mould":"mold","aircon":"air",
+  "cream":"skin","lotion":"skin","moisturiser":"skin","moisturizer":"skin",
+  "infant":"kids","toddler":"kids","newborn":"kids","child":"kids",
+  "duvet":"sleep","pillow":"sleep","bedroom":"sleep",
+  "veg":"produce","veggies":"produce","groceries":"produce",
+  "frying oil":"oils","cooking oil":"oils","lunchbox":"storage",
+  "beef":"chicken","steak":"chicken","turkey":"chicken","poultry":"chicken"
+};
+
+const PAGE_SIZE = 12;
+const LIGHT = ["#7cb342","#c9a227","#d9a441"];
+
+const el = id => document.getElementById(id);
+const input=el('q'), field=el('field'), sortSel=el('sort'), topicsEl=el('topics'),
+      gridEl=el('grid'), countEl=el('count'), appliedEl=el('applied'), zeroEl=el('zero'),
+      dymEl=el('didyoumean'), liveEl=el('live'), quickEl=el('quick'), pagerEl=el('pager');
+
+let topics=new Set(), forceExact=false, page=1;
+
+[...new Set(GUIDES.map(g=>g.cat))].sort().forEach(cat=>{
+  const b=document.createElement('button');
+  b.className='chip'; b.type='button'; b.textContent=cat; b.dataset.cat=cat;
+  b.setAttribute('aria-pressed','false');
+  b.addEventListener('click',()=>{ topics.has(cat)?topics.delete(cat):topics.add(cat); syncChips(); page=1; render(); });
+  topicsEl.appendChild(b);
+});
+[...GUIDES].sort((a,b)=>b.reads-a.reads).slice(0,4).forEach(g=>{
+  const b=document.createElement('button'); b.type='button'; b.textContent=g.code;
+  b.addEventListener('click',()=>{ input.value=g.code; forceExact=false; page=1; render(); });
+  quickEl.appendChild(b);
+});
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rxEsc=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+function highlight(t,term){ const s=esc(t); if(!term||term.length<2) return s; return s.replace(new RegExp('('+rxEsc(term)+')','ig'),'<mark>$1</mark>'); }
+function distance(a,b){ if(Math.abs(a.length-b.length)>3) return 9; const m=[]; for(let i=0;i<=b.length;i++)m[i]=[i]; for(let j=0;j<=a.length;j++)m[0][j]=j;
+  for(let i=1;i<=b.length;i++)for(let j=1;j<=a.length;j++)m[i][j]=b[i-1]===a[j-1]?m[i-1][j-1]:Math.min(m[i-1][j-1]+1,m[i][j-1]+1,m[i-1][j]+1); return m[b.length][a.length]; }
+function score(g,t){ if(!t) return 1; const code=g.code.toLowerCase(),title=g.title.toLowerCase();
+  if(code===t) return 1000; if(code.startsWith(t)) return 800;
+  if(g.keywords.some(k=>k===t)) return 600; if(title.startsWith(t)) return 500;
+  if(new RegExp('\\b'+rxEsc(t)).test(title)) return 420; if(g.keywords.some(k=>k.includes(t))) return 340;
+  if(title.includes(t)) return 260; if(g.cat.toLowerCase().includes(t)) return 180;
+  if((g.sub+' '+g.desc).toLowerCase().includes(t)) return 100;
+  if((g.text||'').toLowerCase().includes(t)) return 60; return 0; }
+const VOCAB=[...new Set(GUIDES.flatMap(g=>[g.code,g.cat,...g.keywords,...g.title.split(/\s+/),...(g.text||'').split(/\s+/)]).map(w=>w.toLowerCase().replace(/[^a-z\s]/g,'').trim()).filter(w=>w.length>2))];
+function suggest(t){ const lim=t.length<=5?1:2; let best=null,bd=99; VOCAB.forEach(w=>{const d=distance(t,w); if(d<bd&&d<=lim){bd=d;best=w;}}); return best; }
+function resolve(raw){ const t=raw.trim().toLowerCase(); if(!t) return {term:'',corrected:null};
+  if(SYNONYMS[t]) return {term:SYNONYMS[t],corrected:null};
+  if(GUIDES.some(g=>score(g,t)>0)||forceExact) return {term:t,corrected:null};
+  const fix=suggest(t); return fix?{term:fix,corrected:fix}:{term:t,corrected:null}; }
+
+const fmtDate=d=>new Date(d+'T12:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+/* When a match is only inside the guide text, show where it was found */
+function snippet(g,term){
+  if(!term||term.length<3||!g.text) return '';
+  const hay=(g.title+' '+g.sub+' '+g.desc+' '+g.cat+' '+g.keywords.join(' ')).toLowerCase();
+  if(hay.includes(term)) return '';
+  const i=g.text.toLowerCase().indexOf(term); if(i<0) return '';
+  const a=Math.max(0,i-60), b=Math.min(g.text.length,i+term.length+70);
+  return `<span class="snip">${a>0?'…':''}${highlight(g.text.slice(a,b),term)}${b<g.text.length?'…':''}</span>`;
+}
+function coverHTML(g){
+  if(g.cover) return `<div class="book"><img src="${esc(g.cover)}" alt="" loading="lazy"></div>`;
+  const light=LIGHT.includes(g.color);
+  return `<div class="book${light?' light':''}"><div class="face" style="--c:${g.color}">
+    <div class="brand">Lifeuntox</div>
+    ${g.badge?`<div class="badge">${esc(g.badge)}</div>`:''}
+    <div class="kicker">Free guide</div>
+    <div class="t">${esc(g.title)}</div>
+    <div class="s">${esc(g.sub)}</div>
+  </div></div>`;
+}
+function cardHTML(g,term){
+  const href = g.slug==='clean-meat-directory' ? 'guide-clean-meat-directory.html' : '#';
+  return `<li class="card"><a href="${href}">
+    ${coverHTML(g)}
+    <h2>${highlight(g.title,term)}</h2>
+    <p>${highlight(g.desc,term)}</p>
+    <time datetime="${g.added}">${fmtDate(g.added)}</time>
+    ${snippet(g,term)}
+  </a></li>`;
+}
+
+function drawApplied(raw){
+  appliedEl.innerHTML=''; const bits=[];
+  if(raw) bits.push({l:'Search',v:raw,c:()=>{input.value='';forceExact=false;}});
+  topics.forEach(t=>bits.push({l:'Topic',v:t,c:()=>topics.delete(t)}));
+  bits.forEach(b=>{ const t=document.createElement('button'); t.type='button'; t.className='tag';
+    t.innerHTML=`${esc(b.l)}: <b>${esc(b.v)}</b><span class="x" aria-hidden="true">&times;</span>`;
+    t.setAttribute('aria-label','Remove filter '+b.l+' '+b.v);
+    t.addEventListener('click',()=>{b.c();syncChips();page=1;render();}); appliedEl.appendChild(t); });
+  if(bits.length>1){ const r=document.createElement('button'); r.type='button'; r.className='reset'; r.textContent='Clear all'; r.addEventListener('click',resetAll); appliedEl.appendChild(r); }
+}
+function syncChips(){ [...topicsEl.children].forEach(c=>c.setAttribute('aria-pressed',topics.has(c.dataset.cat))); }
+function resetAll(){ input.value=''; topics.clear(); forceExact=false; page=1; syncChips(); render(); input.focus(); }
+
+function drawPager(total){
+  const pages=Math.ceil(total/PAGE_SIZE);
+  pagerEl.hidden = pages<=1;
+  if(pages<=1) return;
+  el('pages').innerHTML='';
+  for(let i=1;i<=pages;i++){ const b=document.createElement('button'); b.type='button'; b.textContent=i;
+    if(i===page) b.setAttribute('aria-current','page');
+    b.addEventListener('click',()=>{page=i;render();el('results').scrollIntoView();}); el('pages').appendChild(b); }
+  el('prev').disabled=page===1; el('next').disabled=page===pages;
+}
+
+let liveTimer;
+function render(){
+  const raw=input.value.trim(); const {term,corrected}=resolve(raw);
+  field.classList.toggle('has-value',input.value.length>0);
+  if(raw && sortSel.value==='newest' && !sortSel.dataset.touched) sortSel.value='relevance';
+  if(!raw && sortSel.value==='relevance' && !sortSel.dataset.touched) sortSel.value='newest';
+
+  let results=GUIDES.filter(g=>topics.size===0||topics.has(g.cat)).map(g=>({g,s:score(g,term)})).filter(r=>r.s>0);
+  const by={ newest:(a,b)=>b.g.added.localeCompare(a.g.added), popular:(a,b)=>b.g.reads-a.g.reads,
+             az:(a,b)=>a.g.title.localeCompare(b.g.title), relevance:(a,b)=>(b.s-a.s)||b.g.added.localeCompare(a.g.added) }[sortSel.value];
+  results=results.sort(by).map(r=>r.g);
+
+  if(corrected&&results.length){ dymEl.hidden=false;
+    dymEl.innerHTML=`Showing results for <b>${esc(term)}</b>. <button type="button" id="dym-no">Search for ${esc(raw)} instead</button>`;
+    el('dym-no').addEventListener('click',()=>{forceExact=true;render();}); } else dymEl.hidden=true;
+
+  const total=results.length, none=total===0;
+  const pages=Math.max(1,Math.ceil(total/PAGE_SIZE)); if(page>pages) page=pages;
+  const slice=results.slice((page-1)*PAGE_SIZE,page*PAGE_SIZE);
+  gridEl.innerHTML=none?'':slice.map(g=>cardHTML(g,term)).join('');
+  const from=(page-1)*PAGE_SIZE+1, to=Math.min(page*PAGE_SIZE,total);
+  countEl.textContent=none?'':(total<=PAGE_SIZE?`${total} ${total===1?'guide':'guides'}`:`Showing ${from}–${to} of ${total} guides`);
+  drawPager(total); drawApplied(raw);
+
+  zeroEl.hidden=!none;
+  if(none){ el('zero-head').textContent=raw?`Nothing here matches “${raw}” yet`:'No guides in those topics yet';
+    el('zero-body').textContent=raw?'Check the spelling, try a plainer word like water or pans, or clear your filters. If you commented a word that is not listed, reply to any newsletter and we will send the guide straight over.':'Try removing a topic filter to widen the results.';
+    el('fallback').innerHTML=[...GUIDES].sort((a,b)=>b.reads-a.reads).slice(0,4).map(g=>cardHTML(g,'')).join(''); }
+
+  clearTimeout(liveTimer);
+  liveTimer=setTimeout(()=>{ liveEl.textContent=none?(raw?`No guides match ${raw}.`:'No guides match those filters.'):`${total} ${total===1?'guide':'guides'} found${corrected?', showing results for '+term:''}.`; },450);
+
+  const p=new URLSearchParams(); if(raw)p.set('q',raw); if(topics.size)p.set('topic',[...topics].join(',')); if(page>1)p.set('page',page);
+  try{ history.replaceState(null,'',p.toString()?'?'+p:location.pathname); }catch(e){}
+}
+
+(function readURL(){ const p=new URLSearchParams(location.search);
+  input.value=p.get('code')||p.get('q')||''; (p.get('topic')||'').split(',').filter(Boolean).forEach(c=>topics.add(c));
+  page=parseInt(p.get('page')||'1',10)||1; syncChips(); })();
+
+input.addEventListener('input',()=>{forceExact=false;page=1;render();});
+input.addEventListener('keydown',e=>{ if(e.key==='Escape'){input.value='';forceExact=false;render();} });
+sortSel.addEventListener('change',()=>{sortSel.dataset.touched='1';page=1;render();});
+el('clear').addEventListener('click',()=>{input.value='';forceExact=false;page=1;render();input.focus();});
+el('zero-reset').addEventListener('click',resetAll);
+el('prev').addEventListener('click',()=>{page--;render();el('results').scrollIntoView();});
+el('next').addEventListener('click',()=>{page++;render();el('results').scrollIntoView();});
+document.addEventListener('keydown',e=>{ if(e.key==='/'&&document.activeElement!==input){e.preventDefault();input.focus();} });
+render();
+</script>
+</body>
+</html>

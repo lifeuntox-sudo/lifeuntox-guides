@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{PAGE_TITLE}}</title>
+<meta name="description" content="{{META_DESC}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Lifeuntox">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{META_DESC}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{TITLE}}">
+<meta name="twitter:description" content="{{META_DESC}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<script type="application/ld+json">{{JSON_LD}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;--ink-soft:#5f5f5c;--ink-mute:#8d8a80;
+    --forest:#1a4a1a;--moss:#2d5a2d;--leaf:#7cb342;
+    --paper:#faf8f3;--paper-2:#f5f2ea;--line:#e2ded1;--gold:#a8871c;--red:#8b2c2c;
+    --maxw:1120px;--measure:680px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'League Spartan',system-ui,sans-serif;line-height:1.6;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+  :focus-visible{outline:2.5px solid var(--leaf);outline-offset:2px;}
+  a{color:var(--moss);text-underline-offset:3px;}
+
+  .masthead{background:#fff;border-bottom:1px solid var(--line);}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .nav{display:flex;align-items:center;gap:26px;font-size:15px;}
+  .nav a{text-decoration:none;color:var(--ink-soft);}
+  .nav a:hover{color:var(--forest);}
+  .nav a.btn-solid,.nav a.btn-solid:hover{color:#fff;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:2px;font-family:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;border:0;}
+  .btn-solid{background:var(--forest);color:#fff;}
+  .btn-solid:hover{background:var(--moss);}
+
+  .crumbs{font-size:13px;color:var(--ink-mute);padding:18px 0 0;}
+  .crumbs a{color:var(--ink-mute);text-decoration:none;}
+
+  /* article header */
+  .ahead{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;padding:26px 0 30px;border-bottom:1px solid var(--line);}
+  .book{position:relative;aspect-ratio:3/4;perspective:1200px;}
+  .book .face{position:absolute;inset:0 6% 0 0;border-radius:2px 5px 5px 2px;transform:rotateY(-14deg);transform-origin:left center;box-shadow:14px 18px 34px rgba(26,26,26,.22);display:flex;flex-direction:column;padding:11% 10% 10%;color:#fff;background:var(--c,var(--forest));overflow:hidden;}
+  .book .face::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0));}
+  .book img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;}
+  .book.has-cover{perspective:none;background:var(--paper);} /* explicit backdrop: the multiply blend cannot see the root background */
+  .book .brand{font-size:10px;font-weight:700;opacity:.85;margin-bottom:auto;}
+  .book .kicker{font-size:10px;opacity:.85;margin-bottom:5px;}
+  .book .t{font-size:18px;font-weight:800;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;}
+  .book .s{font-size:10.5px;font-weight:300;line-height:1.3;margin-top:8px;opacity:.92;}
+  .book .badge{position:absolute;right:9%;top:9%;width:48px;height:48px;border-radius:50%;background:var(--leaf);color:#fff;display:grid;place-items:center;font-size:8.5px;font-weight:700;text-align:center;line-height:1.05;padding:5px;transform:rotate(8deg);}
+  .book.light .face{color:var(--forest);}
+  .book.light .badge{background:var(--forest);}
+  .ahead h1{margin:0 0 8px;font-size:clamp(30px,4.4vw,44px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--forest);}
+  .ahead .sub{margin:0 0 16px;font-size:20px;font-weight:300;color:var(--ink-soft);}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--ink-soft);}
+  .meta b{font-weight:500;color:var(--ink);}
+  .partner{display:inline-flex;align-items:center;gap:9px;margin-top:16px;padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:100px;font-size:13.5px;color:var(--ink-soft);text-decoration:none;}
+  .partner:hover{border-color:var(--moss);color:var(--forest);}
+  .partner b{font-weight:700;color:var(--ink);letter-spacing:.02em;}
+  .partner .dot{width:8px;height:8px;border-radius:50%;background:var(--leaf);}
+  .promo{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);padding:18px 20px;margin:30px 0;font-size:16px;}
+  .promo .mark{font-weight:700;letter-spacing:.02em;color:var(--forest);font-size:14px;white-space:nowrap;}
+  .promo .mark small{font-weight:300;display:block;color:var(--ink-mute);font-size:12px;letter-spacing:0;}
+  .promo p{margin:0;font-size:15.5px;}
+  .promo .btn{min-height:40px;padding:0 16px;font-size:14px;}
+  @media (max-width:600px){.promo{grid-template-columns:1fr;}}
+
+  /* body */
+  .body{max-width:var(--measure);padding:36px 0 0;font-size:18px;font-weight:300;}
+  .body h2{font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--forest);margin:44px 0 12px;line-height:1.15;}
+  .body h3{font-size:20px;font-weight:600;color:var(--ink);margin:30px 0 8px;}
+  .body p{margin:0 0 18px;}
+  .body strong{font-weight:500;}
+  .body ol,.body ul{padding-left:22px;margin:0 0 18px;}
+  .body li{margin-bottom:8px;}
+  .inside{background:#fff;border:1px solid var(--line);border-left:4px solid var(--leaf);padding:16px 20px;margin:0 0 26px;font-size:16.5px;}
+  .inside b{font-weight:500;}
+  .insight{background:#fdf8e6;border:1px solid #f0e6c2;border-left:4px solid #e3c65b;padding:16px 20px;margin:26px 0;font-size:16.5px;}
+  .insight b{font-weight:600;display:block;margin-bottom:6px;}
+  .warn{background:#fbecec;border:1px solid #efc9c9;border-left:4px solid var(--red);padding:16px 20px;margin:26px 0;font-size:16.5px;}
+  .warn b{color:var(--red);font-weight:600;display:block;margin-bottom:6px;}
+  .checks{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;}
+  .checks span{font-size:13px;font-weight:500;color:var(--moss);background:#eef5e6;border:1px solid #d3e4c0;border-radius:2px;padding:4px 9px;}
+  .buy{background:var(--paper-2);border-radius:2px;padding:12px 16px;font-size:16px;margin:0 0 28px;}
+  .buy b{font-weight:500;color:var(--forest);}
+  table{width:100%;border-collapse:collapse;font-size:16px;margin:0 0 24px;}
+  th{text-align:left;background:var(--forest);color:#fff;font-weight:500;padding:11px 14px;}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--paper-2);}
+  .cta{background:var(--forest);color:#fff;padding:28px;border-radius:2px;margin:36px 0;}
+  .cta h3{color:#fff;margin:0 0 8px;font-size:22px;font-weight:600;}
+  .cta p{color:rgba(255,255,255,.85);margin:0 0 16px;font-size:16.5px;}
+  .cta .btn{background:var(--gold);color:#fff;}
+  .cta .btn:hover{background:#b9961f;}
+  .cta small{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.65);}
+  .sources{font-size:15px;color:var(--ink-soft);}
+  .sources li{margin-bottom:6px;}
+  .fine{font-size:13.5px;color:var(--ink-mute);margin:40px 0 0;}
+  .share{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:40px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft);}
+  .share a{text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:2px;padding:8px 14px;color:var(--moss);}
+
+  /* the gate */
+  .locked{position:relative;}
+  .locked .content{filter:blur(6px);user-select:none;pointer-events:none;max-height:520px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent);}
+  .gate{position:absolute;left:0;right:0;top:120px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--leaf);padding:30px;box-shadow:0 20px 50px rgba(26,26,26,.12);}
+  .gate h3{margin:0 0 6px;font-size:24px;font-weight:600;color:var(--forest);letter-spacing:-.02em;}
+  .gate p{margin:0 0 16px;font-size:16px;color:var(--ink-soft);}
+  .gate form{display:flex;gap:8px;}
+  .gate input{flex:1;height:48px;font-family:inherit;font-size:16px;padding:0 14px;border:1.5px solid var(--line);border-radius:2px;}
+  .gate input:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
+  .gate .fine{margin:12px 0 0;font-size:13px;}
+  .gate .have{margin:14px 0 0;font-size:14px;}
+  .gate .have button{font-family:inherit;font-size:14px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
+  .phone{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);padding:24px 28px;margin:0 0 30px;}
+  .phone h3{margin:0 0 6px;font-size:20px;font-weight:600;color:var(--forest);}
+  .phone h3 span{font-size:12px;font-weight:500;color:var(--ink-mute);border:1px solid var(--line);border-radius:100px;padding:2px 8px;vertical-align:middle;margin-left:6px;}
+  .phone p{margin:0 0 14px;font-size:15px;color:var(--ink-soft);}
+  .phone form{display:flex;gap:8px;margin-bottom:10px;}
+  .phone input,.phone select{height:46px;font-family:inherit;font-size:16px;padding:0 12px;border:1.5px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);}
+  .phone input{flex:1;min-width:0;}
+  .phone select{flex:0 0 auto;max-width:150px;}
+  .phone input:focus,.phone select:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
+  .phone input[aria-invalid="true"]{border-color:var(--red);}
+  .phone .err{color:var(--red);}
+  .phone .fine{margin:0 0 10px;font-size:12.5px;}
+  .phone .skipph{font-family:inherit;font-size:14px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
+  .phone.done{border-top-color:var(--leaf);}
+  .unlocked .locked .content{filter:none;user-select:auto;pointer-events:auto;max-height:none;-webkit-mask-image:none;mask-image:none;}
+  .unlocked .gate{display:none;}
+
+  /* more guides */
+  .more{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);}
+  .more h2{font-size:22px;font-weight:600;color:var(--forest);margin:0 0 18px;letter-spacing:-.02em;}
+  .more ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .more a{text-decoration:none;color:inherit;}
+  .more .mini{aspect-ratio:3/4;border-radius:2px 5px 5px 2px;background:var(--c);color:#fff;padding:12% 10%;font-weight:800;text-transform:uppercase;line-height:1.02;font-size:15px;box-shadow:8px 10px 22px rgba(26,26,26,.18);}
+  .more .mini.has-cover{background:var(--paper);padding:0;box-shadow:none;}
+  .more .mini img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;}
+  .more h3{font-size:15px;font-weight:600;margin:12px 0 0;color:var(--ink);}
+
+  footer{background:var(--paper-2);border-top:1px solid var(--line);margin-top:64px;padding:32px 0 44px;font-size:13px;color:var(--ink-mute);}
+  footer p{max-width:80ch;margin:0;font-weight:300;}
+
+  @media (max-width:760px){
+    .masthead .wrap{height:62px;}.logo img{height:28px;}.nav a:not(.btn){display:none;}
+    .ahead{grid-template-columns:1fr;gap:22px;}.book{width:150px;}
+    .body{font-size:17px;}
+    .gate{top:60px;padding:22px;}.gate form{flex-direction:column;}
+    .more ul{grid-template-columns:1fr 1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="https://lifeuntox.com" aria-label="Lifeuntox home"><img src="assets/lifeuntox-logo.png" alt="Lifeuntox"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Guides</a>
+      <a href="https://lifeuntox.com">Newsletter</a>
+      <a href="https://lifeuntox.com">About</a>
+      <a class="btn btn-solid" href="https://lifeuntox.com">Subscribe free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="page">
+  <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; <a href="index.html">Guides</a> &nbsp;›&nbsp; {{TITLE}}</p>
+
+  <header class="ahead">
+    {{COVER}}
+    <div>
+      <h1>{{TITLE}}</h1>
+      <p class="sub">{{DECK}}</p>
+      <div class="meta">
+        <span><b>{{CAT}}</b></span>
+        <span>Updated <b>{{UPDATED}}</b></span>
+        <span><b>{{READ_MIN}} min</b> read</span>
+        <span>By <b>The Lifeuntox Team</b></span>
+      </div>
+      <a class="partner" href="https://notoxchef.com" rel="noopener"><span class="dot"></span>Lifeuntox is an official partner of <b>NOTOXCHEF</b></a>
+    </div>
+  </header>
+
+  <article class="body">
+    {{ARTICLE_PRE}}
+
+    <!-- gate:start -->
+    <!-- ===== GATE: everything below is blurred for first-time visitors ===== -->
+    <div class="locked" id="locked">
+      <!-- gate-ui -->
+      <div class="gate" id="gate">
+        <h3>{{GATE_TITLE}}</h3>
+        <p>Pop your email in and the rest of this guide unlocks straight away. You will also get one clean-living breakdown every morning from the Lifeuntox team. Leave any time.</p>
+        <form id="gateform">
+          <label class="sr" for="ge">Email address</label>
+          <input id="ge" type="email" placeholder="Email address" required autocomplete="email">
+          <button class="btn btn-solid" type="submit">Unlock the guide</button>
+        </form>
+        <p class="fine">No spam, ever. We never sell or share your email.</p>
+        <p class="have">Already a subscriber? <button type="button" id="already">Unlock with your email</button></p>
+      </div>
+
+      <!-- Optional phone step: shown after the email unlock -->
+      <div class="phone" id="phone" hidden>
+        <h3>Want recall alerts by text? <span>Optional</span></h3>
+        <p>We text only when something you might have at home is recalled. A few times a year, never marketing.</p>
+        <form id="phoneform" novalidate>
+          <label class="sr" for="cc">Country</label>
+          <select id="cc" aria-label="Country"></select>
+          <label class="sr" for="ph">Mobile number</label>
+          <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="Mobile number">
+          <button class="btn btn-solid" type="submit">Add my number</button>
+        </form>
+        <p class="fine err" id="phone-err" hidden></p>
+        <p class="fine" id="phone-msg">By adding your number you agree to receive recall alerts by SMS from Lifeuntox. Message and data rates may apply. Reply STOP to cancel.</p>
+        <button type="button" class="skipph" id="skipph">No thanks, just the guide</button>
+      </div>
+      <!-- /gate-ui -->
+
+      <div class="content" id="content" aria-hidden="true">
+        {{ARTICLE_POST}}
+
+        <p class="fine">{{DISCLOSURE}}</p>
+      </div>
+    </div>
+    <!-- gate:end -->
+  </article>
+
+  <div class="share">
+    <span>Share this guide</span>
+    <a href="{{CANONICAL}}" id="copylink">Copy link</a><a href="{{SHARE_EMAIL}}">Email</a><a href="{{SHARE_FB}}" rel="noopener" target="_blank">Facebook</a>
+  </div>
+
+  <section class="more">
+    <h2>More free guides</h2>
+    <ul>
+      {{MORE_GUIDES}}
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><p>© 2026 Lifeuntox LLC. Guides are for education, not medical advice. Every claim links to its source. Questions: <a href="mailto:support@lifeuntox.com">support@lifeuntox.com</a> · Join <a href="https://www.facebook.com/groups/theuntoxclub" rel="noopener">The Untox Club</a> on Facebook.</p></div>
+</footer>
+
+<script>
+/* ---------- the gate ----------
+   Unlocks when any of these is true:
+   1. the visitor has unlocked before on this device
+   2. the link carried ?s=1 (put this on every newsletter and DM link
+      so subscribers never see the gate)
+   3. the visitor submits the form below
+   SUBSCRIBE_ENDPOINT is set at build: the site's own subscribe function
+   (which calls the Beehiiv API server-side), or BEEHIIV_FORM_ACTION when
+   that env var holds a URL to post the email to instead. */
+const SUBSCRIBE_ENDPOINT = {{FORM_ACTION}};
+const PHONE_SAVE = "/.netlify/functions/phone-save";  // saves the number to Beehiiv
+const GUIDE_SLUG = {{SLUG_JSON}};
+const KEY = "lifeuntox_unlocked";
+let subscriberEmail = "";
+
+const remember = () => { try{ localStorage.setItem(KEY,"1"); }catch(e){} };
+const remembered = () => { try{ return localStorage.getItem(KEY)==="1"; }catch(e){ return false; } };
+
+function unlock(){
+  document.body.classList.add('unlocked');
+  const c=document.getElementById('content'); if(c) c.removeAttribute('aria-hidden');
+  remember();
+}
+
+const params = new URLSearchParams(location.search);
+if(remembered() || params.get('s')==='1') unlock();
+
+const gateform=document.getElementById('gateform');
+if(gateform) gateform.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const email = document.getElementById('ge').value.trim();
+  const btn = e.target.querySelector('button'); btn.textContent='Unlocking…'; btn.disabled=true;
+  subscriberEmail = email;
+  unlock();   // unlock first; the subscribe request runs in the background
+  const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'});
+  if(SUBSCRIBE_ENDPOINT.startsWith('/')){
+    post(SUBSCRIBE_ENDPOINT,{email,slug:GUIDE_SLUG}).then(out=>{ if(!out.ok) console.warn('subscribe: not saved', out); });
+  } else if(SUBSCRIBE_ENDPOINT){
+    try{ await fetch(SUBSCRIBE_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'email='+encodeURIComponent(email)}); }catch(err){}
+  }
+});
+
+/* ---------- optional phone opt-in (no verification yet) ----------
+   Each country: [dial code, min national digits, max national digits,
+   optional regex the national number must match]. National = the number
+   without the country code and without a leading trunk 0.               */
+const COUNTRIES = {
+  US:["United States",1,10,10,/^[2-9]\d{2}[2-9]\d{6}$/],
+  CA:["Canada",1,10,10,/^[2-9]\d{2}[2-9]\d{6}$/],
+  GB:["United Kingdom",44,10,10,/^7\d{9}$/],
+  IE:["Ireland",353,9,9,/^8[35-9]\d{7}$/],
+  AU:["Australia",61,9,9,/^4\d{8}$/],
+  NZ:["New Zealand",64,8,10,/^2\d{7,9}$/],
+  DE:["Germany",49,10,11,/^1[5-7]\d{8,9}$/],
+  FR:["France",33,9,9,/^[67]\d{8}$/],
+  ES:["Spain",34,9,9,/^[67]\d{8}$/],
+  IT:["Italy",39,9,10,/^3\d{8,9}$/],
+  NL:["Netherlands",31,9,9,/^6\d{8}$/],
+  BE:["Belgium",32,9,9,/^4\d{8}$/],
+  PT:["Portugal",351,9,9,/^9\d{8}$/],
+  SE:["Sweden",46,9,9,/^7\d{8}$/],
+  NO:["Norway",47,8,8,/^[49]\d{7}$/],
+  DK:["Denmark",45,8,8,/^\d{8}$/],
+  CH:["Switzerland",41,9,9,/^7[5-9]\d{7}$/],
+  AT:["Austria",43,10,13,/^6\d{9,12}$/],
+  PL:["Poland",48,9,9,/^[4-8]\d{8}$/],
+  MX:["Mexico",52,10,10,/^\d{10}$/],
+  BR:["Brazil",55,11,11,/^\d{2}9\d{8}$/],
+  AR:["Argentina",54,10,10,/^\d{10}$/],
+  IN:["India",91,10,10,/^[6-9]\d{9}$/],
+  SG:["Singapore",65,8,8,/^[89]\d{7}$/],
+  ZA:["South Africa",27,9,9,/^[6-8]\d{8}$/],
+  AE:["United Arab Emirates",971,9,9,/^5\d{8}$/],
+  IL:["Israel",972,9,9,/^5\d{8}$/],
+  JP:["Japan",81,10,10,/^[789]0\d{8}$/],
+  PH:["Philippines",63,10,10,/^9\d{9}$/],
+  OTHER:["Other country (enter with +)",0,7,15,null]
+};
+const ccSel=document.getElementById('cc'), phIn=document.getElementById('ph'), phErr=document.getElementById('phone-err');
+if(ccSel){
+Object.entries(COUNTRIES).forEach(([k,c])=>{ const o=document.createElement('option'); o.value=k; o.textContent=k==='OTHER'?c[0]:`${k} +${c[1]}`; ccSel.appendChild(o); });
+(function guessCountry(){ const r=(navigator.language||'').split('-')[1]; ccSel.value = r&&COUNTRIES[r] ? r : 'US'; })();
+}
+
+/* Returns {e164} or {error}. Handles "+44 7…", "07…", "(555) 123-4567", etc. */
+function normalisePhone(raw, country){
+  let digits = raw.replace(/[^\d+]/g,'');
+  const intl = digits.startsWith('+');
+  digits = digits.replace(/\D/g,'');
+  if(!digits) return {error:'Enter your mobile number.'};
+
+  // Full international number typed: detect the country from the dial code
+  if(intl || country==='OTHER'){
+    if(digits.length<8||digits.length>15) return {error:'International numbers are 8 to 15 digits, starting with +.'};
+    const hit = Object.entries(COUNTRIES).filter(([k,c])=>c[1]&&digits.startsWith(String(c[1]))).sort((a,b)=>String(b[1][1]).length-String(a[1][1]).length)[0];
+    if(hit){ const [k,c]=hit; let nat=digits.slice(String(c[1]).length); if(nat.startsWith('0')&&c[1]!==1) nat=nat.slice(1);
+      return checkNational(nat,c,k); }
+    return {e164:'+'+digits};   // a country we do not list: accept on E.164 length alone
+  }
+
+  const c=COUNTRIES[country];
+  let nat=digits;
+  if(nat.startsWith(String(c[1])) && nat.length>c[3]) nat=nat.slice(String(c[1]).length);  // typed the code without +
+  if(nat.startsWith('0') && c[1]!==1) nat=nat.slice(1);                                   // trunk 0 (UK 07…, FR 06…)
+  if(c[1]===1 && nat.length===11 && nat.startsWith('1')) nat=nat.slice(1);              // US 1-555…
+  return checkNational(nat,c,country);
+}
+function checkNational(nat,c,k){
+  if(nat.length<c[2]||nat.length>c[3]) return {error:`${c[0]} mobile numbers are ${c[2]===c[3]?c[2]:c[2]+' to '+c[3]} digits after the country code.`};
+  if(c[4] && !c[4].test(nat)) return {error:`That does not look like a ${c[0]} mobile number. Check the first digits.`};
+  return {e164:'+'+c[1]+nat};
+}
+async function post(url,data){
+  try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); return r.ok?await r.json():{ok:false}; }
+  catch(e){ return {ok:false,offline:true}; }
+}
+if(phIn){
+phIn.addEventListener('input',()=>{ phIn.removeAttribute('aria-invalid'); phErr.hidden=true; });
+document.getElementById('phoneform').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const res=normalisePhone(phIn.value, ccSel.value);
+  if(res.error){ phErr.textContent=res.error; phErr.hidden=false; phIn.setAttribute('aria-invalid','true'); phIn.focus(); return; }
+  const btn=e.target.querySelector('button'); btn.disabled=true; btn.textContent='Saving…';
+  const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
+  if(out.ok||out.offline){
+    e.target.hidden=true; document.getElementById('phone').classList.add('done');
+    document.querySelector('#phone h3').textContent='Added. We will text you only when it matters.';
+    document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any message to leave.';
+    document.getElementById('skipph').hidden=true;
+  } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
+});
+document.getElementById('skipph').addEventListener('click',()=>{ document.getElementById('phone').hidden=true; document.getElementById('content').scrollIntoView({behavior:'smooth'}); });
+
+document.getElementById('already').addEventListener('click',()=>{
+  // For now: trust and unlock. Later: a Netlify Function can check the
+  // email against Beehiiv's API before unlocking.
+  document.getElementById('ge').focus();
+  document.getElementById('ge').placeholder='Enter the email you subscribed with';
+});
+}
+
+/* ---------- share ---------- */
+document.getElementById('copylink').addEventListener('click', async e=>{
+  e.preventDefault();
+  const a=e.currentTarget;
+  try{ await navigator.clipboard.writeText(a.href); a.textContent='Copied'; setTimeout(()=>{a.textContent='Copy link';},2000); }
+  catch(err){ prompt('Copy this link', a.href); }
+});
+</script>
+</body>
+</html>

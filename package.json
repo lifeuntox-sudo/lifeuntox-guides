@@ -1,0 +1,17 @@
+{
+  "name": "lifeuntox-guides",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lifeuntox guide library: static HTML built from Markdown, published on Netlify.",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "new-guide": "node scripts/new-guide.js",
+    "cover": "node scripts/make-cover.js",
+    "index": "node scripts/build-index.js",
+    "check": "node scripts/check-guide.js"
+  },
+  "engines": {
+    "node": ">=20.12"
+  }
+}

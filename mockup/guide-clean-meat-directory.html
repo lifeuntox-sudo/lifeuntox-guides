@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Clean Meat Directory: 10 Safe Chicken Brands · Lifeuntox</title>
+<meta name="description" content="Most 'organic' chicken is chilled in chlorine water. These ten air-chilled, pasture-raised brands do it differently, with where to buy each one.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1a1a;--ink-soft:#5f5f5c;--ink-mute:#8d8a80;
+    --forest:#1a4a1a;--moss:#2d5a2d;--leaf:#7cb342;
+    --paper:#faf8f3;--paper-2:#f5f2ea;--line:#e2ded1;--gold:#a8871c;--red:#8b2c2c;
+    --maxw:1120px;--measure:680px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'League Spartan',system-ui,sans-serif;line-height:1.6;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;}
+  :focus-visible{outline:2.5px solid var(--leaf);outline-offset:2px;}
+  a{color:var(--moss);text-underline-offset:3px;}
+
+  .masthead{background:#fff;border-bottom:1px solid var(--line);}
+  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px;}
+  .logo img{height:34px;width:auto;display:block;}
+  .nav{display:flex;align-items:center;gap:26px;font-size:15px;}
+  .nav a{text-decoration:none;color:var(--ink-soft);}
+  .nav a:hover{color:var(--forest);}
+  .nav a.btn-solid,.nav a.btn-solid:hover{color:#fff;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:2px;font-family:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;border:0;}
+  .btn-solid{background:var(--forest);color:#fff;}
+  .btn-solid:hover{background:var(--moss);}
+
+  .crumbs{font-size:13px;color:var(--ink-mute);padding:18px 0 0;}
+  .crumbs a{color:var(--ink-mute);text-decoration:none;}
+
+  /* article header */
+  .ahead{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center;padding:26px 0 30px;border-bottom:1px solid var(--line);}
+  .book{position:relative;aspect-ratio:3/4;perspective:1200px;}
+  .book .face{position:absolute;inset:0 6% 0 0;border-radius:2px 5px 5px 2px;transform:rotateY(-14deg);transform-origin:left center;box-shadow:14px 18px 34px rgba(26,26,26,.22);display:flex;flex-direction:column;padding:11% 10% 10%;color:#fff;background:var(--forest);overflow:hidden;}
+  .book .face::before{content:"";position:absolute;left:0;top:0;bottom:0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,0));}
+  .book .brand{font-size:10px;font-weight:700;opacity:.85;margin-bottom:auto;}
+  .book .kicker{font-size:10px;opacity:.85;margin-bottom:5px;}
+  .book .t{font-size:18px;font-weight:800;line-height:1.02;letter-spacing:-.02em;text-transform:uppercase;}
+  .book .s{font-size:10.5px;font-weight:300;line-height:1.3;margin-top:8px;opacity:.92;}
+  .book .badge{position:absolute;right:9%;top:9%;width:48px;height:48px;border-radius:50%;background:var(--leaf);color:#fff;display:grid;place-items:center;font-size:8.5px;font-weight:700;text-align:center;line-height:1.05;padding:5px;transform:rotate(8deg);}
+  .ahead h1{margin:0 0 8px;font-size:clamp(30px,4.4vw,44px);font-weight:600;letter-spacing:-.03em;line-height:1.05;color:var(--forest);}
+  .ahead .sub{margin:0 0 16px;font-size:20px;font-weight:300;color:var(--ink-soft);}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13.5px;color:var(--ink-soft);}
+  .meta b{font-weight:500;color:var(--ink);}
+  .partner{display:inline-flex;align-items:center;gap:9px;margin-top:16px;padding:9px 14px;border:1px solid var(--line);background:#fff;border-radius:100px;font-size:13.5px;color:var(--ink-soft);text-decoration:none;}
+  .partner:hover{border-color:var(--moss);color:var(--forest);}
+  .partner b{font-weight:700;color:var(--ink);letter-spacing:.02em;}
+  .partner .dot{width:8px;height:8px;border-radius:50%;background:var(--leaf);}
+  .promo{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:#fff;border:1px solid var(--line);border-left:4px solid var(--forest);padding:18px 20px;margin:30px 0;font-size:16px;}
+  .promo .mark{font-weight:700;letter-spacing:.02em;color:var(--forest);font-size:14px;white-space:nowrap;}
+  .promo .mark small{font-weight:300;display:block;color:var(--ink-mute);font-size:12px;letter-spacing:0;}
+  .promo p{margin:0;font-size:15.5px;}
+  .promo .btn{min-height:40px;padding:0 16px;font-size:14px;}
+  @media (max-width:600px){.promo{grid-template-columns:1fr;}}
+
+  /* body */
+  .body{max-width:var(--measure);padding:36px 0 0;font-size:18px;font-weight:300;}
+  .body h2{font-size:26px;font-weight:600;letter-spacing:-.02em;color:var(--forest);margin:44px 0 12px;line-height:1.15;}
+  .body h3{font-size:20px;font-weight:600;color:var(--ink);margin:30px 0 8px;}
+  .body p{margin:0 0 18px;}
+  .body strong{font-weight:500;}
+  .body ol,.body ul{padding-left:22px;margin:0 0 18px;}
+  .body li{margin-bottom:8px;}
+  .inside{background:#fff;border:1px solid var(--line);border-left:4px solid var(--leaf);padding:16px 20px;margin:0 0 26px;font-size:16.5px;}
+  .inside b{font-weight:500;}
+  .warn{background:#fbecec;border:1px solid #efc9c9;border-left:4px solid var(--red);padding:16px 20px;margin:26px 0;font-size:16.5px;}
+  .warn b{color:var(--red);font-weight:600;display:block;margin-bottom:6px;}
+  .checks{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 14px;}
+  .checks span{font-size:13px;font-weight:500;color:var(--moss);background:#eef5e6;border:1px solid #d3e4c0;border-radius:2px;padding:4px 9px;}
+  .buy{background:var(--paper-2);border-radius:2px;padding:12px 16px;font-size:16px;margin:0 0 28px;}
+  .buy b{font-weight:500;color:var(--forest);}
+  table{width:100%;border-collapse:collapse;font-size:16px;margin:0 0 24px;}
+  th{text-align:left;background:var(--forest);color:#fff;font-weight:500;padding:11px 14px;}
+  td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--paper-2);}
+  .cta{background:var(--forest);color:#fff;padding:28px;border-radius:2px;margin:36px 0;}
+  .cta h3{color:#fff;margin:0 0 8px;font-size:22px;font-weight:600;}
+  .cta p{color:rgba(255,255,255,.85);margin:0 0 16px;font-size:16.5px;}
+  .cta .btn{background:var(--leaf);color:#fff;}
+  .cta .btn:hover{background:#8ec254;}
+  .cta small{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.65);}
+  .sources{font-size:15px;color:var(--ink-soft);}
+  .sources li{margin-bottom:6px;}
+  .fine{font-size:13.5px;color:var(--ink-mute);margin:40px 0 0;}
+  .share{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:40px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft);}
+  .share a{text-decoration:none;border:1px solid var(--line);background:#fff;border-radius:2px;padding:8px 14px;color:var(--moss);}
+
+  /* the gate */
+  .locked{position:relative;}
+  .locked .content{filter:blur(6px);user-select:none;pointer-events:none;max-height:520px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent);}
+  .gate{position:absolute;left:0;right:0;top:120px;background:#fff;border:1px solid var(--line);border-top:4px solid var(--leaf);padding:30px;box-shadow:0 20px 50px rgba(26,26,26,.12);}
+  .gate h3{margin:0 0 6px;font-size:24px;font-weight:600;color:var(--forest);letter-spacing:-.02em;}
+  .gate p{margin:0 0 16px;font-size:16px;color:var(--ink-soft);}
+  .gate form{display:flex;gap:8px;}
+  .gate input{flex:1;height:48px;font-family:inherit;font-size:16px;padding:0 14px;border:1.5px solid var(--line);border-radius:2px;}
+  .gate input:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
+  .gate .fine{margin:12px 0 0;font-size:13px;}
+  .gate .have{margin:14px 0 0;font-size:14px;}
+  .gate .have button{font-family:inherit;font-size:14px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
+  .phone{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);padding:24px 28px;margin:0 0 30px;}
+  .phone h3{margin:0 0 6px;font-size:20px;font-weight:600;color:var(--forest);}
+  .phone h3 span{font-size:12px;font-weight:500;color:var(--ink-mute);border:1px solid var(--line);border-radius:100px;padding:2px 8px;vertical-align:middle;margin-left:6px;}
+  .phone p{margin:0 0 14px;font-size:15px;color:var(--ink-soft);}
+  .phone form{display:flex;gap:8px;margin-bottom:10px;}
+  .phone input,.phone select{height:46px;font-family:inherit;font-size:16px;padding:0 12px;border:1.5px solid var(--line);border-radius:2px;background:#fff;color:var(--ink);}
+  .phone input{flex:1;min-width:0;}
+  .phone select{flex:0 0 auto;max-width:150px;}
+  .phone input:focus,.phone select:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
+  .phone input[aria-invalid="true"]{border-color:var(--red);}
+  .phone .err{color:var(--red);}
+  .phone .fine{margin:0 0 10px;font-size:12.5px;}
+  .phone .skipph{font-family:inherit;font-size:14px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
+  .phone.done{border-top-color:var(--leaf);}
+  .unlocked .locked .content{filter:none;user-select:auto;pointer-events:auto;max-height:none;-webkit-mask-image:none;mask-image:none;}
+  .unlocked .gate{display:none;}
+
+  /* more guides */
+  .more{margin-top:64px;padding-top:32px;border-top:1px solid var(--line);}
+  .more h2{font-size:22px;font-weight:600;color:var(--forest);margin:0 0 18px;letter-spacing:-.02em;}
+  .more ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;}
+  .more a{text-decoration:none;color:inherit;}
+  .more .mini{aspect-ratio:3/4;border-radius:2px 5px 5px 2px;background:var(--c);color:#fff;padding:12% 10%;font-weight:800;text-transform:uppercase;line-height:1.02;font-size:15px;box-shadow:8px 10px 22px rgba(26,26,26,.18);}
+  .more h3{font-size:15px;font-weight:600;margin:12px 0 0;color:var(--ink);}
+
+  footer{background:var(--paper-2);border-top:1px solid var(--line);margin-top:64px;padding:32px 0 44px;font-size:13px;color:var(--ink-mute);}
+  footer p{max-width:80ch;margin:0;font-weight:300;}
+
+  @media (max-width:760px){
+    .masthead .wrap{height:62px;}.logo img{height:28px;}.nav a:not(.btn){display:none;}
+    .ahead{grid-template-columns:1fr;gap:22px;}.book{width:150px;}
+    .body{font-size:17px;}
+    .gate{top:60px;padding:22px;}.gate form{flex-direction:column;}
+    .more ul{grid-template-columns:1fr 1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="logo" href="https://lifeuntox.com" aria-label="Lifeuntox home"><img src="data:image/png;base64,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" alt="Lifeuntox"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Guides</a>
+      <a href="https://lifeuntox.com">Newsletter</a>
+      <a href="https://lifeuntox.com">About</a>
+      <a class="btn btn-solid" href="https://lifeuntox.com">Subscribe free</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="page">
+  <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; <a href="index.html">Guides</a> &nbsp;›&nbsp; The Clean Meat Directory</p>
+
+  <header class="ahead">
+    <div class="book" aria-hidden="true"><div class="face">
+      <div class="brand">Lifeuntox</div><div class="badge">10 verified brands</div>
+      <div class="kicker">Free guide</div><div class="t">The Clean Meat Directory</div>
+      <div class="s">10 safe chicken brands to buy today</div>
+    </div></div>
+    <div>
+      <h1>The Clean Meat Directory</h1>
+      <p class="sub">10 safe chicken brands to buy today, and the one word on the label that tells you everything.</p>
+      <div class="meta">
+        <span><b>Food</b></span>
+        <span>Updated <b>September 11, 2026</b></span>
+        <span><b>7 min</b> read</span>
+        <span>By <b>The Lifeuntox Team</b></span>
+      </div>
+      <a class="partner" href="https://notoxchef.com" rel="noopener"><span class="dot"></span>Lifeuntox is an official partner of <b>NOTOXCHEF</b></a>
+    </div>
+  </header>
+
+  <article class="body">
+    <div class="inside"><b>Inside:</b> 10 chicken brands we checked ourselves, where to buy each one, a store-by-store cheat sheet, and a four-step test for any brand not on this list.</div>
+
+    <h2>The dirty truth about "clean" chicken</h2>
+    <p>Walk into any grocery store and the chicken labels are covered in comforting words. Organic. Natural. Hormone-free. Humanely raised. What the labels almost never mention is what happened to that chicken <strong>after</strong> it was slaughtered.</p>
+    <p>Most chicken sold in America is cooled in a giant shared tank of cold water. That water is treated with chlorine or other germ-killing chemicals, because thousands of birds are sitting in it together. This is called <strong>water-chilling</strong>. It is fast and cheap, which is why almost everyone does it.</p>
+    <p>Here is the problem. While your chicken sits in that tank, it soaks up water (which you then pay for by the pound), it soaks up chemical residue, and it shares a bath with every other bird that went through that day.</p>
+    <p>There is another way. <strong>Air-chilling</strong> cools each bird on its own, in a cold room, with no water at all. It takes longer and costs more, so most big producers skip it. But you get chicken with no added water, no chemical bath, and noticeably better texture when you cook it.</p>
+
+    <div class="warn"><b>The one word to look for</b>
+      If the package does not say <strong>"air-chilled"</strong>, assume the chicken was water-chilled with chemicals. "Natural", "organic", and even "no antibiotics ever" tell you nothing about how the bird was cooled. Look for the words air-chilled on the front of the pack.</div>
+
+    <div class="promo">
+      <div class="mark">NOTOXCHEF<small>Official partner</small></div>
+      <p>Clean chicken, clean pan. NOTOXCHEF stocks cookware with no PFAS coatings, tested to the same standard we hold every brand in this guide to. <em>[Link a specific product here, e.g. the 10" skillet.]</em></p>
+      <a class="btn btn-solid" href="https://notoxchef.com" rel="noopener">Shop NOTOXCHEF</a>
+    </div>
+
+    <p>We did the checking so you can skip the detective work. Every brand below meets three tests: air-chilled processing, birds raised on pasture or genuinely free-range, and a company that is open about how it works.</p>
+
+    <h2>The 10 brands</h2>
+
+    <h3>1. Bell &amp; Evans</h3>
+    <div class="checks"><span>Air-chilled</span><span>No antibiotics ever</span><span>Humanely raised</span></div>
+    <p>Bell &amp; Evans has been air-chilling chicken since the 1990s, long before most shoppers knew the difference. Their birds are raised on family farms in Pennsylvania with access to sunlight and outdoor space, eat an all-vegetable diet, and are processed in the company's own facilities.</p>
+    <div class="buy"><b>Where to buy:</b> Whole Foods, Wegmans, ShopRite, Stop &amp; Shop, Giant, and most natural food stores. Also direct at <a href="https://www.bellandevans.com" rel="noopener">bellandevans.com</a>.</div>
+
+    <h3>2. Mary's Free Range</h3>
+    <div class="checks"><span>Air-chilled</span><span>Free range</span><span>Organic options</span></div>
+    <p>Mary's chickens roam California farms with plenty of outdoor access. They sell both a standard and a certified organic line, and every bird is air-chilled. If you want to go further, their heritage-breed birds have flavour most people have never tasted from supermarket chicken.</p>
+    <div class="buy"><b>Where to buy:</b> Whole Foods, Sprouts, Bristol Farms, Erewhon, and natural grocers across the West Coast. Expanding nationally through specialty retailers.</div>
+
+    <!-- ===== GATE: everything below is blurred for first-time visitors ===== -->
+    <div class="locked" id="locked">
+      <div class="gate" id="gate">
+        <h3>Get the other 8 brands, free</h3>
+        <p>Pop your email in and the rest of this guide unlocks straight away. You will also get one clean-living breakdown every morning from the Lifeuntox team. Leave any time.</p>
+        <form id="gateform">
+          <label class="sr" for="ge">Email address</label>
+          <input id="ge" type="email" placeholder="Email address" required autocomplete="email">
+          <button class="btn btn-solid" type="submit">Unlock the guide</button>
+        </form>
+        <p class="fine">No spam, ever. We never sell or share your email.</p>
+        <p class="have">Already a subscriber? <button type="button" id="already">Unlock with your email</button></p>
+      </div>
+
+      <!-- Optional phone step: shown after the email unlock -->
+      <div class="phone" id="phone" hidden>
+        <h3>Want recall alerts by text? <span>Optional</span></h3>
+        <p>We text only when something you might have at home is recalled. A few times a year, never marketing.</p>
+        <form id="phoneform" novalidate>
+          <label class="sr" for="cc">Country</label>
+          <select id="cc" aria-label="Country"></select>
+          <label class="sr" for="ph">Mobile number</label>
+          <input id="ph" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Mobile number">
+          <button class="btn btn-solid" type="submit">Add my number</button>
+        </form>
+        <p class="fine err" id="phone-err" hidden></p>
+        <p class="fine" id="phone-msg">By adding your number you agree to receive recall alerts by SMS from Lifeuntox. Message and data rates may apply. Reply STOP to cancel.</p>
+        <button type="button" class="skipph" id="skipph">No thanks, just the guide</button>
+      </div>
+
+      <div class="content" id="content" aria-hidden="true">
+
+        <h3>3. White Oak Pastures</h3>
+        <div class="checks"><span>Air-chilled</span><span>Pasture-raised</span><span>Regenerative farm</span></div>
+        <p>White Oak Pastures runs a zero-waste regenerative farm in Bluffton, Georgia. Chickens live on open pasture alongside cattle, moving from field to field. The farm processes birds on-site in its own USDA-inspected facility using air-chilling. This is about as close to your great-grandparents' chicken as you can get.</p>
+        <div class="buy"><b>Where to buy:</b> Whole Foods (Southeast), or direct from <a href="https://www.whiteoakpastures.com" rel="noopener">whiteoakpastures.com</a> with nationwide shipping. Use code LIFEUNTOX for a discount.</div>
+
+        <h3>4. Cooks Venture</h3>
+        <div class="checks"><span>Air-chilled</span><span>Pasture-raised</span><span>Heritage breed</span></div>
+        <p>Cooks Venture raises its own slow-growing Pioneer breed on regenerative pasture in Arkansas. Slow-growing birds develop richer flavour than the fast-growing breeds used by big producers. All processing is air-chilled at their own facility, and they control every step from hatchery to package.</p>
+        <div class="buy"><b>Where to buy:</b> Direct from <a href="https://www.cooksventure.com" rel="noopener">cooksventure.com</a> with nationwide shipping. Select Whole Foods locations. Also through the ButcherBox subscription.</div>
+
+        <h3>5. Pasturebird</h3>
+        <div class="checks"><span>Air-chilled</span><span>Pasture-raised</span><span>Moved daily</span></div>
+        <p>Pasturebird moves its chickens to fresh grass every single day using mobile shelters, so the birds always have new pasture, bugs, and sunshine. Based in Southern California, they have managed to scale pasture-raised chicken without dropping their air-chilled standard.</p>
+        <div class="buy"><b>Where to buy:</b> Erewhon, Bristol Farms, Lazy Acres, and select California retailers. Direct shipping via <a href="https://www.pasturebird.com" rel="noopener">pasturebird.com</a>.</div>
+
+        <h3>6. Vital Farms</h3>
+        <div class="checks"><span>Air-chilled</span><span>Pasture-raised</span><span>Certified Humane</span></div>
+        <p>Vital Farms built its name on pasture-raised eggs and applies the same standard to chicken. Birds are raised on partner farms with at least 108 square feet of outdoor pasture each, far more than organic rules require. All processing is air-chilled.</p>
+        <div class="buy"><b>Where to buy:</b> Whole Foods, Sprouts, Target (select locations), Kroger, Publix, and most major chains with a natural section.</div>
+
+        <h3>7. Farmer Focus</h3>
+        <div class="checks"><span>Air-chilled</span><span>Certified organic</span><span>Farmer-owned</span></div>
+        <p>Farmer Focus is owned by the farmers who raise the birds, which keeps welfare standards high and the whole operation open to scrutiny. Based in Virginia's Shenandoah Valley, they sell both organic and humanely raised lines, all air-chilled. Their website lets you trace your chicken back to the exact farm it came from.</p>
+        <div class="buy"><b>Where to buy:</b> Whole Foods, Wegmans, Harris Teeter, Publix, and growing availability on the East Coast. Direct shipping via <a href="https://www.farmerfocus.com" rel="noopener">farmerfocus.com</a>.</div>
+
+        <h3>8. Joyce Farms</h3>
+        <div class="checks"><span>Air-chilled</span><span>Free range</span><span>Heritage breeds</span></div>
+        <p>Joyce Farms in North Carolina specialises in heritage poultry, including their well-known Poulet Rouge. These slow-growing birds taste closer to what you would find in France than in a US supermarket, and every one is air-chilled. This is the brand chefs seek out.</p>
+        <div class="buy"><b>Where to buy:</b> Direct from <a href="https://www.joyce-farms.com" rel="noopener">joyce-farms.com</a>, select Whole Foods, and specialty butchers.</div>
+
+        <h3>9. Shenandoah Valley Organic</h3>
+        <div class="checks"><span>Air-chilled</span><span>USDA organic</span><span>100% traceable</span></div>
+        <p>Raised on small family farms in Virginia with outdoor access and certified organic feed. What sets them apart from bigger organic brands is that they did not cut the corner on processing: everything is air-chilled, and every pack can be traced from farm to fork.</p>
+        <div class="buy"><b>Where to buy:</b> Whole Foods, MOM's Organic Market, and specialty grocers across the Mid-Atlantic.</div>
+
+        <h3>10. Perdue Harvestland (organic air-chilled line)</h3>
+        <div class="checks"><span>Air-chilled</span><span>USDA organic</span><span>Widely available</span></div>
+        <p>This is the one for people who cannot get to a Whole Foods. Perdue's Harvestland organic air-chilled line brings clean chicken to mainstream stores at mainstream prices. Be careful here: Perdue also sells water-chilled chicken, so check the pack says air-chilled before it goes in the cart.</p>
+        <div class="buy"><b>Where to buy:</b> Walmart, Costco, Kroger, Safeway, and most major chains nationwide. The most accessible option on this list.</div>
+
+        <h2>Quick reference: where to shop</h2>
+        <table>
+          <thead><tr><th>Store</th><th>Clean brands available</th></tr></thead>
+          <tbody>
+            <tr><td>Whole Foods</td><td>Bell &amp; Evans, Mary's, Vital Farms, Farmer Focus, Joyce Farms</td></tr>
+            <tr><td>Wegmans</td><td>Bell &amp; Evans, Farmer Focus</td></tr>
+            <tr><td>Sprouts</td><td>Mary's Free Range, Vital Farms</td></tr>
+            <tr><td>Target</td><td>Vital Farms (select locations)</td></tr>
+            <tr><td>Walmart / Costco</td><td>Perdue Harvestland Organic Air-Chilled</td></tr>
+            <tr><td>Online direct</td><td>White Oak Pastures, Cooks Venture, Pasturebird, Joyce Farms</td></tr>
+          </tbody>
+        </table>
+
+        <h2>How to check any brand yourself</h2>
+        <p>Shopping somewhere that stocks none of these? Use this four-step test.</p>
+        <ol>
+          <li><strong>Look for "air-chilled" on the front of the pack.</strong> This is the single most important thing. No air-chilled label means water-chilled with chemicals.</li>
+          <li><strong>Check for a third-party stamp.</strong> Certified Humane, Animal Welfare Approved, and Global Animal Partnership ratings mean someone outside the company checked the farm.</li>
+          <li><strong>Read the brand's website.</strong> Companies that are proud of their process talk about it openly. If you cannot find how they chill their birds, there is usually a reason.</li>
+          <li><strong>Watch the pan.</strong> Water-chilled chicken leaks liquid as it cooks and steams instead of browning. Air-chilled chicken holds its weight and gets golden.</li>
+        </ol>
+
+        <div class="cta">
+          <h3>You just chose better chicken. Cook it in a better pan.</h3>
+          <p>Non-stick coatings can shed PFAS at the exact temperatures you sear chicken. NOTOXCHEF, our official cookware partner, only sells pans that pass the Lifeuntox Standard. <em>[Link a specific product here.]</em></p>
+          <a class="btn" href="https://notoxchef.com" rel="noopener">Shop NOTOXCHEF cookware</a>
+          <small>Lifeuntox earns a commission on partner sales. It never changes what we recommend.</small>
+        </div>
+
+        <h2>Sources</h2>
+        <ul class="sources">
+          <li>[Add source] USDA Food Safety and Inspection Service guidance on antimicrobial treatments permitted in poultry chill water.</li>
+          <li>[Add source] Peer-reviewed comparison of water-chilled and air-chilled poultry: moisture uptake and microbial load.</li>
+          <li>Brand processing and welfare claims: taken from each company's published standards (linked above) and to be re-verified before publication.</li>
+        </ul>
+
+        <p class="fine">This guide is for education only and is not medical advice. Brand availability varies by location. Some links are affiliate links; they never change what we recommend.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="share">
+    <span>Share this guide</span>
+    <a href="#">Copy link</a><a href="#">Email</a><a href="#">Facebook</a>
+  </div>
+
+  <section class="more">
+    <h2>More free guides</h2>
+    <ul>
+      <li><a href="index.html?code=PFAS"><div class="mini" style="--c:#8b2c2c">The PFAS Exposure Map</div><h3>The PFAS Exposure Map</h3></a></li>
+      <li><a href="index.html?code=PRODUCE"><div class="mini" style="--c:#2d5a2d">Produce Worth Buying Organic</div><h3>Produce Worth Buying Organic</h3></a></li>
+      <li><a href="index.html?code=OILS"><div class="mini" style="--c:#c9a227">Seed Oils, Honestly</div><h3>Seed Oils, Honestly</h3></a></li>
+      <li><a href="index.html?code=PANS"><div class="mini" style="--c:#4a3a2a">Non-Toxic Cookware</div><h3>Non-Toxic Cookware Buyer's Guide</h3></a></li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><p>© 2026 Lifeuntox LLC. Guides are for education, not medical advice. Every claim links to its source. Questions: <a href="mailto:support@lifeuntox.com">support@lifeuntox.com</a> · Join <a href="https://www.facebook.com/groups/theuntoxclub" rel="noopener">The Untox Club</a> on Facebook.</p></div>
+</footer>
+
+<script>
+/* ---------- the gate ----------
+   Unlocks when any of these is true:
+   1. the visitor has unlocked before on this device
+   2. the link carried ?s=1 (put this on every newsletter and DM link
+      so subscribers never see the gate)
+   3. the visitor submits the form below
+   SUBSCRIBE_ENDPOINT: paste your Beehiiv form action URL here.  */
+const SUBSCRIBE_ENDPOINT = "";                    // Beehiiv form action URL
+const PHONE_SAVE = "/.netlify/functions/phone-save";  // saves the number to Beehiiv
+const KEY = "lifeuntox_unlocked";
+let subscriberEmail = "";
+
+const remember = () => { try{ localStorage.setItem(KEY,"1"); }catch(e){} };
+const remembered = () => { try{ return localStorage.getItem(KEY)==="1"; }catch(e){ return false; } };
+
+function unlock(){
+  document.body.classList.add('unlocked');
+  document.getElementById('content').removeAttribute('aria-hidden');
+  remember();
+}
+
+const params = new URLSearchParams(location.search);
+if(remembered() || params.get('s')==='1') unlock();
+
+document.getElementById('gateform').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const email = document.getElementById('ge').value.trim();
+  const btn = e.target.querySelector('button'); btn.textContent='Unlocking…'; btn.disabled=true;
+  if(SUBSCRIBE_ENDPOINT){
+    try{ await fetch(SUBSCRIBE_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'email='+encodeURIComponent(email)}); }catch(err){}
+  }
+  subscriberEmail = email;
+  unlock();
+  const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* ---------- optional phone opt-in (no verification yet) ----------
+   Each country: [dial code, min national digits, max national digits,
+   optional regex the national number must match]. National = the number
+   without the country code and without a leading trunk 0.               */
+const COUNTRIES = {
+  US:["United States",1,10,10,/^[2-9]\d{2}[2-9]\d{6}$/],
+  CA:["Canada",1,10,10,/^[2-9]\d{2}[2-9]\d{6}$/],
+  GB:["United Kingdom",44,10,10,/^7\d{9}$/],
+  IE:["Ireland",353,9,9,/^8[35-9]\d{7}$/],
+  AU:["Australia",61,9,9,/^4\d{8}$/],
+  NZ:["New Zealand",64,8,10,/^2\d{7,9}$/],
+  DE:["Germany",49,10,11,/^1[5-7]\d{8,9}$/],
+  FR:["France",33,9,9,/^[67]\d{8}$/],
+  ES:["Spain",34,9,9,/^[67]\d{8}$/],
+  IT:["Italy",39,9,10,/^3\d{8,9}$/],
+  NL:["Netherlands",31,9,9,/^6\d{8}$/],
+  BE:["Belgium",32,9,9,/^4\d{8}$/],
+  PT:["Portugal",351,9,9,/^9\d{8}$/],
+  SE:["Sweden",46,9,9,/^7\d{8}$/],
+  NO:["Norway",47,8,8,/^[49]\d{7}$/],
+  DK:["Denmark",45,8,8,/^\d{8}$/],
+  CH:["Switzerland",41,9,9,/^7[5-9]\d{7}$/],
+  AT:["Austria",43,10,13,/^6\d{9,12}$/],
+  PL:["Poland",48,9,9,/^[4-8]\d{8}$/],
+  MX:["Mexico",52,10,10,/^\d{10}$/],
+  BR:["Brazil",55,11,11,/^\d{2}9\d{8}$/],
+  AR:["Argentina",54,10,10,/^\d{10}$/],
+  IN:["India",91,10,10,/^[6-9]\d{9}$/],
+  SG:["Singapore",65,8,8,/^[89]\d{7}$/],
+  ZA:["South Africa",27,9,9,/^[6-8]\d{8}$/],
+  AE:["United Arab Emirates",971,9,9,/^5\d{8}$/],
+  IL:["Israel",972,9,9,/^5\d{8}$/],
+  JP:["Japan",81,10,10,/^[789]0\d{8}$/],
+  PH:["Philippines",63,10,10,/^9\d{9}$/],
+  OTHER:["Other country (enter with +)",0,7,15,null]
+};
+const ccSel=document.getElementById('cc'), phIn=document.getElementById('ph'), phErr=document.getElementById('phone-err');
+Object.entries(COUNTRIES).forEach(([k,c])=>{ const o=document.createElement('option'); o.value=k; o.textContent=k==='OTHER'?c[0]:`${k} +${c[1]}`; ccSel.appendChild(o); });
+(function guessCountry(){ const r=(navigator.language||'').split('-')[1]; ccSel.value = r&&COUNTRIES[r] ? r : 'US'; })();
+
+/* Returns {e164} or {error}. Handles "+44 7…", "07…", "(555) 123-4567", etc. */
+function normalisePhone(raw, country){
+  let digits = raw.replace(/[^\d+]/g,'');
+  const intl = digits.startsWith('+');
+  digits = digits.replace(/\D/g,'');
+  if(!digits) return {error:'Enter your mobile number.'};
+
+  // Full international number typed: detect the country from the dial code
+  if(intl || country==='OTHER'){
+    if(digits.length<8||digits.length>15) return {error:'International numbers are 8 to 15 digits, starting with +.'};
+    const hit = Object.entries(COUNTRIES).filter(([k,c])=>c[1]&&digits.startsWith(String(c[1]))).sort((a,b)=>String(b[1][1]).length-String(a[1][1]).length)[0];
+    if(hit){ const [k,c]=hit; let nat=digits.slice(String(c[1]).length); if(nat.startsWith('0')&&c[1]!==1) nat=nat.slice(1);
+      return checkNational(nat,c,k); }
+    return {e164:'+'+digits};   // a country we do not list: accept on E.164 length alone
+  }
+
+  const c=COUNTRIES[country];
+  let nat=digits;
+  if(nat.startsWith(String(c[1])) && nat.length>c[3]) nat=nat.slice(String(c[1]).length);  // typed the code without +
+  if(nat.startsWith('0') && c[1]!==1) nat=nat.slice(1);                                   // trunk 0 (UK 07…, FR 06…)
+  if(c[1]===1 && nat.length===11 && nat.startsWith('1')) nat=nat.slice(1);              // US 1-555…
+  return checkNational(nat,c,country);
+}
+function checkNational(nat,c,k){
+  if(nat.length<c[2]||nat.length>c[3]) return {error:`${c[0]} mobile numbers are ${c[2]===c[3]?c[2]:c[2]+' to '+c[3]} digits after the country code.`};
+  if(c[4] && !c[4].test(nat)) return {error:`That does not look like a ${c[0]} mobile number. Check the first digits.`};
+  return {e164:'+'+c[1]+nat};
+}
+async function post(url,data){
+  try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); return r.ok?await r.json():{ok:false}; }
+  catch(e){ return {ok:false,offline:true}; }
+}
+phIn.addEventListener('input',()=>{ phIn.removeAttribute('aria-invalid'); phErr.hidden=true; });
+document.getElementById('phoneform').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const res=normalisePhone(phIn.value, ccSel.value);
+  if(res.error){ phErr.textContent=res.error; phErr.hidden=false; phIn.setAttribute('aria-invalid','true'); phIn.focus(); return; }
+  const btn=e.target.querySelector('button'); btn.disabled=true; btn.textContent='Saving…';
+  const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
+  if(out.ok||out.offline){
+    e.target.hidden=true; document.getElementById('phone').classList.add('done');
+    document.querySelector('#phone h3').textContent='Added. We will text you only when it matters.';
+    document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any message to leave.';
+    document.getElementById('skipph').hidden=true;
+  } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
+});
+document.getElementById('skipph').addEventListener('click',()=>{ document.getElementById('phone').hidden=true; document.getElementById('content').scrollIntoView({behavior:'smooth'}); });
+
+document.getElementById('already').addEventListener('click',()=>{
+  // For now: trust and unlock. Later: a Netlify Function can check the
+  // email against Beehiiv's API before unlocking.
+  document.getElementById('ge').focus();
+  document.getElementById('ge').placeholder='Enter the email you subscribed with';
+});
+</script>
+</body>
+</html>
