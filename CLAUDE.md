@@ -146,11 +146,13 @@ Technical: * every link resolves (HEAD request); OG image set; * no console erro
 ```
 site/                 what Netlify publishes (built HTML is gitignored; assets are tracked)
 templates/index.html  directory page; {{GUIDES}} is replaced with guides.json at build
+templates/footer.html shared footer, injected as {{FOOTER}} into both pages
 templates/guide.html  article page; {{PLACEHOLDERS}} filled from frontmatter + rendered body
 content/<slug>.md     one guide: frontmatter + body in the ::: block syntax above
 guides.json           the directory data (one object per guide, display order)
 scripts/build.js      renders site/ (guides → build-index → index)
 scripts/build-index.js fills each guide's `text` (full-text search) from its built page
+scripts/lib/images.js + jpeg.js  derive <cover>.jpg and <cover>-600.jpg from each cover PNG at build (gitignored)
 scripts/new-guide.js  scaffold a guide      npm run new-guide -- "Title" --code WORD --cat Topic
 scripts/make-cover.js Kie.ai covers         npm run cover -- <slug>
 templates/cover-reference.png  the approved house-style cover; make-cover sends it as a reference on every run
@@ -173,6 +175,10 @@ netlify/functions/    subscribe.js (the gate and the directory box post here →
 - Inline: `**bold**`, `*em*`, `[text](url)`. External links get `rel="noopener"` automatically. No raw inline HTML; a line starting with a tag is passed through as a raw block.
 - `&` is escaped for you: write `Bell & Evans`.
 
+### Required frontmatter field beyond section 7: `tags`
+
+`tags: [sleep, menopause, gut health]`: three or more health and life topics the guide touches that are not its product category. They feed the directory search (a reader typing "sleep" finds every guide tagged sleep, whatever its category) and pick the "More free guides" (shared tags first). Never displayed. `new-guide` scaffolds the field, `check-guide` fails when it is empty.
+
 ### Optional frontmatter fields (beyond section 7)
 
 | Field | Purpose | Default |
@@ -186,7 +192,7 @@ netlify/functions/    subscribe.js (the gate and the directory box post here →
 
 ### Data precedence
 
-For a guide with a content file, its frontmatter is the source of truth for the editorial fields (`code, title, sub, cat, added, badge, color, cover, keywords, desc`) and build copies them into guides.json. `reads` and `text` live only in guides.json (never edit `text` by hand; build-index writes it). Guides listed in guides.json without a content file still appear as cards on the directory page, linking nowhere until their page exists.
+For a guide with a content file, its frontmatter is the source of truth for the editorial fields (`code, title, sub, cat, added, badge, color, cover, keywords, tags, desc`) and build copies them into guides.json. `reads` and `text` live only in guides.json (never edit `text` by hand; build-index writes it). Guides listed in guides.json without a content file still appear as cards on the directory page, linking nowhere until their page exists.
 
 ### Rules for working in this repo
 

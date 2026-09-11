@@ -154,15 +154,20 @@
   .more .mini img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;}
   .more h3{font-size:15px;font-weight:600;margin:12px 0 0;color:var(--ink);}
 
-  footer{background:var(--paper-2);border-top:1px solid var(--line);margin-top:64px;padding:32px 0 44px;font-size:13px;color:var(--ink-mute);}
-  footer p{max-width:80ch;margin:0;font-weight:300;}
+  footer{background:var(--paper-2);border-top:1px solid var(--line);margin-top:64px;padding:32px 0 44px;font-size:13.5px;color:var(--ink-soft);}
+  footer .cols{display:flex;flex-wrap:wrap;gap:28px 48px;margin-bottom:28px;}
+  footer .cols div{display:flex;flex-direction:column;gap:7px;}
+  footer .cols b{font-weight:500;color:var(--ink);margin-bottom:2px;}
+  footer .cols a{color:var(--ink-soft);text-decoration:none;}
+  footer .cols a:hover{color:var(--forest);}
+  footer .fine{max-width:80ch;margin:0;font-weight:300;font-size:12.5px;color:var(--ink-mute);}
 
   @media (max-width:760px){
     .masthead .wrap{height:62px;}.logo img{height:28px;}.nav a:not(.btn){display:none;}
     .ahead{grid-template-columns:1fr;gap:22px;}.book{width:150px;}
     .body{font-size:17px;}
     .locked .content{max-height:600px;}
-    .gate{margin-top:36px;padding:22px 18px;}.gate h3{font-size:22px;}.gate p{font-size:15px;}.gate form{flex-direction:column;}
+    .gate{margin-top:36px;padding:22px 18px;}.gate h3{font-size:22px;}.gate p{font-size:15px;}.gate form{flex-direction:column;}.gate input{flex:none;width:100%;height:54px;font-size:17px;}
     .phone{padding:20px 18px;}.phone form{flex-wrap:wrap;}.phone select{max-width:none;flex:1 1 120px;}.phone input{flex:1 1 160px;}.phone form .btn{flex:1 1 100%;}
     .more ul{grid-template-columns:1fr 1fr;}
   }
@@ -253,17 +258,17 @@
     <a href="{{CANONICAL}}" id="copylink">Copy link</a><a href="{{SHARE_EMAIL}}">Email</a><a href="{{SHARE_FB}}" rel="noopener" target="_blank">Facebook</a>
   </div>
 
+  <!-- more:start -->
   <section class="more">
     <h2>More free guides</h2>
     <ul>
       {{MORE_GUIDES}}
     </ul>
   </section>
+  <!-- more:end -->
 </main>
 
-<footer>
-  <div class="wrap"><p>© 2026 Lifeuntox. All rights reserved. Guides are for education, not medical advice. Every claim links to its source. Questions: <a href="mailto:support@lifeuntox.com">support@lifeuntox.com</a> · <a href="https://www.facebook.com/groups/theuntoxclub" rel="noopener">Join our free community</a>.</p></div>
-</footer>
+{{FOOTER}}
 
 <script>
 /* ---------- the gate ----------

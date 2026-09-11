@@ -259,17 +259,7 @@
   </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <div><b>Explore</b><a href="?topic=Water">Water</a><a href="?topic=Kitchen">Kitchen</a><a href="?topic=Home">Home</a><a href="?topic=Personal%20care">Personal care</a><a href="?topic=Family">Family</a><a href="?topic=Food">Food</a></div>
-      <div><b>About</b><a href="https://lifeuntox.com">Our mission</a><a href="https://lifeuntox.com">How we research</a><a href="mailto:support@lifeuntox.com">support@lifeuntox.com</a></div>
-      <div><b>Partners</b><a href="https://notoxchef.com" rel="noopener">NOTOXCHEF</a></div>
-      <div><b>Community</b><a href="https://www.facebook.com/groups/theuntoxclub" rel="noopener">Join our free community</a><a href="https://www.instagram.com/lifeuntox" rel="noopener">Instagram</a><a href="https://www.tiktok.com/@lifeuntox" rel="noopener">TikTok</a><a href="https://x.com/Lifeuntoxdaily" rel="noopener">X</a><a href="https://www.facebook.com/lifeuntox" rel="noopener">Facebook</a></div>
-    </div>
-    <p class="fine">Lifeuntox guides are for education, not medical advice. Every claim links to its source. Some links are affiliate links; they never change what we recommend. © 2026 Lifeuntox. All rights reserved.</p>
-  </div>
-</footer>
+{{FOOTER}}
 
 <script>
 /* =========================================================
@@ -347,7 +337,7 @@ function snippet(g,term){
   return `<span class="snip">${a>0?'…':''}${highlight(g.text.slice(a,b),term)}${b<g.text.length?'…':''}</span>`;
 }
 function coverHTML(g){
-  if(g.cover) return `<div class="book has-cover"><img src="${esc(g.cover)}" alt="" loading="lazy"></div>`;
+  if(g.cover) return `<div class="book has-cover"><img src="${esc(g.cover)}"${g.coverSmall?` srcset="${esc(g.coverSmall)} 600w, ${esc(g.cover)} 1200w" sizes="(max-width:700px) 45vw, 25vw" width="1200" height="1600"`:''} alt="" loading="lazy" decoding="async"></div>`;
   const light=LIGHT.includes(g.color);
   return `<div class="book${light?' light':''}"><div class="face" style="--c:${g.color}">
     <div class="brand">Lifeuntox</div>

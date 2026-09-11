@@ -12,10 +12,10 @@ color: "#1a4a1a"         # placeholder book colour until a cover exists
 cover: assets/covers/clean-meat-directory-2.png                # set by make-cover
 cover_subject: a raw free-range whole chicken on a wooden board   # the one photographic subject on the cover
 keywords: [chicken, meat, poultry, air chilled, chlorine, organic, pasture raised, bell and evans, vital farms, butcher]
+tags: [food safety, antibiotics, chlorine, protein, family meals, gut health, immune health, grocery shopping]   # health and life topics the guide touches, beyond its product category
 desc: Your 'organic' chicken might be bathed in chlorine. These ten air-chilled, pasture-raised brands do it differently, with where to buy each one.
 partner_product_1: https://notoxchef.com    # placement 1 link
 partner_product_2: https://notoxchef.com    # placement 2 link
-related: [pfas-exposure-map, produce-worth-buying-organic, seed-oils-honestly, non-toxic-cookware]
 disclosure: This guide is for education only and is not medical advice. Brand availability varies by location. Some links are affiliate links; they never change what we recommend.
 ---
 

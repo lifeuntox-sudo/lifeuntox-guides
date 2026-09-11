@@ -17,8 +17,9 @@ const { parseFrontmatter } = require('./lib/frontmatter');
 const { renderArticle, inline, esc, escAttr } = require('./lib/markdown');
 const guidesDb = require('./lib/guides');
 const { buildIndex } = require('./build-index');
+const { deriveCover } = require('./lib/images');
 
-const SYNC_FIELDS = ['code', 'title', 'sub', 'cat', 'added', 'badge', 'color', 'cover', 'keywords', 'desc'];
+const SYNC_FIELDS = ['code', 'title', 'sub', 'cat', 'added', 'badge', 'color', 'cover', 'keywords', 'tags', 'desc'];
 const LIGHT = ['#7cb342', '#c9a227', '#d9a441']; // placeholder colours that need dark text
 const WORDS_PER_MINUTE = 220;
 const DEFAULT_GATE_TITLE = 'Get the rest of this guide, free';
@@ -46,6 +47,8 @@ const fmtDate = d => new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { ye
 const jsonForScript = o => JSON.stringify(o).replace(/<\//g, '<\\/');
 
 function coverHTML(g) {
+  const d = deriveCover(g.cover);
+  if (d) return `<div class="book has-cover" aria-hidden="true"><img src="${escAttr(d.full)}" srcset="${escAttr(d.small)} ${d.smallWidth}w, ${escAttr(d.full)} ${d.width}w" sizes="200px" width="${d.width}" height="${d.height}" alt="" fetchpriority="high" decoding="async"></div>`;
   if (g.cover) return `<div class="book has-cover" aria-hidden="true"><img src="${escAttr(g.cover)}" alt=""></div>`;
   const light = LIGHT.includes(String(g.color).toLowerCase());
   return `<div class="book${light ? ' light' : ''}" aria-hidden="true"><div class="face" style="--c:${escAttr(g.color || '#1a4a1a')}">
@@ -63,12 +66,16 @@ function moreGuides(fm, guides, pages) {
     list = fm.related.map(s => guides.find(g => g.slug === s)).filter(Boolean);
   } else {
     const others = guides.filter(g => g.slug !== fm.slug);
-    const byReads = (a, b) => (b.reads || 0) - (a.reads || 0);
-    list = [...others.filter(g => g.cat === fm.cat).sort(byReads), ...others.filter(g => g.cat !== fm.cat).sort(byReads)];
+    const mine = new Set((fm.tags || []).map(t => String(t).toLowerCase()));
+    const shared = g => (g.tags || []).filter(t => mine.has(String(t).toLowerCase())).length;
+    list = others.sort((a, b) => shared(b) - shared(a) || (b.cat === fm.cat) - (a.cat === fm.cat) || (b.reads || 0) - (a.reads || 0));
   }
   return list.slice(0, 4).map(g => {
     const href = pages.has(g.slug) ? `guide-${g.slug}.html` : `index.html?code=${encodeURIComponent(g.code)}`;
-    const mini = g.cover
+    const d = deriveCover(g.cover);
+    const mini = d
+      ? `<div class="mini has-cover"><img src="${escAttr(d.small)}" width="${d.smallWidth}" height="${d.smallHeight}" alt="" loading="lazy" decoding="async"></div>`
+      : g.cover
       ? `<div class="mini has-cover"><img src="${escAttr(g.cover)}" alt="" loading="lazy"></div>`
       : `<div class="mini" style="--c:${escAttr(g.color)}">${esc(g.title)}</div>`;
     return `<li><a href="${href}">${mini}<h3>${esc(g.title)}</h3></a></li>`;
@@ -97,14 +104,15 @@ function syncGuides(docs, guides) {
   }
 }
 
-function renderGuide(d, guides, pages, tpl, SITE_URL) {
+function renderGuide(d, guides, pages, tpl, SITE_URL, footer) {
   const g = guides.find(x => x.slug === d.slug);
   const fm = d.fm;
   const art = renderArticle(d.body, fm);
   const readMin = Math.max(1, Math.round(art.words / WORDS_PER_MINUTE));
   const updated = fm.updated || fm.added;
   const pageUrl = `${SITE_URL}/guide-${d.slug}.html`;
-  const ogImage = g.cover ? `${SITE_URL}/${g.cover}` : `${SITE_URL}/assets/lifeuntox-logo.png`;
+  const derived = deriveCover(g.cover);
+  const ogImage = derived ? `${SITE_URL}/${derived.full}` : g.cover ? `${SITE_URL}/${g.cover}` : `${SITE_URL}/assets/lifeuntox-logo.png`;
   const jsonld = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -121,6 +129,8 @@ function renderGuide(d, guides, pages, tpl, SITE_URL) {
   };
 
   let page = tpl;
+  const more = moreGuides(fm, guides, pages);
+  if (!more) page = page.replace(/<!-- more:start -->[\s\S]*?<!-- more:end -->/, '');
   if (!art.hasGate) {
     // No :::gate marker: drop the gate UI and the locked wrapper.
     page = page.replace(/<!-- gate:start -->[\s\S]*?<!-- gate:end -->/, '{{ARTICLE_POST}}');
@@ -141,7 +151,8 @@ function renderGuide(d, guides, pages, tpl, SITE_URL) {
     GATE_TITLE: esc(art.gateTitle || DEFAULT_GATE_TITLE),
     ARTICLE_POST: art.post,
     DISCLOSURE: inline(fm.disclosure || DEFAULT_DISCLOSURE),
-    MORE_GUIDES: moreGuides(fm, guides, pages),
+    MORE_GUIDES: more,
+    FOOTER: footer,
     FORM_ACTION: jsonForScript(formAction()),
     SLUG_JSON: jsonForScript(d.slug),
     SHARE_EMAIL: escAttr(`mailto:?subject=${encodeURIComponent(fm.title + ' · Lifeuntox')}&body=${encodeURIComponent(pageUrl)}`),
@@ -157,6 +168,7 @@ function build() {
   const guides = guidesDb.load();
   const tplGuide = fs.readFileSync(path.join(TEMPLATES_DIR, 'guide.html'), 'utf8');
   const tplIndex = fs.readFileSync(path.join(TEMPLATES_DIR, 'index.html'), 'utf8');
+  const footer = fs.readFileSync(path.join(TEMPLATES_DIR, 'footer.html'), 'utf8').trim();
   const docs = loadDocs();
   syncGuides(docs, guides);
   const pages = new Set(docs.map(d => d.slug));
@@ -167,14 +179,19 @@ function build() {
     const m = f.match(/^guide-(.+)\.html$/);
     if (m && !pages.has(m[1])) { fs.unlinkSync(path.join(SITE_DIR, f)); console.log(`  removed stale ${f}`); }
   }
-  const built = docs.map(d => renderGuide(d, guides, pages, tplGuide, SITE_URL));
+  const built = docs.map(d => renderGuide(d, guides, pages, tplGuide, SITE_URL, footer));
   const indexed = buildIndex(guides, SITE_DIR);
   guidesDb.save(guides);
 
-  const data = guides.map(g => ({ ...g, page: pages.has(g.slug) }));
+  // Directory data: tags join the keyword pool for search; covers point at the derived JPEGs.
+  const data = guides.map(g => {
+    const d = deriveCover(g.cover);
+    return { ...g, page: pages.has(g.slug), keywords: [...(g.keywords || []), ...(g.tags || [])], cover: d ? d.full : g.cover, coverSmall: d ? d.small : '' };
+  });
   fs.writeFileSync(path.join(SITE_DIR, 'index.html'), fill(tplIndex, {
     GUIDES: jsonForScript(data),
-    SITE_URL: escAttr(SITE_URL)
+    SITE_URL: escAttr(SITE_URL),
+    FOOTER: footer
   }));
 
   for (const b of built) console.log(`  guide-${b.slug}.html  (${b.words} words, ${b.readMin} min)`);

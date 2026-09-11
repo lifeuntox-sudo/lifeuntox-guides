@@ -4,7 +4,7 @@
 //
 //   npm run new-guide -- "The Tap Water Filter Guide" --code WATER --cat Water
 //   options: --sub "…" --slug tap-water-filter-guide --badge "Top 5 filters" --desc "…"
-//            --keywords "filter, fluoride, pfas" --color "#2f6f9e" --subject "a clear glass of water"
+//            --keywords "filter, fluoride, pfas" --tags "hormones, sleep, pregnancy" --color "#2f6f9e" --subject "a clear glass of water"
 //
 // If guides.json already lists the slug (a placeholder card), its fields are
 // reused and nothing is duplicated. Refuses to overwrite an existing content file.
@@ -34,6 +34,7 @@ function today() { return new Date().toISOString().slice(0, 10); }
 
 function frontmatter(g, subject) {
   const kw = (g.keywords && g.keywords.length ? g.keywords : []).map(quoteIfNeeded).join(', ');
+  const tg = (g.tags && g.tags.length ? g.tags : []).map(quoteIfNeeded).join(', ');
   return `---
 slug: ${g.slug}
 code: ${g.code}            # comment word, searchable, never displayed
@@ -47,6 +48,7 @@ color: "${g.color}"         # placeholder book colour until a cover exists
 cover: ""                # set by make-cover
 cover_subject: ${quoteIfNeeded(subject)}   # the one photographic subject on the cover
 keywords: [${kw}]
+tags: [${tg}]   # REQUIRED: 3+ health and life topics the guide touches beyond its category (sleep, menopause, pregnancy, gut health, kids, pets…). Searchable, never displayed.
 desc: ${quoteIfNeeded(g.desc)}
 partner_product_1: https://notoxchef.com/    # placement 1 link: a specific product, not the homepage
 partner_product_2: https://notoxchef.com/    # placement 2 link: a specific product, not the homepage
@@ -165,7 +167,7 @@ Two sentences on the product and the standard it meets.
 function main() {
   const o = args();
   if (!o.title || !o.code || !o.cat) {
-    console.error('usage: npm run new-guide -- "Title" --code WORD --cat Topic [--sub "…"] [--slug x] [--badge "…"] [--desc "…"] [--keywords "a, b"] [--color "#hex"] [--subject "…"]');
+    console.error('usage: npm run new-guide -- "Title" --code WORD --cat Topic [--sub "…"] [--slug x] [--badge "…"] [--desc "…"] [--keywords "a, b"] [--tags "sleep, hormones"] [--color "#hex"] [--subject "…"]');
     process.exit(1);
   }
   const cat = CATS.find(c => c.toLowerCase() === String(o.cat).toLowerCase());
@@ -191,6 +193,8 @@ function main() {
   if (o.desc || !g.desc) g.desc = o.desc || 'One-paragraph excerpt for the card, 25 to 40 words, that names the problem and the fix.';
   if (o.keywords) g.keywords = String(o.keywords).split(',').map(s => s.trim()).filter(Boolean);
   if (!g.keywords || !g.keywords.length) g.keywords = [slug.split('-')[0]];
+  if (o.tags) g.tags = String(o.tags).split(',').map(s => s.trim()).filter(Boolean);
+  if (!g.tags) g.tags = [];
   if (o.color) g.color = o.color; else if (!g.color) g.color = '#1a4a1a';
   if (!g.added) g.added = today();
   if (g.reads == null) g.reads = 0;

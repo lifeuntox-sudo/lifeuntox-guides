@@ -7,6 +7,8 @@ node_modules/
 
 # Built pages (Netlify runs `npm run build`); assets in site/assets are source and stay tracked
 site/*.html
+# Derived cover JPEGs (built from the PNGs at build time)
+site/assets/covers/*.jpg
 
 # Large reference files that do not belong in the repo
 dr-berg-guides-reference.png

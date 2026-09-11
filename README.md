@@ -15,8 +15,9 @@ No `npm install` is needed: there are no dependencies. Node 20.12 or newer.
 ## Publishing a guide
 
 ```bash
-npm run new-guide -- "The Tap Water Filter Guide" --code WATER --cat Water
+npm run new-guide -- "The Tap Water Filter Guide" --code WATER --cat Water --tags "hormones, pregnancy, kids"
 #   → content/tap-water-filter-guide.md scaffolded, entry added to guides.json
+#   tags = health and life topics beyond the category; required, searchable, never shown
 #   write the guide in content/tap-water-filter-guide.md
 npm run check -- tap-water-filter-guide     # lint against the design system
 npm run cover -- tap-water-filter-guide     # 3 cover options via Kie.ai, -1 is selected
@@ -41,6 +42,8 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `scripts/build-index.js` | Fills each guide's `text` from its built page for full-text search and snippets. |
 | `scripts/new-guide.js` | Scaffolds a guide in the canonical section order. |
 | `scripts/make-cover.js` | Generates three cover options with Kie.ai and sets `cover`. |
+| `scripts/lib/images.js`, `jpeg.js` | At build, derive a full-size JPEG (header, Open Graph) and a 600px JPEG (grid) from each cover PNG. Gitignored; rebuilt on Netlify. |
+| `templates/footer.html` | The shared footer, injected into both page templates. |
 | `scripts/check-guide.js` | Lint: readability grade, banned words, structure, links. |
 | `scripts/dev.js` | Local static server with rebuild-on-change and `/.netlify/functions/*` routed to the function handlers. |
 | `netlify/functions/subscribe.js` | The email gate posts here. Subscribes the email via Beehiiv API v2 with `utm_source=guides`, `utm_campaign=<slug>`. |

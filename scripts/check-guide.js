@@ -76,6 +76,10 @@ async function checkGuide(slug, net) {
   for (const k of ['slug', 'code', 'title', 'sub', 'cat', 'added', 'desc', 'keywords']) if (fm[k] == null || fm[k] === '' || (Array.isArray(fm[k]) && !fm[k].length)) fail(`frontmatter: "${k}" is missing`);
   if (fm.slug && fm.slug !== slug) fail(`frontmatter slug "${fm.slug}" does not match the file name`);
   if (fm.cat && !CATS.includes(fm.cat)) fail(`frontmatter: cat "${fm.cat}" is not one of ${CATS.join(' | ')}`);
+  const tags = Array.isArray(fm.tags) ? fm.tags.filter(Boolean) : [];
+  if (!tags.length) fail('frontmatter: "tags" is empty. Add 3 or more health and life topics the guide touches beyond its category (sleep, menopause, gut health, kids…)');
+  else if (tags.length < 3) warn(`frontmatter: only ${tags.length} tag${tags.length === 1 ? '' : 's'}; aim for 3 or more so the guide is found by topic and linked from related guides`);
+  if (tags.some(t => CATS.map(c => c.toLowerCase()).includes(String(t).toLowerCase()))) warn('frontmatter: tags repeat a product category; tags are for topics beyond the category');
   if (fm.code && String(fm.code) !== String(fm.code).toUpperCase()) warn('frontmatter: code should be uppercase');
   const descWords = String(fm.desc || '').split(/\s+/).filter(Boolean).length;
   if (fm.desc && (descWords < 20 || descWords > 45)) warn(`frontmatter: desc is ${descWords} words (aim for 25–40)`);
