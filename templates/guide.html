@@ -208,7 +208,7 @@
       <!-- gate-ui -->
       <div class="gate" id="gate">
         <h3>{{GATE_TITLE}}</h3>
-        <p id="gate-copy">Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on non-toxic living, from the water you drink to the pan you cook in, with a safer swap in every issue. Free, and you can leave any time.</p>
+        <p id="gate-copy">Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on the toxins hiding in your water, food, cookware and home, and the exact swap that gets them out. Live cleaner. Feel better. Free, and you can leave any time.</p>
         <form id="gateform">
           <label class="sr" for="ge">Email address</label>
           <input id="ge" type="email" placeholder="Email address" required autocomplete="email">
@@ -222,8 +222,8 @@
 
       <!-- Optional phone step: shown after the email unlock -->
       <div class="phone" id="phone" hidden>
-        <h3>Want the best of Lifeuntox by text? <span>Optional</span></h3>
-        <p>A short text a couple of times a month: a new guide, a recall worth knowing about, or a partner discount. Reply STOP any time to leave.</p>
+        <h3>Want Lifeuntox by text? <span>Optional</span></h3>
+        <p>New guides, recalls worth knowing about, and partner discounts, straight to your phone. Reply STOP any time to leave.</p>
         <form id="phoneform" novalidate>
           <label class="sr" for="cc">Country</label>
           <select id="cc" aria-label="Country"></select>
@@ -232,7 +232,7 @@
           <button class="btn btn-solid" type="submit">Add my number</button>
         </form>
         <p class="fine err" id="phone-err" hidden></p>
-        <p class="fine" id="phone-msg">By adding your number you agree to receive marketing texts from Lifeuntox, a couple of times a month. Message and data rates may apply. Reply STOP at any time to cancel.</p>
+        <p class="fine" id="phone-msg">By adding your number you agree to receive marketing texts from Lifeuntox. Message and data rates may apply. Reply STOP at any time to cancel.</p>
         <button type="button" class="skipph" id="skipph">No thanks, just the guide</button>
       </div>
       <!-- /gate-ui -->
@@ -292,7 +292,7 @@ const params = new URLSearchParams(location.search);
 if(remembered() || params.get('s')==='1') unlock();
 
 const CHECK_SUBSCRIBER = "/.netlify/functions/check-subscriber";
-const SUBSCRIBE_COPY = "Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on non-toxic living, from the water you drink to the pan you cook in, with a safer swap in every issue. Free, and you can leave any time.";
+const SUBSCRIBE_COPY = "Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on the toxins hiding in your water, food, cookware and home, and the exact swap that gets them out. Live cleaner. Feel better. Free, and you can leave any time.";
 const VERIFY_COPY = "Enter the email you subscribed with. We check it against the list and unlock the guide.";
 let verifyMode = false;
 const gateform=document.getElementById('gateform'), gateErr=document.getElementById('gate-err'), ge=document.getElementById('ge');
@@ -411,7 +411,7 @@ document.getElementById('phoneform').addEventListener('submit',async e=>{
   const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
   if(out.ok||out.offline){
     e.target.hidden=true; document.getElementById('phone').classList.add('done');
-    document.querySelector('#phone h3').textContent='Added. A couple of texts a month, no more.';
+    document.querySelector('#phone h3').textContent='Added. Watch your phone.';
     document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any text to leave.';
     document.getElementById('skipph').hidden=true;
   } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
