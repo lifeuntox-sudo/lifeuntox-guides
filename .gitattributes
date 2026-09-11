@@ -1,0 +1,4 @@
+# Keep line endings consistent across Windows and the Netlify build image
+* text=auto eol=lf
+*.png binary
+*.pdf binary
