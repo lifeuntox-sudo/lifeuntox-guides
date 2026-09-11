@@ -120,6 +120,8 @@
   .gate input{flex:1;height:48px;font-family:inherit;font-size:16px;padding:0 14px;border:1.5px solid var(--line);border-radius:2px;}
   .gate input:focus{outline:none;border-color:var(--moss);box-shadow:0 0 0 3px rgba(124,179,66,.2);}
   .gate .fine{margin:12px 0 0;font-size:13px;}
+  .gate .err{color:var(--red);}
+  .gate input[aria-invalid="true"]{border-color:var(--red);}
   .gate .have{margin:14px 0 0;font-size:14px;}
   .gate .have button{font-family:inherit;font-size:14px;color:var(--moss);background:none;border:0;border-bottom:1px solid rgba(45,90,45,.4);padding:0;cursor:pointer;}
   .phone{background:#fff;border:1px solid var(--line);border-top:4px solid var(--gold);padding:24px 28px;margin:0 0 30px;}
@@ -206,20 +208,22 @@
       <!-- gate-ui -->
       <div class="gate" id="gate">
         <h3>{{GATE_TITLE}}</h3>
-        <p>Pop your email in and the rest of this guide unlocks straight away. You will also get one clean-living breakdown every morning from the Lifeuntox team. Leave any time.</p>
+        <p id="gate-copy">Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on non-toxic living, from the water you drink to the pan you cook in, with a safer swap in every issue. Free, and you can leave any time.</p>
         <form id="gateform">
           <label class="sr" for="ge">Email address</label>
           <input id="ge" type="email" placeholder="Email address" required autocomplete="email">
           <button class="btn btn-solid" type="submit">Unlock the guide</button>
         </form>
+        <p class="fine err" id="gate-err" hidden></p>
         <p class="fine">No spam, ever. We never sell or share your email.</p>
-        <p class="have">Already a subscriber? <button type="button" id="already">Unlock with your email</button></p>
+        <p class="have" id="have-sub">Already a subscriber? <button type="button" id="already">Unlock with your email</button></p>
+        <p class="have" id="have-new" hidden>Not on the list yet? <button type="button" id="notyet">Subscribe free to unlock</button></p>
       </div>
 
       <!-- Optional phone step: shown after the email unlock -->
       <div class="phone" id="phone" hidden>
         <h3>Want the best of Lifeuntox by text? <span>Optional</span></h3>
-        <p>A short text now and then: a new guide, a recall worth knowing about, or a partner discount. A few a month at most, and one word stops them.</p>
+        <p>A short text a couple of times a month: a new guide, a recall worth knowing about, or a partner discount. Reply STOP any time to leave.</p>
         <form id="phoneform" novalidate>
           <label class="sr" for="cc">Country</label>
           <select id="cc" aria-label="Country"></select>
@@ -228,7 +232,7 @@
           <button class="btn btn-solid" type="submit">Add my number</button>
         </form>
         <p class="fine err" id="phone-err" hidden></p>
-        <p class="fine" id="phone-msg">By adding your number you agree to receive occasional marketing texts from Lifeuntox. Message and data rates may apply. Reply STOP at any time to cancel.</p>
+        <p class="fine" id="phone-msg">By adding your number you agree to receive marketing texts from Lifeuntox, a couple of times a month. Message and data rates may apply. Reply STOP at any time to cancel.</p>
         <button type="button" class="skipph" id="skipph">No thanks, just the guide</button>
       </div>
       <!-- /gate-ui -->
@@ -287,11 +291,32 @@ function unlock(){
 const params = new URLSearchParams(location.search);
 if(remembered() || params.get('s')==='1') unlock();
 
-const gateform=document.getElementById('gateform');
+const CHECK_SUBSCRIBER = "/.netlify/functions/check-subscriber";
+const SUBSCRIBE_COPY = "Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on non-toxic living, from the water you drink to the pan you cook in, with a safer swap in every issue. Free, and you can leave any time.";
+const VERIFY_COPY = "Enter the email you subscribed with. We check it against the list and unlock the guide.";
+let verifyMode = false;
+const gateform=document.getElementById('gateform'), gateErr=document.getElementById('gate-err'), ge=document.getElementById('ge');
+function setGateMode(verify){
+  verifyMode=verify; gateErr.hidden=true; ge.removeAttribute('aria-invalid');
+  document.getElementById('gate-copy').textContent = verify ? VERIFY_COPY : SUBSCRIBE_COPY;
+  gateform.querySelector('button').textContent = verify ? 'Unlock' : 'Unlock the guide';
+  ge.placeholder = verify ? 'The email you subscribed with' : 'Email address';
+  document.getElementById('have-sub').hidden = verify; document.getElementById('have-new').hidden = !verify;
+  ge.focus();
+}
+function gateFail(msg){ const btn=gateform.querySelector('button'); btn.disabled=false; btn.textContent= verifyMode?'Unlock':'Unlock the guide'; gateErr.textContent=msg; gateErr.hidden=false; ge.setAttribute('aria-invalid','true'); ge.focus(); }
 if(gateform) gateform.addEventListener('submit', async e=>{
   e.preventDefault();
-  const email = document.getElementById('ge').value.trim();
-  const btn = e.target.querySelector('button'); btn.textContent='Unlocking…'; btn.disabled=true;
+  const email = ge.value.trim();
+  const btn = e.target.querySelector('button'); btn.textContent= verifyMode?'Checking…':'Unlocking…'; btn.disabled=true;
+  gateErr.hidden=true; ge.removeAttribute('aria-invalid');
+  if(verifyMode){
+    const out = await post(CHECK_SUBSCRIBER,{email});
+    if(out.ok && out.subscribed){ subscriberEmail=email; unlock(); const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'}); }
+    else if(out.ok) gateFail('We could not find that email on the list. Check the spelling, or subscribe free to unlock.');
+    else gateFail('We could not check that just now. Try again in a moment, or subscribe free to unlock.');
+    return;
+  }
   subscriberEmail = email;
   unlock();   // unlock first; the subscribe request runs in the background
   const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'});
@@ -386,19 +411,16 @@ document.getElementById('phoneform').addEventListener('submit',async e=>{
   const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
   if(out.ok||out.offline){
     e.target.hidden=true; document.getElementById('phone').classList.add('done');
-    document.querySelector('#phone h3').textContent='Added. We will keep it occasional.';
+    document.querySelector('#phone h3').textContent='Added. A couple of texts a month, no more.';
     document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any text to leave.';
     document.getElementById('skipph').hidden=true;
   } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
 });
 document.getElementById('skipph').addEventListener('click',()=>{ document.getElementById('phone').hidden=true; document.getElementById('content').scrollIntoView({behavior:'smooth'}); });
 
-document.getElementById('already').addEventListener('click',()=>{
-  // For now: trust and unlock. Later: a Netlify Function can check the
-  // email against Beehiiv's API before unlocking.
-  document.getElementById('ge').focus();
-  document.getElementById('ge').placeholder='Enter the email you subscribed with';
-});
+document.getElementById('already').addEventListener('click',()=>setGateMode(true));
+document.getElementById('notyet').addEventListener('click',()=>setGateMode(false));
+ge.addEventListener('input',()=>{ gateErr.hidden=true; ge.removeAttribute('aria-invalid'); });
 }
 
 /* ---------- share ---------- */

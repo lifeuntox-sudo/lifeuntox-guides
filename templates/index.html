@@ -248,10 +248,10 @@
 <section class="subscribe">
   <div class="wrap">
     <div>
-      <h2>One clean-living breakdown, every morning.</h2>
-      <p>Join 70,000+ readers who get the research before it hits the headlines. Free, and you can leave any time.</p>
+      <h2>Non-toxic living, explained in one email a day.</h2>
+      <p>Join 70,000+ readers who get one short, science-first read every morning on what is in your water, food, cookware and home, with a safer swap in every issue. Free, and you can leave any time.</p>
     </div>
-    <form class="subform" action="#" onsubmit="event.preventDefault();this.querySelector('button').textContent='You\'re in'">
+    <form class="subform" id="subform" action="/.netlify/functions/subscribe" method="post">
       <label class="sr" for="fe">Email address</label>
       <input id="fe" type="email" placeholder="Email address" required>
       <button class="btn btn-solid" type="submit">Subscribe</button>
@@ -441,6 +441,20 @@ el('prev').addEventListener('click',()=>{page--;render();el('results').scrollInt
 el('next').addEventListener('click',()=>{page++;render();el('results').scrollIntoView();});
 document.addEventListener('keydown',e=>{ if(e.key==='/'&&document.activeElement!==input){e.preventDefault();input.focus();} });
 render();
+</script>
+<script>
+/* Newsletter box: posts to the site's subscribe function (Beehiiv API, server-side). */
+document.getElementById('subform').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const f=e.target, btn=f.querySelector('button'), input=f.querySelector('input'), email=input.value.trim();
+  btn.disabled=true; btn.textContent='Joining…';
+  try{
+    const r=await fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,slug:'library'})});
+    const out=r.ok?await r.json():{ok:false};
+    if(out.ok){ btn.textContent="You're in"; input.disabled=true; }
+    else { btn.disabled=false; btn.textContent='Try again'; }
+  }catch(err){ btn.disabled=false; btn.textContent='Try again'; }
+});
 </script>
 </body>
 </html>

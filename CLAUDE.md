@@ -157,7 +157,8 @@ templates/cover-reference.png  the approved house-style cover; make-cover sends 
 scripts/check-guide.js lint                 npm run check -- <slug>
 site/assets/partner-notoxchef.png  the NOTOXCHEF × Lifeuntox lockup shown in every guide header (replaces the text pill)
 scripts/dev.js        local preview with functions   npm run dev  → http://localhost:8888
-netlify/functions/    subscribe.js (the gate posts here → Beehiiv API v2)
+netlify/functions/    subscribe.js (the gate and the directory box post here → Beehiiv API v2)
+                      check-subscriber.js ("Already a subscriber?" → looks the email up, unlocks only if active)
                       phone-save.js (Beehiiv custom fields, server-side E.164 check)
                       lib/beehiiv.js (shared helper, not a function)
 ```

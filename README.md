@@ -44,6 +44,7 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `scripts/check-guide.js` | Lint: readability grade, banned words, structure, links. |
 | `scripts/dev.js` | Local static server with rebuild-on-change and `/.netlify/functions/*` routed to the function handlers. |
 | `netlify/functions/subscribe.js` | The email gate posts here. Subscribes the email via Beehiiv API v2 with `utm_source=guides`, `utm_campaign=<slug>`. |
+| `netlify/functions/check-subscriber.js` | "Already a subscriber?" posts here; unlocks only if the email is an active Beehiiv subscription. |
 | `netlify/functions/phone-save.js` | Saves an opted-in phone number to Beehiiv custom fields (`phone`, `sms_consent`) with a server-side E.164 check. |
 | `netlify/functions/lib/beehiiv.js` | Shared helper: API call, JSON responses, same-origin check. Not a function itself. |
 | `mockup/` | The original hand-built mockup, kept for reference. Safe to delete once the built pages are approved. |
@@ -96,6 +97,6 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 ## Gate behaviour
 
-The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step (occasional marketing texts, opt-in) appears and posts to `/.netlify/functions/phone-save`.
+The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. "Already a subscriber?" switches the form to a check against Beehiiv and unlocks only for an active subscription. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step (occasional marketing texts, opt-in) appears and posts to `/.netlify/functions/phone-save`.
 
 Why a function and not the Beehiiv embed: Beehiiv's current subscribe forms render inside an iframe with a bot challenge, so there is no form action URL a static page can post to. The API key stays on the server; the browser only ever talks to the site's own functions.
