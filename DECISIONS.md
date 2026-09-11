@@ -58,3 +58,12 @@ A running log of every call made on my own while building this repo, per stage, 
 6. **Phone input `autocomplete` changed from `tel-national` to `tel`.** The validator rejects `tel-national` on `type="tel"` (the spec allows it only on text inputs). No visible change.
 7. **Build removes stale pages.** Deleting `content/<slug>.md` now removes `site/guide-<slug>.html` on the next build and drops the guide's `text` from guides.json, so the card goes back to a placeholder rather than linking to a page that no longer exists.
 8. **One-line HTML comments are their own block in the renderer.** Before this, a `<!-- TODO -->` line swallowed the heading after it. A raw HTML block now also stops at the next `:::` fence or heading.
+
+## Stage 5: deploy
+
+1. **Only three env vars on Netlify:** `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID`, `SITE_URL`. `KIE_API_KEY` is never used in a build or function (covers are generated on your machine), and `BEEHIIV_FORM_ACTION` holds an embed snippet the build ignores. Secrets live in as few places as possible.
+2. **What is in git:** the brand book, source PDF, mockup HTML and PROMPT.md are committed as reference. The 4.9 MB Dr. Berg screenshot and the mockup zip are gitignored. `.env` is ignored and was confirmed untracked before the first push.
+3. **`.gitattributes` pins LF line endings** so Windows checkouts and the Linux build image agree.
+4. **First deploy from the CLI** (`netlify deploy --build --prod`) rather than waiting for the GitHub link, so the preview URL exists now. Linking the repository for automatic deploys on push needs Netlify's GitHub app authorised in your browser, which only you can do (two clicks, steps in the README).
+5. **Server-side phone check tightened for +1 numbers.** The brief asked to keep the E.164 check; that stays, plus the North American rule that area code and exchange start with 2–9, so a direct call to the function cannot store a number the page would have rejected.
+6. **Custom domain not added by me.** PROMPT.md's Part A has you add `guides.lifeuntox.com` in Netlify's domain settings after deploy; the CNAME record is in the README.

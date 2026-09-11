@@ -22,6 +22,8 @@ exports.handler = async (event) => {
   const email = String(body.email || '').trim().toLowerCase();
   const phone = String(body.phone || '').replace(/[\s()-]/g, '');
   if (!E164_RE.test(phone)) return json(400, { ok: false, error: 'phone' });
+  // North American numbers (+1): area code and exchange must start with 2-9.
+  if (phone.startsWith('+1') && !/^\+1[2-9]\d{2}[2-9]\d{6}$/.test(phone)) return json(400, { ok: false, error: 'phone' });
   if (!EMAIL_RE.test(email) || email.length > 254) return json(400, { ok: false, error: 'email' });
 
   const consent = 'pending ' + new Date().toISOString().slice(0, 10);

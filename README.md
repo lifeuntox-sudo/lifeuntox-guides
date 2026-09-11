@@ -60,7 +60,19 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `KIE_API_KEY` | `scripts/make-cover.js` |
 | `SITE_URL` (optional) | Canonical / Open Graph / JSON-LD URLs. Netlify's own `URL` is used when unset. |
 
-Set the same variables in Netlify → Site configuration → Environment variables.
+Set the same variables in Netlify → Site configuration → Environment variables. On Netlify only `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` and `SITE_URL` are needed: covers are generated on your machine, so `KIE_API_KEY` stays local.
+
+## Hosting and DNS
+
+- Netlify site: `lifeuntox-guides` (team `lifeuntox`), https://lifeuntox-guides.netlify.app. Admin: https://app.netlify.com/projects/lifeuntox-guides
+- Every push to `main` on GitHub (`lifeuntox-sudo/lifeuntox-guides`) triggers `npm run build` and a deploy, once the repository is linked under Site configuration → Build & deploy → Continuous deployment.
+- Custom domain `guides.lifeuntox.com`: add it under Domain management, then create this DNS record at your DNS provider:
+
+| Type | Name | Value |
+|---|---|---|
+| CNAME | `guides` | `lifeuntox-guides.netlify.app` |
+
+Netlify issues the HTTPS certificate automatically once the record resolves (usually within an hour). Until then the site is reachable at the netlify.app address.
 
 ## How a page is built
 
