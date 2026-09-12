@@ -104,7 +104,7 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 ## Embeds
 
-`embeds/beehiiv-free-guides.html` is a self-contained block for a Beehiiv custom HTML section: it fetches `/guides.json`, shows the four newest guides with covers, and links to the library. Paste the whole file into the block.
+`beehiiv/free-guides-block.html` is the self-contained "Free guides" block for the lifeuntox.com homepage (a Beehiiv custom HTML section). It fetches `/guides.json`, shows the four newest guides with covers, and links to the library. It is the source of truth for the block: paste the whole file into Beehiiv whenever it changes. It starts with `<base target="_top">` so links navigate the page, not Beehiiv's srcdoc iframe.
 
 ## Gate behaviour
 

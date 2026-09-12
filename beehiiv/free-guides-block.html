@@ -1,3 +1,4 @@
+<base target="_top">
 <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 .lu-guides,.lu-guides *{box-sizing:border-box;}
@@ -70,6 +71,16 @@
   var shelf = root.querySelector('.lu-shelf');
   if (!shelf) return;
 
+  // Fallback: <base target="_top"> covers every link; if the sandbox blocks top navigation, use new tabs instead.
+  var topBlocked = false;
+  try { if (window.top !== window.self) { void window.top.location.href; } } catch (e) { topBlocked = true; }
+  function retarget() {
+    if (!topBlocked) return;
+    var links = root.querySelectorAll('a');
+    for (var i = 0; i < links.length; i++) { links[i].target = '_blank'; links[i].rel = 'noopener'; }
+  }
+  retarget();
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -99,6 +110,7 @@
         '<span class="lu-title">' + esc(g.title) + '</span></a></li>';
     }
     shelf.innerHTML = html;
+    retarget();
     setTimeout(function () { shelf.classList.add('lu-in'); }, 30);
   }
 

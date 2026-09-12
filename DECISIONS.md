@@ -108,3 +108,10 @@ A running log of every call made on my own while building this repo, per stage, 
 6. **Footer Home link is not marked current** on the guide site (Beehiiv bolds it there because it is the current page). Both footer links render at weight 400 here.
 7. **Old header/footer CSS removed** from both templates; the shared `templates/nav.css` is injected into each page so pages stay self-contained. `templates/footer.html` is gone. The Partners column no longer exists in the footer, so the sponsor switch now covers only the header lockup, promo and CTA.
 8. **Assets:** Beehiiv's header logo (1000×208 PNG) and the square publication mark (1200×1200 JPG) were downloaded into `site/assets/` so the sites share the exact artwork.
+
+## Round 7, stage 2: links in the Beehiiv "Free guides" block
+
+1. **`beehiiv/free-guides-block.html` is the block's only copy.** The earlier `embeds/` file was identical apart from line endings and is removed, so there is one source of truth to paste into Beehiiv.
+2. **How Beehiiv hosts the block, checked on the live homepage:** a `srcdoc` iframe with no `sandbox` attribute, same-origin with the page. That means `<base target="_top">` navigates the top page, and the fallback test (reading `window.top.location.href`) succeeds, so the `_blank` fallback is dormant. It stays in the file in case Beehiiv adds a sandbox later.
+3. **The fallback also runs after the shelf renders**, because the guide links are created after the first check; without that, only the "Browse all guides" button would be retargeted.
+4. **Verified locally in a srcdoc iframe** under the same conditions: clicking a cover and clicking the button both navigated the whole page to guides.lifeuntox.com.
