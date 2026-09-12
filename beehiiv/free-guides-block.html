@@ -1,0 +1,125 @@
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+.lu-guides,.lu-guides *{box-sizing:border-box;}
+.lu-guides{font-family:'League Spartan',system-ui,sans-serif;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:transparent;color:#1A1A1A;padding:72px 0;text-align:left;}
+.lu-guides .lu-wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+.lu-guides .lu-eyebrow{margin:0 0 12px;font-size:13.5px;font-weight:500;color:#2D5A2D;line-height:1.4;}
+.lu-guides .lu-heading{margin:0;font-family:'League Spartan',system-ui,sans-serif;font-size:clamp(28px,3.6vw,40px);font-weight:600;letter-spacing:-0.025em;line-height:1.1;color:#1A4A1A;max-width:22ch;}
+.lu-guides .lu-sub{margin:14px 0 0;font-size:18px;font-weight:300;line-height:1.55;color:#5F5F5C;max-width:56ch;}
+.lu-guides .lu-shelf{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;opacity:0;transition:opacity .2s ease;}
+.lu-guides .lu-shelf.lu-in{opacity:1;}
+.lu-guides .lu-shelf:empty{display:none;}
+.lu-guides .lu-card{display:block;color:inherit;text-decoration:none;transition:transform .2s ease;}
+.lu-guides .lu-card:hover{transform:translateY(-3px);}
+.lu-guides .lu-card:focus-visible{outline:2.5px solid #7CB342;outline-offset:4px;}
+.lu-guides .lu-cover{display:block;aspect-ratio:3/4;background:transparent;}
+.lu-guides .lu-cover img{display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;box-shadow:none;background:transparent;}
+.lu-guides .lu-cover img{mix-blend-mode:multiply;} /* cover PNGs have a white background baked in; remove this line once covers are transparent */
+.lu-guides .lu-title{display:block;margin-top:16px;font-size:16.5px;font-weight:600;line-height:1.3;color:#1A1A1A;text-decoration:none;}
+.lu-guides .lu-actions{margin-top:34px;}
+.lu-guides .lu-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;background:#fff;border:1px solid #E2DED1;border-radius:2px;color:#2D5A2D;font-family:'League Spartan',system-ui,sans-serif;font-size:15.5px;font-weight:500;line-height:1;text-decoration:none;transition:border-color .2s ease;}
+.lu-guides .lu-btn:hover{border-color:#2D5A2D;color:#2D5A2D;text-decoration:none;}
+.lu-guides .lu-btn:focus-visible{outline:2.5px solid #7CB342;outline-offset:2px;}
+@media (max-width:1000px){
+  .lu-guides .lu-shelf{grid-template-columns:repeat(3,1fr);}
+  .lu-guides .lu-shelf li:nth-child(n+4){display:none;}
+}
+@media (max-width:700px){
+  .lu-guides{padding:56px 0;}
+  .lu-guides .lu-heading{font-size:28px;}
+  .lu-guides .lu-shelf{grid-template-columns:repeat(2,1fr);gap:18px;}
+  .lu-guides .lu-shelf li:nth-child(n+4){display:block;}
+  .lu-guides .lu-title{font-size:16px;}
+}
+@media (max-width:480px){
+  .lu-guides .lu-btn{display:flex;width:100%;}
+}
+@media (max-width:380px){
+  .lu-guides .lu-shelf{gap:14px;}
+}
+@media (prefers-reduced-motion:reduce){
+  .lu-guides .lu-card,.lu-guides .lu-shelf,.lu-guides .lu-btn{transition:none;}
+  .lu-guides .lu-card:hover{transform:none;}
+}
+</style>
+<section class="lu-guides" data-lu-guides>
+  <div class="lu-wrap">
+    <p class="lu-eyebrow">Free guides</p>
+    <h2 class="lu-heading">Guides you can act on this weekend</h2>
+    <p class="lu-sub">Full, free guides on the changes that make the biggest difference to how you feel. Sourced, plain English, written to be finished in one sitting and used at the store.</p>
+    <ul class="lu-shelf" aria-label="Newest guides"></ul>
+    <div class="lu-actions"><a class="lu-btn" href="https://guides.lifeuntox.com" rel="noopener">Browse all guides</a></div>
+  </div>
+</section>
+<script>
+(function () {
+  var SITE = 'https://guides.lifeuntox.com/';
+  var DATA = SITE + 'guides.json';
+  var KEY = 'lu-guides-v1';
+  var TIMEOUT = 4000;
+  var MAX = 4;
+
+  var script = document.currentScript;
+  var root = script && script.previousElementSibling && script.previousElementSibling.matches('.lu-guides') ? script.previousElementSibling : null;
+  if (!root) {
+    var all = document.querySelectorAll('.lu-guides:not([data-lu-init])');
+    root = all.length ? all[all.length - 1] : null;
+  }
+  if (!root) return;
+  root.setAttribute('data-lu-init', '1');
+  var shelf = root.querySelector('.lu-shelf');
+  if (!shelf) return;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function coverUrl(c) {
+    c = String(c).trim();
+    if (/^https?:\/\//i.test(c)) return c;
+    return SITE + c.replace(/^\/+/, '');
+  }
+  function pick(list) {
+    if (!Array.isArray(list)) return [];
+    return list
+      .filter(function (g) { return g && g.slug && g.title && typeof g.cover === 'string' && g.cover.trim(); })
+      .sort(function (a, b) { return String(b.added || '').localeCompare(String(a.added || '')); })
+      .slice(0, MAX);
+  }
+  function render(list) {
+    var guides = pick(list);
+    if (!guides.length) return;
+    var html = '';
+    for (var i = 0; i < guides.length; i++) {
+      var g = guides[i];
+      var href = SITE + 'guide-' + encodeURIComponent(String(g.slug)) + '.html';
+      html += '<li><a class="lu-card" href="' + esc(href) + '" rel="noopener">' +
+        '<span class="lu-cover"><img src="' + esc(coverUrl(g.cover)) + '" alt="' + esc(g.title) + '" width="1200" height="1600" loading="lazy" decoding="async"></span>' +
+        '<span class="lu-title">' + esc(g.title) + '</span></a></li>';
+    }
+    shelf.innerHTML = html;
+    setTimeout(function () { shelf.classList.add('lu-in'); }, 30);
+  }
+
+  var cached = null;
+  try { cached = JSON.parse(sessionStorage.getItem(KEY) || 'null'); } catch (e) { cached = null; }
+  if (cached && Array.isArray(cached)) { render(cached); return; }
+
+  if (!window.fetch) return;
+  var ctrl = window.AbortController ? new AbortController() : null;
+  var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, TIMEOUT);
+  fetch(DATA, { signal: ctrl ? ctrl.signal : undefined, credentials: 'omit', mode: 'cors' })
+    .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function (list) {
+      clearTimeout(timer);
+      if (!Array.isArray(list)) return;
+      var slim = list.map(function (g) {
+        return { slug: g.slug, title: g.title, sub: g.sub, desc: g.desc, cat: g.cat, added: g.added, cover: g.cover };
+      });
+      try { sessionStorage.setItem(KEY, JSON.stringify(slim)); } catch (e) {}
+      render(slim);
+    })
+    .catch(function () { clearTimeout(timer); });
+})();
+</script>

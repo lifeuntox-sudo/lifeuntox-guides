@@ -19,7 +19,7 @@
 <script type="application/ld+json">{{JSON_LD}}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=League+Spartan:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#1a1a1a;--ink-soft:#5f5f5c;--ink-mute:#8d8a80;
@@ -34,13 +34,6 @@
   :focus-visible{outline:2.5px solid var(--leaf);outline-offset:2px;}
   a{color:var(--moss);text-underline-offset:3px;}
 
-  .masthead{background:#fff;border-bottom:1px solid var(--line);}
-  .masthead .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px;}
-  .logo img{height:34px;width:auto;display:block;}
-  .nav{display:flex;align-items:center;gap:26px;font-size:15px;}
-  .nav a{text-decoration:none;color:var(--ink-soft);}
-  .nav a:hover{color:var(--forest);}
-  .nav a.btn-solid,.nav a.btn-solid:hover{color:#fff;}
   .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border-radius:2px;font-family:inherit;font-size:15px;font-weight:500;text-decoration:none;cursor:pointer;border:0;}
   .btn-solid{background:var(--forest);color:#fff;}
   .btn-solid:hover{background:var(--moss);}
@@ -154,21 +147,8 @@
   .more .mini img{width:100%;height:100%;object-fit:contain;display:block;mix-blend-mode:multiply;}
   .more h3{font-size:15px;font-weight:600;margin:12px 0 0;color:var(--ink);}
 
-  footer{background:var(--paper-2);border-top:1px solid var(--line);margin-top:64px;padding:32px 0 44px;font-size:13.5px;color:var(--ink-soft);}
-  footer .cols{display:flex;flex-wrap:wrap;gap:28px 48px;margin-bottom:28px;}
-  footer .cols div{display:flex;flex-direction:column;gap:7px;}
-  footer .cols b{font-weight:500;color:var(--ink);margin-bottom:2px;}
-  footer .cols a{color:var(--ink-soft);text-decoration:none;}
-  footer .cols a:hover{color:var(--forest);}
-  footer .fine{max-width:80ch;margin:0;font-weight:300;font-size:12.5px;color:var(--ink-mute);}
-  @media (max-width:700px){
-    footer .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px 20px;margin-bottom:24px;}
-    footer .cols .c-explore{order:1;}footer .cols .c-community{order:2;}footer .cols .c-about{order:3;}footer .cols .c-partners{order:4;}
-    footer .cols div{gap:9px;}
-  }
 
   @media (max-width:760px){
-    .masthead .wrap{height:62px;}.logo img{height:28px;}.nav a:not(.btn){display:none;}
     .ahead{grid-template-columns:1fr;gap:22px;}.book{width:150px;}
     .body{font-size:17px;}
     .locked .content{max-height:600px;}
@@ -177,21 +157,12 @@
     .more ul{grid-template-columns:1fr 1fr;}
   }
   @media (prefers-reduced-motion:reduce){*{transition:none !important;}}
+{{NAV_CSS}}
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="wrap">
-    <a class="logo" href="https://lifeuntox.com" aria-label="Lifeuntox home"><img src="assets/lifeuntox-logo.png" alt="Lifeuntox"></a>
-    <nav class="nav" aria-label="Main">
-      <a href="index.html">Guides</a>
-      <a href="https://lifeuntox.com">Newsletter</a>
-      <a href="https://lifeuntox.com">About</a>
-      <a class="btn btn-solid" href="https://lifeuntox.com">Subscribe free</a>
-    </nav>
-  </div>
-</header>
+{{HEADER}}
 
 <main class="wrap" id="page">
   <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; <a href="index.html">Guides</a> &nbsp;›&nbsp; {{TITLE}}</p>

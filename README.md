@@ -43,7 +43,7 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `scripts/new-guide.js` | Scaffolds a guide in the canonical section order. |
 | `scripts/make-cover.js` | Generates three cover options with Kie.ai and sets `cover`. |
 | `scripts/lib/images.js`, `jpeg.js` | At build, derive a full-size JPEG (header, Open Graph) and a 600px JPEG (grid) from each cover PNG. Gitignored; rebuilt on Netlify. |
-| `templates/footer.html` | The shared footer, injected into both page templates. |
+| `nav.json` | Header and footer content, copied from the live Beehiiv site. Rendered into both pages at build by `scripts/lib/nav.js` with `templates/nav.css`. |
 | `scripts/check-guide.js` | Lint: readability grade, banned words, structure, links. |
 | `scripts/dev.js` | Local static server with rebuild-on-change and `/.netlify/functions/*` routed to the function handlers. |
 | `netlify/functions/subscribe.js` | The email gate posts here. Subscribes the email via Beehiiv API v2 with `utm_source=guides`, `utm_campaign=<slug>`. |

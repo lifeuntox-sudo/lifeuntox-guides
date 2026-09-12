@@ -146,7 +146,9 @@ Technical: * every link resolves (HEAD request); OG image set; * no console erro
 ```
 site/                 what Netlify publishes (built HTML is gitignored; assets are tracked)
 templates/index.html  directory page; {{GUIDES}} is replaced with guides.json at build
-templates/footer.html shared footer, injected as {{FOOTER}} into both pages
+nav.json              header + footer content, copied from the live Beehiiv site (source of truth)
+templates/nav.css     header + footer styles, measured from lifeuntox.com; injected as {{NAV_CSS}}
+scripts/lib/nav.js    renders {{HEADER}} and {{FOOTER}} from nav.json
 templates/guide.html  article page; {{PLACEHOLDERS}} filled from frontmatter + rendered body
 content/<slug>.md     one guide: frontmatter + body in the ::: block syntax above
 guides.json           the directory data (one object per guide, display order)
@@ -193,6 +195,10 @@ netlify/functions/    subscribe.js (the gate and the directory box post here →
 ### Data precedence
 
 For a guide with a content file, its frontmatter is the source of truth for the editorial fields (`code, title, sub, cat, added, badge, color, cover, keywords, tags, desc`) and build copies them into guides.json. `reads` and `text` live only in guides.json (never edit `text` by hand; build-index writes it). Guides listed in guides.json without a content file still appear as cards on the directory page, linking nowhere until their page exists.
+
+### Header and footer
+
+Both pages get their header and footer from `nav.json` at build time (`{{HEADER}}`, `{{FOOTER}}`, `{{NAV_CSS}}`). The content and styling copy the live Beehiiv site, lifeuntox.com, so moving between the two feels like one site. When the Beehiiv header or footer changes, update `nav.json` (and `templates/nav.css` if the look changed) and rebuild. Never the other way round. The item with `"current": true` gets `aria-current="page"`. Links to other hosts get `rel="noopener"`; nothing gets `target="_blank"`.
 
 ### Sponsor placements switch
 

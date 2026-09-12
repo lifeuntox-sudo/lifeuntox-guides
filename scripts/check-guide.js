@@ -208,7 +208,7 @@ async function checkGuide(slug, net) {
     if (!/<meta property="og:image" content="[^"]+"/.test(html)) fail('OG image missing');
     if (PARTNER_PLACEMENTS && !/assets\/partner-notoxchef\.png/.test(html)) fail('partner lockup missing from the built page');
     if (!PARTNER_PLACEMENTS && /NOTOXCHEF/.test(html)) fail('NOTOXCHEF appears on the built page while partner placements are switched off');
-    if (!/assets\/lifeuntox-logo\.png/.test(html)) fail('logo missing from the built page');
+    if (!/assets\/lifeuntox-header-logo\.png/.test(html)) fail('logo missing from the built page');
     if (!/class="fine">[^<]*education/.test(html)) fail('footer disclosure missing from the built page');
     if (/JetBrains/.test(html)) fail('JetBrains Mono is loaded on the page');
     if (net) {

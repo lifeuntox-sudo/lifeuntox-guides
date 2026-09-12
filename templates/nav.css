@@ -1,0 +1,61 @@
+/* Shared header and footer, measured from the live Beehiiv site (lifeuntox.com, 2026-09-12).
+   Injected into every page by scripts/build.js as {{NAV_CSS}}. Edit here, not in the page templates. */
+.site-header{background:#fff;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;}
+.site-header .hwrap{max-width:1280px;margin:0 auto;padding:0 20px;height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.site-header .hlogo{display:block;flex:0 0 auto;}
+.site-header .hlogo img{height:34px;width:auto;display:block;}
+.site-header .hnav{display:flex;align-items:center;gap:12px;margin-left:auto;}
+.site-header .hnav a{display:inline-block;padding:2px 4px;border-radius:8px;font-size:16px;font-weight:500;line-height:24px;color:#030712;text-decoration:none;}
+.site-header .hnav a:hover{color:#265C26;}
+.site-header .hnav a[aria-current="page"]{color:#1A4A1A;}
+.site-header .hnav a.hcta{display:inline-flex;align-items:center;gap:7px;min-height:39px;margin-left:52px;padding:4px 8px;background:#1A4A1A;color:#fff;border-radius:3px;font-size:16px;font-weight:500;line-height:24px;text-decoration:none;}
+.site-header .hnav a.hcta svg{width:30px;height:30px;display:block;flex:0 0 auto;}
+.site-header .hnav a.hcta:hover{background:#1A4A1A;color:#fff;}
+@media (max-width:760px){
+  .site-header .hwrap{height:62px;padding:0 16px;}
+  .site-header .hlogo img{height:28px;}
+  .site-header .hnav a:not(.hcta){display:none;}
+  .site-header .hnav a.hcta{margin-left:0;}
+}
+
+.site-footer{background:#FAF8F3;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;color:#1A1A1A;margin-top:64px;padding:30px 42px;}
+.site-footer .fwrap{max-width:1280px;margin:0 auto;}
+.site-footer .ftop{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;}
+.site-footer .fbrand{min-width:0;}
+.site-footer .fident{display:flex;align-items:center;gap:10px;}
+.site-footer .fident img{width:58px;height:58px;border-radius:8px;object-fit:contain;display:block;}
+.site-footer .fname{font-size:24px;font-weight:700;color:#1A1A1A;line-height:1.2;}
+.site-footer .ftag{margin:9px 0 0;font-size:16px;font-weight:400;line-height:1.2;color:#1A1A1A;}
+.site-footer .fsub{flex:0 0 400px;width:400px;max-width:100%;min-width:0;}
+.site-footer .fform{display:flex;gap:8px;padding:4px;background:#F9FAFB;border:2px solid #1A4A1A;border-radius:8px;}
+.site-footer .fform input{flex:1 1 0;width:0;min-width:0;height:48px;padding:8px 16px;border:0;border-radius:8px;background:#FAF8F3;font-family:inherit;font-size:16px;color:#1A1A1A;}
+.site-footer .fform input::placeholder{color:#6B7280;}
+.site-footer .fform input:focus{outline:2px solid #1A4A1A;outline-offset:-2px;}
+.site-footer .fform button{flex:0 0 auto;height:48px;padding:0 16px;border:0;border-radius:4px;background:#1A4A1A;color:#fff;font-family:inherit;font-size:16px;font-weight:600;line-height:1;cursor:pointer;white-space:nowrap;}
+.site-footer .fform button:hover{background:#265C26;}
+.site-footer .fform button:disabled{opacity:.85;cursor:default;}
+.site-footer .fsocial{display:flex;gap:28px;margin:20px 0 0;list-style:none;padding:0 0 0 6px;}
+.site-footer .fsocial a{position:relative;display:grid;place-items:center;width:30px;height:30px;border-radius:99px;}
+.site-footer .fsocial a svg{width:14px;height:14px;display:block;}
+.site-footer .fsocial .s-facebook{background:#1A4A1A;}
+.site-footer .fsocial .s-facebook svg{fill:#fff;}
+.site-footer .fsocial .s-instagram{background:#FAF8F3;}
+.site-footer .fsocial .s-instagram svg{fill:#1A1A1A;}
+.site-footer .frule{height:1px;background:rgba(226,222,209,.23);margin:20px 0 24px;border:0;}
+.site-footer .flinks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+.site-footer .flinks a{font-size:14px;font-weight:400;color:#1A1A1A;text-decoration:none;line-height:1.5;}
+.site-footer .flinks a:hover{color:#265C26;}
+.site-footer .flinks a[aria-current="page"]{font-weight:600;}
+.site-footer .flegal{margin:24px 0 0;max-width:80ch;font-size:12.5px;font-weight:300;line-height:1.5;color:#8D8A80;}
+@media (max-width:760px){
+  .site-footer{padding:38px 16px;}
+  .site-footer .ftop{flex-direction:column;align-items:stretch;gap:0;}
+  .site-footer .fbrand{text-align:center;}
+  .site-footer .fident{flex-direction:column;gap:15px;}
+  .site-footer .ftag{margin-top:14px;padding:0 20px;}
+  .site-footer .fsub{flex:0 0 auto;margin:24px auto 0;width:100%;}
+  .site-footer .fform{flex-direction:column;gap:0;padding:6px;}
+  .site-footer .fform input{flex:none;width:100%;height:48px;}
+  .site-footer .fform button{width:100%;}
+  .site-footer .fsocial{justify-content:center;margin-top:26px;}
+}

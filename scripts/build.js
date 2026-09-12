@@ -18,6 +18,7 @@ const { renderArticle, inline, esc, escAttr } = require('./lib/markdown');
 const guidesDb = require('./lib/guides');
 const { buildIndex } = require('./build-index');
 const { deriveCover } = require('./lib/images');
+const navLib = require('./lib/nav');
 
 const SYNC_FIELDS = ['code', 'title', 'sub', 'cat', 'added', 'badge', 'color', 'cover', 'keywords', 'tags', 'desc'];
 const LIGHT = ['#7cb342', '#c9a227', '#d9a441']; // placeholder colours that need dark text
@@ -104,7 +105,7 @@ function syncGuides(docs, guides) {
   }
 }
 
-function renderGuide(d, guides, pages, tpl, SITE_URL, footer) {
+function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
   const g = guides.find(x => x.slug === d.slug);
   const fm = d.fm;
   const art = renderArticle(d.body, fm);
@@ -153,7 +154,7 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, footer) {
     ARTICLE_POST: art.post,
     DISCLOSURE: inline(fm.disclosure || DEFAULT_DISCLOSURE),
     MORE_GUIDES: more,
-    FOOTER: footer,
+    ...chrome,
     FORM_ACTION: jsonForScript(formAction()),
     SLUG_JSON: jsonForScript(d.slug),
     SHARE_EMAIL: escAttr(`mailto:?subject=${encodeURIComponent(fm.title + ' · Lifeuntox')}&body=${encodeURIComponent(pageUrl)}`),
@@ -169,8 +170,9 @@ function build() {
   const guides = guidesDb.load();
   const tplGuide = fs.readFileSync(path.join(TEMPLATES_DIR, 'guide.html'), 'utf8');
   const tplIndex = fs.readFileSync(path.join(TEMPLATES_DIR, 'index.html'), 'utf8');
-  let footer = fs.readFileSync(path.join(TEMPLATES_DIR, 'footer.html'), 'utf8').trim();
-  if (!PARTNER_PLACEMENTS) footer = footer.replace(/\s*<!-- partner:start -->[\s\S]*?<!-- partner:end -->/g, '');
+  // Header and footer come from nav.json (copied from the live Beehiiv site).
+  const nav = navLib.loadNav();
+  const chrome = { HEADER: navLib.renderHeader(nav, SITE_URL), FOOTER: navLib.renderFooter(nav, SITE_URL), NAV_CSS: navLib.loadCss() };
   const docs = loadDocs();
   syncGuides(docs, guides);
   const pages = new Set(docs.map(d => d.slug));
@@ -181,7 +183,7 @@ function build() {
     const m = f.match(/^guide-(.+)\.html$/);
     if (m && !pages.has(m[1])) { fs.unlinkSync(path.join(SITE_DIR, f)); console.log(`  removed stale ${f}`); }
   }
-  const built = docs.map(d => renderGuide(d, guides, pages, tplGuide, SITE_URL, footer));
+  const built = docs.map(d => renderGuide(d, guides, pages, tplGuide, SITE_URL, chrome));
   const indexed = buildIndex(guides, SITE_DIR);
   guidesDb.save(guides);
   // Publish the directory data at /guides.json (CORS + short cache via site/_headers).
@@ -195,7 +197,7 @@ function build() {
   fs.writeFileSync(path.join(SITE_DIR, 'index.html'), fill(tplIndex, {
     GUIDES: jsonForScript(data),
     SITE_URL: escAttr(SITE_URL),
-    FOOTER: footer
+    ...chrome
   }));
 
   for (const b of built) console.log(`  guide-${b.slug}.html  (${b.words} words, ${b.readMin} min)`);
