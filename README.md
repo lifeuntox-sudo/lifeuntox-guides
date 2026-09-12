@@ -102,6 +102,10 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 `npm run build` copies `guides.json` into `site/`, so the directory data is available at https://guides.lifeuntox.com/guides.json with `Access-Control-Allow-Origin: *` and a five-minute cache (set in `site/_headers`). Each object carries `slug, code, title, sub, desc, cat, added, reads, cover, color, badge, keywords, tags` and, once the guide page exists, `text`. Build the page URL as `https://guides.lifeuntox.com/guide-<slug>.html`; `cover` is the PNG path, and `<cover minus .png>.jpg` / `-600.jpg` are the lighter JPEG versions.
 
+## Embeds
+
+`embeds/beehiiv-free-guides.html` is a self-contained block for a Beehiiv custom HTML section: it fetches `/guides.json`, shows the four newest guides with covers, and links to the library. Paste the whole file into the block.
+
 ## Gate behaviour
 
 The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. "Already a subscriber?" switches the form to a check against Beehiiv and unlocks only for an active subscription. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step (occasional marketing texts, opt-in) appears and posts to `/.netlify/functions/phone-save`.
