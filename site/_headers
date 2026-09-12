@@ -1,0 +1,6 @@
+# Netlify custom headers (https://docs.netlify.com/routing/headers/)
+
+# The directory data, readable from other origins (newsletter site, apps)
+/guides.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300

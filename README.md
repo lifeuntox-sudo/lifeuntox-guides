@@ -98,6 +98,10 @@ npm run cover -- <slug> --dry-run             # print the prompt only
 
 The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cover_subject`, optional `cover_note`) and the brand cover brief: a photoreal 3D hardback, turned about 15° left, white studio background, Lifeuntox wordmark (sent as a reference image), title in bold geometric sans, subtitle, one photographic subject, leaf-green badge sticker. Two reference images go with every request: the wordmark, and `templates/cover-reference.png`, the approved house-style cover that new covers must match. To change the house style, replace that file. Output goes to `site/assets/covers/<slug>-1.png`, `-2.png`, `-3.png`; `cover` is set to `-1` in both the frontmatter and `guides.json`. Change it to `-2` or `-3` to swap, then `npm run build`. Each 2K image costs 18 Kie.ai credits.
 
+## Public data feed
+
+`npm run build` copies `guides.json` into `site/`, so the directory data is available at https://guides.lifeuntox.com/guides.json with `Access-Control-Allow-Origin: *` and a five-minute cache (set in `site/_headers`). Each object carries `slug, code, title, sub, desc, cat, added, reads, cover, color, badge, keywords, tags` and, once the guide page exists, `text`. Build the page URL as `https://guides.lifeuntox.com/guide-<slug>.html`; `cover` is the PNG path, and `<cover minus .png>.jpg` / `-600.jpg` are the lighter JPEG versions.
+
 ## Gate behaviour
 
 The article unlocks when any of these is true: the visitor unlocked before on this device (`localStorage`), the URL carries `?s=1` (use this on every newsletter and DM link), or the visitor submits the gate form. "Already a subscriber?" switches the form to a check against Beehiiv and unlocks only for an active subscription. The form unlocks immediately and posts the email in the background to `/.netlify/functions/subscribe`, which creates the subscriber through the Beehiiv API (double opt-in follows the publication setting). Then the optional phone step (occasional marketing texts, opt-in) appears and posts to `/.netlify/functions/phone-save`.

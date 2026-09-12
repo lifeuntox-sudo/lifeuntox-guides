@@ -182,6 +182,8 @@ function build() {
   const built = docs.map(d => renderGuide(d, guides, pages, tplGuide, SITE_URL, footer));
   const indexed = buildIndex(guides, SITE_DIR);
   guidesDb.save(guides);
+  // Publish the directory data at /guides.json (CORS + short cache via site/_headers).
+  fs.copyFileSync(guidesDb.FILE, path.join(SITE_DIR, 'guides.json'));
 
   // Directory data: tags join the keyword pool for search; covers point at the derived JPEGs.
   const data = guides.map(g => {
@@ -195,7 +197,7 @@ function build() {
   }));
 
   for (const b of built) console.log(`  guide-${b.slug}.html  (${b.words} words, ${b.readMin} min)`);
-  console.log(`built ${built.length} guide page${built.length === 1 ? '' : 's'} + index.html (${guides.length} guides listed, ${indexed} indexed) → site/  [${SITE_URL}]`);
+  console.log(`built ${built.length} guide page${built.length === 1 ? '' : 's'} + index.html + guides.json (${guides.length} guides listed, ${indexed} indexed) → site/  [${SITE_URL}]`);
   return { built, guides };
 }
 
