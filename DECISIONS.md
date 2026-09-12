@@ -115,3 +115,10 @@ A running log of every call made on my own while building this repo, per stage, 
 2. **How Beehiiv hosts the block, checked on the live homepage:** a `srcdoc` iframe with no `sandbox` attribute, same-origin with the page. That means `<base target="_top">` navigates the top page, and the fallback test (reading `window.top.location.href`) succeeds, so the `_blank` fallback is dormant. It stays in the file in case Beehiiv adds a sandbox later.
 3. **The fallback also runs after the shelf renders**, because the guide links are created after the first check; without that, only the "Browse all guides" button would be retargeted.
 4. **Verified locally in a srcdoc iframe** under the same conditions: clicking a cover and clicking the button both navigated the whole page to guides.lifeuntox.com.
+
+## Round 8 (2026-09-12): footer re-copied after the Beehiiv redesign
+
+1. **You changed the Beehiiv footer after Stage 1 shipped**, so the guide site was showing the previous Beehiiv footer. nav.json, the footer renderer and its CSS were rebuilt from the new live footer: leaf icon, "Wake up a little healthier tomorrow." with the subline, the email box ("Email address" / "Subscribe free", 1px #E2DED1 border, 8px radius) and "No spam, ever. Leave with one click.", three columns (Read, About, Community) vertically centred as Beehiiv lays them out, the wordmark with X / Facebook / Instagram / TikTok, and the legal line. Measured at 1280 and 375; desktop matches within 1px on every element.
+2. **Link targets copied as they are on Beehiiv**, which are mostly placeholders today: Newsletter and Recalls go to /archive; Our mission, How we research, Advertise and The Untox Club go to the homepage. One exception: "Free guides" points at the guide library (/) instead of Beehiiv's /archive, because a guides link that leaves the guides site would be wrong. Update nav.json when the Beehiiv links get real destinations.
+3. **Phone type scale.** Beehiiv renders footer text 1.2× larger on phones (16px → 19.2px). The mobile rules reproduce that.
+4. The footer email box posts to the site's subscribe function tagged `footer`, as before.
