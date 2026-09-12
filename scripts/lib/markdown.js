@@ -15,6 +15,7 @@
 //   :::cta Title ... :::         NOTOXCHEF placement 2 (last line "[label](url)" = button)
 //   :::gate Title                marker: everything after it sits behind the email gate
 
+const { PARTNER_PLACEMENTS } = require('./config');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => esc(s).replace(/"/g, '&quot;');
 
@@ -143,12 +144,14 @@ function renderBlock(n, ctx) {
     case 'checks': return `<div class="checks">${n.items.map(i => `<span>${inline(i)}</span>`).join('')}</div>`;
     case 'buy': return `<div class="buy"><b>Where to buy:</b> ${body(c, ctx)}</div>`;
     case 'promo': {
+      if (ctx.partner === false) return '';
       const { rest, label, url } = splitButton(c);
       const href = url || ctx.partner1 || 'https://notoxchef.com';
       return `<div class="promo">\n<div class="mark">NOTOXCHEF<small>Official partner</small></div>\n${renderNodes(rest, ctx)}\n` +
         `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF')}</a>\n</div>`;
     }
     case 'cta': {
+      if (ctx.partner === false) return '';
       const { rest, label, url } = splitButton(c);
       const href = url || ctx.partner2 || 'https://notoxchef.com';
       return `<div class="cta">\n${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
@@ -168,7 +171,7 @@ const textOf = html => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').repl
 function renderArticle(md, fm = {}) {
   const nodes = parseBlocks(md.split(/\r?\n/));
   const gi = nodes.findIndex(n => n.type === 'gate');
-  const ctx = { lastH2: null, partner1: fm.partner_product_1, partner2: fm.partner_product_2 };
+  const ctx = { lastH2: null, partner: PARTNER_PLACEMENTS, partner1: fm.partner_product_1, partner2: fm.partner_product_2 };
   const pre = renderNodes(gi < 0 ? nodes : nodes.slice(0, gi), ctx);
   const post = gi < 0 ? '' : renderNodes(nodes.slice(gi + 1), ctx);
   const text = textOf(pre + ' ' + post);

@@ -90,3 +90,10 @@ A running log of every call made on my own while building this repo, per stage, 
 5. **Mobile gate input:** in a column flex layout the `flex:1` input collapsed to its minimum height. On phones it is now a fixed 54px, full width, 17px text.
 6. **Mobile footer is a 2×2 grid with the tall columns paired.** Below 700px the four footer columns become a two-column grid, ordered Explore | Community on the first row and About | Partners on the second, so the row heights balance instead of a six-link column sitting beside a one-link one. Desktop is unchanged.
 7. **`/guides.json` is public.** The build copies guides.json into `site/` (gitignored there, like the built HTML) and `site/_headers` serves it with `Access-Control-Allow-Origin: *` and a five-minute cache. It is a verbatim copy, so `cover` is the PNG path; the lighter JPEGs sit next to it with the same name.
+
+## Round 6 (2026-09-12): sponsor placements off
+
+1. **A switch, not a deletion.** `PARTNER_PLACEMENTS = false` in `scripts/lib/config.js` removes the NOTOXCHEF header lockup, the promo card, the closing CTA and the Partners footer column from every built page. The Markdown keeps its `:::promo` and `:::cta` blocks and the design system is unchanged, so the placements can be switched back on with one edit and a rebuild.
+2. **The Partners footer column went too.** It would have been a lone link to the sponsor; the brief said "sponsored blocks including the banner", and a sponsor link in the footer is part of the same arrangement. It is inside the same switch.
+3. **The lint guards both states:** with placements on it requires the lockup on the built page; with them off it fails if "NOTOXCHEF" appears anywhere on a built page.
+4. The mobile footer grid now has three columns to place; its pairing (Explore | Community, About below) still holds.

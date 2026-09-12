@@ -9,7 +9,7 @@
 // FAIL = must fix before publishing (exit code 1). WARN = look at it.
 const fs = require('fs');
 const path = require('path');
-const { CONTENT_DIR, SITE_DIR } = require('./lib/config');
+const { CONTENT_DIR, SITE_DIR, PARTNER_PLACEMENTS } = require('./lib/config');
 const { parseFrontmatter } = require('./lib/frontmatter');
 const { renderArticle, textOf } = require('./lib/markdown');
 
@@ -206,7 +206,8 @@ async function checkGuide(slug, net) {
   else {
     const html = fs.readFileSync(built, 'utf8');
     if (!/<meta property="og:image" content="[^"]+"/.test(html)) fail('OG image missing');
-    if (!/assets\/partner-notoxchef\.png/.test(html)) fail('partner lockup missing from the built page');
+    if (PARTNER_PLACEMENTS && !/assets\/partner-notoxchef\.png/.test(html)) fail('partner lockup missing from the built page');
+    if (!PARTNER_PLACEMENTS && /NOTOXCHEF/.test(html)) fail('NOTOXCHEF appears on the built page while partner placements are switched off');
     if (!/assets\/lifeuntox-logo\.png/.test(html)) fail('logo missing from the built page');
     if (!/class="fine">[^<]*education/.test(html)) fail('footer disclosure missing from the built page');
     if (/JetBrains/.test(html)) fail('JetBrains Mono is loaded on the page');

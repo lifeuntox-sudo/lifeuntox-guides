@@ -12,7 +12,7 @@
 // guides.json on every build. `reads` and `text` live only in guides.json.
 const fs = require('fs');
 const path = require('path');
-const { SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, loadEnv, siteUrl } = require('./lib/config');
+const { SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, PARTNER_PLACEMENTS, loadEnv, siteUrl } = require('./lib/config');
 const { parseFrontmatter } = require('./lib/frontmatter');
 const { renderArticle, inline, esc, escAttr } = require('./lib/markdown');
 const guidesDb = require('./lib/guides');
@@ -129,6 +129,7 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, footer) {
   };
 
   let page = tpl;
+  if (!PARTNER_PLACEMENTS) page = page.replace(/\s*<!-- partner:start -->[\s\S]*?<!-- partner:end -->/g, '');
   const more = moreGuides(fm, guides, pages);
   if (!more) page = page.replace(/<!-- more:start -->[\s\S]*?<!-- more:end -->/, '');
   if (!art.hasGate) {
@@ -168,7 +169,8 @@ function build() {
   const guides = guidesDb.load();
   const tplGuide = fs.readFileSync(path.join(TEMPLATES_DIR, 'guide.html'), 'utf8');
   const tplIndex = fs.readFileSync(path.join(TEMPLATES_DIR, 'index.html'), 'utf8');
-  const footer = fs.readFileSync(path.join(TEMPLATES_DIR, 'footer.html'), 'utf8').trim();
+  let footer = fs.readFileSync(path.join(TEMPLATES_DIR, 'footer.html'), 'utf8').trim();
+  if (!PARTNER_PLACEMENTS) footer = footer.replace(/\s*<!-- partner:start -->[\s\S]*?<!-- partner:end -->/g, '');
   const docs = loadDocs();
   syncGuides(docs, guides);
   const pages = new Set(docs.map(d => d.slug));

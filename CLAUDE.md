@@ -194,6 +194,10 @@ netlify/functions/    subscribe.js (the gate and the directory box post here →
 
 For a guide with a content file, its frontmatter is the source of truth for the editorial fields (`code, title, sub, cat, added, badge, color, cover, keywords, tags, desc`) and build copies them into guides.json. `reads` and `text` live only in guides.json (never edit `text` by hand; build-index writes it). Guides listed in guides.json without a content file still appear as cards on the directory page, linking nowhere until their page exists.
 
+### Sponsor placements switch
+
+`PARTNER_PLACEMENTS` in `scripts/lib/config.js` is currently **false**: the build leaves out the NOTOXCHEF header lockup, the `:::promo` card, the `:::cta` block and the Partners footer column. Guides still carry `:::promo` and `:::cta` in Markdown (the design system and `check-guide` still require them) so everything returns with one change: set it to true and rebuild. While it is off, `check-guide` fails if "NOTOXCHEF" appears on a built page.
+
 ### Rules for working in this repo
 
 - Never commit `.env`. Anything that touches an API key runs in `netlify/functions/`.
