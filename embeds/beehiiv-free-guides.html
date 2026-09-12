@@ -14,6 +14,7 @@
 .lu-guides .lu-card:focus-visible{outline:2.5px solid #7CB342;outline-offset:4px;}
 .lu-guides .lu-cover{display:block;aspect-ratio:3/4;background:transparent;}
 .lu-guides .lu-cover img{display:block;width:100%;height:100%;object-fit:contain;border:0;border-radius:0;box-shadow:none;background:transparent;}
+.lu-guides .lu-cover img{mix-blend-mode:multiply;} /* cover PNGs have a white background baked in; remove this line once covers are transparent */
 .lu-guides .lu-title{display:block;margin-top:16px;font-size:16.5px;font-weight:600;line-height:1.3;color:#1A1A1A;text-decoration:none;}
 .lu-guides .lu-actions{margin-top:34px;}
 .lu-guides .lu-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;background:#fff;border:1px solid #E2DED1;border-radius:2px;color:#2D5A2D;font-family:'League Spartan',system-ui,sans-serif;font-size:15.5px;font-weight:500;line-height:1;text-decoration:none;transition:border-color .2s ease;}
