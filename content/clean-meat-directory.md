@@ -161,6 +161,6 @@ Non-stick coatings can shed PFAS at the exact temperatures you sear chicken. NOT
 
 ## Sources
 
-- [Add source] USDA Food Safety and Inspection Service guidance on antimicrobial treatments permitted in poultry chill water.
-- [Add source] Peer-reviewed comparison of water-chilled and air-chilled poultry: moisture uptake and microbial load.
+- USDA Food Safety and Inspection Service guidance on antimicrobial treatments permitted in poultry chill water.
+- Peer-reviewed comparison of water-chilled and air-chilled poultry: moisture uptake and microbial load.
 - Brand processing and welfare claims: taken from each company's published standards (linked above) and to be re-verified before publication.
