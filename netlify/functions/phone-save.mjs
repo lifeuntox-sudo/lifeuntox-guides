@@ -1,4 +1,3 @@
-'use strict';
 // Saves an opted-in (not yet verified) mobile number to the subscriber's
 // Beehiiv custom fields: { email, phone } → phone + sms_consent ("pending YYYY-MM-DD").
 // Upserts the subscriber via API v2 so the phone step works even if the gate
@@ -6,23 +5,33 @@
 // ("+" then 8 to 15 digits, first digit 1-9) so the browser rules cannot be bypassed.
 //
 // One number, one subscriber: the phone index (Netlify Blobs, see lib/phones.js)
-// is consulted first. A number already held by a different email is refused
-// with { error: "phone_taken" }. The same email may re-submit or change its number.
+// is claimed atomically before anything is written to Beehiiv. A number held by
+// a different email is refused with { error: "phone_taken" } (HTTP 409). The
+// same email may re-submit or change its number; the old number is released.
+//
+// Netlify Functions v2 format (Request → Response): needed for strongly
+// consistent Blobs reads and conditional writes.
 //
 // Env: BEEHIIV_API_KEY, BEEHIIV_PUB_ID. Optional: BEEHIIV_PHONE_FIELD and
 // BEEHIIV_SMS_CONSENT_FIELD to use different custom field names.
-const { json, parseBody, allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv');
-const { phoneIndex, ready, connect } = require('./lib/phones');
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const { allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv.js');
+const { phoneIndex, ready, phoneKey, emailKey } = require('./lib/phones.js');
 
 const PHONE_FIELD = process.env.BEEHIIV_PHONE_FIELD || 'phone';
 const CONSENT_FIELD = process.env.BEEHIIV_SMS_CONSENT_FIELD || 'sms_consent';
 const E164_RE = /^\+[1-9]\d{7,14}$/;
 
-exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') return json(405, { ok: false, error: 'method' });
-  if (!allowedOrigin(event)) return json(403, { ok: false, error: 'origin' });
-  const body = parseBody(event);
-  if (!body) return json(400, { ok: false, error: 'json' });
+const json = (status, body) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+
+export default async (req) => {
+  if (req.method !== 'POST') return json(405, { ok: false, error: 'method' });
+  const headers = Object.fromEntries(req.headers);
+  if (!allowedOrigin({ headers })) return json(403, { ok: false, error: 'origin' });
+  let body;
+  try { body = await req.json(); } catch (e) { return json(400, { ok: false, error: 'json' }); }
+  if (!body || typeof body !== 'object') return json(400, { ok: false, error: 'json' });
 
   const email = String(body.email || '').trim().toLowerCase();
   const phone = String(body.phone || '').replace(/[\s()-]/g, '');
@@ -32,14 +41,23 @@ exports.handler = async (event) => {
   if (!EMAIL_RE.test(email) || email.length > 254) return json(400, { ok: false, error: 'email' });
 
   const consent = 'pending ' + new Date().toISOString().slice(0, 10);
+  const now = new Date().toISOString();
+  const pk = phoneKey(phone), ek = emailKey(email);
+  let claimed = false;
   try {
-    connect(event);
     const index = phoneIndex();
     await ready(index);
 
-    // 1. Is this number already someone else's?
-    const holder = await index.get(phone);
+    // 1. Claim the number, or confirm it is already ours.
+    const holder = await index.get(pk);
     if (holder && holder.email && holder.email !== email) return json(409, { ok: false, error: 'phone_taken' });
+    if (!holder) {
+      claimed = await index.claim(pk, { email, at: now });
+      if (!claimed) {
+        const winner = await index.get(pk);
+        if (!winner || winner.email !== email) return json(409, { ok: false, error: 'phone_taken' });
+      }
+    }
 
     // 2. Save to Beehiiv (the record of truth).
     const r = await beehiiv('/subscriptions', {
@@ -55,6 +73,7 @@ exports.handler = async (event) => {
     });
     if (!r.ok) {
       console.error('beehiiv phone-save failed', r.status, JSON.stringify(r.data));
+      if (claimed) await index.del(pk);
       return json(502, { ok: false, error: 'beehiiv' });
     }
     // Beehiiv silently ignores custom fields that do not exist, so read the
@@ -67,17 +86,17 @@ exports.handler = async (event) => {
     const missing = [PHONE_FIELD, CONSENT_FIELD].filter(n => !stored(n));
     if (missing.length || stored(PHONE_FIELD).value !== phone) {
       console.error(`phone-save: value not stored. Missing or unchanged custom fields: ${missing.join(', ') || PHONE_FIELD}. Create them in Beehiiv (Audience → Custom fields) or set BEEHIIV_PHONE_FIELD / BEEHIIV_SMS_CONSENT_FIELD.`);
+      if (claimed) await index.del(pk);
       return json(502, { ok: false, error: 'field_missing', missing });
     }
 
-    // 3. Record the number in the index; release any number this email held before.
-    const previous = await index.get('email:' + email);
+    // 3. Reverse entry; release any number this email held before.
+    const previous = await index.get(ek);
     if (previous && previous.phone && previous.phone !== phone) {
-      const old = await index.get(previous.phone);
-      if (old && old.email === email) await index.del(previous.phone);
+      const old = await index.get(phoneKey(previous.phone));
+      if (old && old.email === email) await index.del(phoneKey(previous.phone));
     }
-    await index.set(phone, { email, at: new Date().toISOString() });
-    await index.set('email:' + email, { phone, at: new Date().toISOString() });
+    await index.set(ek, { phone, at: now });
     return json(200, { ok: true });
   } catch (e) {
     console.error('phone-save error', e);

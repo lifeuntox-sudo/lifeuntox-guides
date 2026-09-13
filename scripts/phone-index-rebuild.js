@@ -10,7 +10,7 @@
 //   add --dry-run to only report what would be written.
 const { loadEnv } = require('./lib/config');
 loadEnv();
-const { phoneIndex, ready } = require('../netlify/functions/lib/phones');
+const { phoneIndex, ready, phoneKey, emailKey } = require('../netlify/functions/lib/phones');
 
 const PHONE_FIELD = process.env.BEEHIIV_PHONE_FIELD || 'phone';
 const key = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
@@ -46,7 +46,7 @@ async function* subscriptions() {
     const email = String(s.email).toLowerCase();
     if (seen.has(phone)) { dupes++; console.log(`  duplicate ${phone}: kept ${seen.get(phone)}, also on ${email} (created later or same time)`); continue; }
     seen.set(phone, email);
-    if (!dry) { await index.set(phone, { email, at: new Date(s.created * 1000).toISOString() }); await index.set('email:' + email, { phone, at: new Date(s.created * 1000).toISOString() }); }
+    if (!dry) { await index.set(phoneKey(phone), { email, at: new Date(s.created * 1000).toISOString() }); await index.set(emailKey(email), { phone, at: new Date(s.created * 1000).toISOString() }); }
     if (scanned % 1000 === 0) console.log(`  scanned ${scanned}…`);
   }
   console.log(`scanned ${scanned} subscriptions, ${withPhone} with a phone, ${seen.size} unique numbers written, ${dupes} duplicates left for you to resolve in Beehiiv.`);

@@ -9,6 +9,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 const { ROOT, SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, loadEnv } = require('./lib/config');
 const { build } = require('./build');
 
@@ -25,12 +26,22 @@ function rebuild() {
 }
 
 async function runFunction(name, req, res, url) {
-  const file = path.join(ROOT, 'netlify', 'functions', name + '.js');
-  if (!fs.existsSync(file)) { res.writeHead(404, { 'content-type': 'text/plain' }); return res.end('No such function: ' + name); }
+  const dir = path.join(ROOT, 'netlify', 'functions');
+  const v2 = path.join(dir, name + '.mjs'), v1 = path.join(dir, name + '.js');
   let body = ''; for await (const chunk of req) body += chunk;
-  delete require.cache[require.resolve(file)];
   try {
-    const out = await require(file).handler({
+    if (fs.existsSync(v2)) {
+      // Functions v2: default export (Request) => Response. Cache-bust the import so edits apply.
+      const mod = await import(pathToFileURL(v2).href + '?t=' + Date.now());
+      const request = new Request(url.href, { method: req.method, headers: req.headers, body: ['GET', 'HEAD'].includes(req.method) ? undefined : body });
+      const out = await mod.default(request, {});
+      res.writeHead(out.status, Object.fromEntries(out.headers));
+      res.end(Buffer.from(await out.arrayBuffer()));
+      return;
+    }
+    if (!fs.existsSync(v1)) { res.writeHead(404, { 'content-type': 'text/plain' }); return res.end('No such function: ' + name); }
+    delete require.cache[require.resolve(v1)];
+    const out = await require(v1).handler({
       httpMethod: req.method, headers: req.headers, path: url.pathname,
       queryStringParameters: Object.fromEntries(url.searchParams), body
     }, {});
