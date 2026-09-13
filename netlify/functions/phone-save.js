@@ -12,7 +12,7 @@
 // Env: BEEHIIV_API_KEY, BEEHIIV_PUB_ID. Optional: BEEHIIV_PHONE_FIELD and
 // BEEHIIV_SMS_CONSENT_FIELD to use different custom field names.
 const { json, parseBody, allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv');
-const { phoneIndex, ready } = require('./lib/phones');
+const { phoneIndex, ready, connect } = require('./lib/phones');
 
 const PHONE_FIELD = process.env.BEEHIIV_PHONE_FIELD || 'phone';
 const CONSENT_FIELD = process.env.BEEHIIV_SMS_CONSENT_FIELD || 'sms_consent';
@@ -33,6 +33,7 @@ exports.handler = async (event) => {
 
   const consent = 'pending ' + new Date().toISOString().slice(0, 10);
   try {
+    connect(event);
     const index = phoneIndex();
     await ready(index);
 

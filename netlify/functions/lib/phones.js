@@ -3,15 +3,30 @@
 // Beehiiv stays the record of truth (the number lives in the subscriber's
 // custom fields); this index only answers "who already holds this number?",
 // which Beehiiv's API cannot. It lives in Netlify Blobs (store "phones") on
-// the deployed site. When Blobs is not available (local `npm run dev`), a
-// JSON file under .netlify/ stands in so the behaviour can be tested.
+// the deployed site. In local `npm run dev` (no Netlify runtime), a JSON file
+// under .netlify/ stands in so the behaviour can be tested.
 //
-// Keys: the E.164 number ("+447700900123"). Value: { email, at }.
-// Rebuild from Beehiiv at any time with: node scripts/phone-index-rebuild.js
+// Keys: the E.164 number ("+447700900123") → { email, at }, and
+//       "email:<address>" → { phone, at } for the reverse lookup.
+// Rebuild from Beehiiv at any time with: npm run phone-index
 const fs = require('fs');
 const path = require('path');
 
 const STORE = 'phones';
+// True inside a deployed Netlify function (AWS Lambda runtime). There the
+// Blobs store is mandatory: no silent fallback, so duplicates can never slip through.
+const ON_LAMBDA = !!(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.LAMBDA_TASK_ROOT);
+
+// Lambda-compatible handlers must hand the event to @netlify/blobs once per
+// invocation so it can find the Blobs context. Call at the top of the handler.
+function connect(event) {
+  try {
+    const { connectLambda } = require('@netlify/blobs');
+    if (event && typeof connectLambda === 'function') connectLambda(event);
+  } catch (e) {
+    if (ON_LAMBDA) throw e;
+  }
+}
 
 function fileStore() {
   const file = path.join(__dirname, '..', '..', '..', '.netlify', 'blobs-local', STORE + '.json');
@@ -43,23 +58,18 @@ function blobStore() {
 let cached = null;
 function phoneIndex() {
   if (cached) return cached;
-  try {
-    const s = blobStore();
-    cached = s;
-  } catch (e) {
-    if (process.env.NETLIFY === 'true' || process.env.CONTEXT) throw e; // deployed: never silently fall back
-    cached = fileStore();
-  }
+  if (ON_LAMBDA) { cached = blobStore(); return cached; }
+  try { cached = blobStore(); } catch (e) { cached = fileStore(); }
   return cached;
 }
 
-// Probes the store once so a misconfigured deploy fails loudly instead of
-// letting duplicates through.
+// Probes the store once. Off Netlify, an unreachable Blobs store falls back to
+// the local file; on Netlify it throws so the caller answers 500, not "ok".
 async function ready(index) {
   try { await index.get('__probe__'); return true; } catch (e) {
-    if (index.kind === 'blobs' && !(process.env.NETLIFY === 'true' || process.env.CONTEXT)) { cached = fileStore(); return true; }
+    if (!ON_LAMBDA && index.kind === 'blobs') { cached = fileStore(); return true; }
     throw e;
   }
 }
 
-module.exports = { phoneIndex, ready, STORE };
+module.exports = { phoneIndex, ready, connect, STORE, ON_LAMBDA };
