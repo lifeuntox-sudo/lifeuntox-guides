@@ -9,14 +9,18 @@
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { jsonResponse: json, readJson, isBot, allowedOrigin, beehiiv, beehiivGet, cleanSlug, referrer, EMAIL_RE } = require('./lib/beehiiv.js');
+const { rateLimit } = require('./lib/ratelimit.js');
 
 export const config = {
+  path: '/.netlify/functions/subscribe',
   rateLimit: { windowLimit: 10, windowSize: 60, aggregateBy: ['ip', 'domain'] }
 };
 
 export default async (req) => {
   if (req.method !== 'POST') return json(405, { ok: false, error: 'method' });
   if (!allowedOrigin({ headers: req.headers })) return json(403, { ok: false, error: 'origin' });
+  const limited = await rateLimit(req, 'subscribe', 10, 60);
+  if (limited) return limited;
   const body = await readJson(req);
   if (!body) return json(400, { ok: false, error: 'json' });
 
