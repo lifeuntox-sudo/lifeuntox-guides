@@ -209,4 +209,4 @@ Both pages get their header and footer from `nav.json` at build time (`{{HEADER}
 - Never commit `.env`. Anything that touches an API key runs in `netlify/functions/`.
 - Do not change the design tokens or the page layout. The mockup's look is canonical.
 - Search behaviour on the directory page (typo correction, synonyms, multi-topic OR filters, chips, sticky toolbar, live region, URL state, full-text snippets) lives in `templates/index.html` and must not be altered by a refactor.
-- Beehiiv is the only database.
+- Beehiiv is the only database. The one derived store is the phone → email index in Netlify Blobs (`netlify/functions/lib/phones.js`), which exists only because Beehiiv cannot look a subscriber up by phone; it can be rebuilt from Beehiiv at any time with `npm run phone-index`.

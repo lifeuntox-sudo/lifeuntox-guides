@@ -383,7 +383,7 @@ function checkNational(nat,c,k){
   return {e164:'+'+c[1]+nat};
 }
 async function post(url,data){
-  try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); return r.ok?await r.json():{ok:false}; }
+  try{ const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); const j=await r.json().catch(()=>({})); return r.ok?j:{ok:false,...j}; }
   catch(e){ return {ok:false,offline:true}; }
 }
 if(phIn){
@@ -399,7 +399,13 @@ document.getElementById('phoneform').addEventListener('submit',async e=>{
     document.querySelector('#phone h3').textContent='Added. Watch your phone.';
     document.getElementById('phone-msg').textContent=(out.offline?'Preview mode: nothing is saved until the Netlify function is deployed. ':'')+'Saved as '+res.e164+'. Reply STOP to any text to leave.';
     document.getElementById('skipph').hidden=true;
-  } else { btn.disabled=false; btn.textContent='Add my number'; phErr.textContent='We could not save that just now. Try again in a moment.'; phErr.hidden=false; }
+  } else {
+    btn.disabled=false; btn.textContent='Add my number';
+    phErr.textContent = out.error==='phone_taken'
+      ? 'That number is already linked to a different email. Use the email you first signed up with, or add a different number.'
+      : 'We could not save that just now. Try again in a moment.';
+    phErr.hidden=false; phIn.setAttribute('aria-invalid','true'); phIn.focus();
+  }
 });
 document.getElementById('skipph').addEventListener('click',()=>{ document.getElementById('phone').hidden=true; document.getElementById('content').scrollIntoView({behavior:'smooth'}); });
 

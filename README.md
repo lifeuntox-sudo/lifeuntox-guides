@@ -10,7 +10,7 @@ npm run build             # renders site/
 npm run dev               # http://localhost:8888 with live rebuild + local functions
 ```
 
-No `npm install` is needed: there are no dependencies. Node 20.12 or newer.
+Run `npm install` once: the only dependency is `@netlify/blobs`, used by the phone opt-in function. Node 20.12 or newer.
 
 ## Publishing a guide
 
@@ -48,7 +48,8 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `scripts/dev.js` | Local static server with rebuild-on-change and `/.netlify/functions/*` routed to the function handlers. |
 | `netlify/functions/subscribe.js` | The email gate posts here. Subscribes the email via Beehiiv API v2 with `utm_source=guides`, `utm_campaign=<slug>`. |
 | `netlify/functions/check-subscriber.js` | "Already a subscriber?" posts here; unlocks only if the email is an active Beehiiv subscription. |
-| `netlify/functions/phone-save.js` | Saves an opted-in phone number to Beehiiv custom fields (`phone`, `sms_consent`) with a server-side E.164 check. |
+| `netlify/functions/phone-save.js` | Saves an opted-in phone number to Beehiiv custom fields (`phone`, `sms_consent`) with a server-side E.164 check. One number per subscriber: a number already held by another email is refused. |
+| `netlify/functions/lib/phones.js` | The phone → email index in Netlify Blobs (store `phones`) that answers "who holds this number?", which the Beehiiv API cannot. Derived from Beehiiv; rebuild with `npm run phone-index`. Falls back to a local JSON file under `.netlify/` in `npm run dev`. |
 | `netlify/functions/lib/beehiiv.js` | Shared helper: API call, JSON responses, same-origin check. Not a function itself. |
 | `mockup/` | The original hand-built mockup, kept for reference. Safe to delete once the built pages are approved. |
 | `PROMPT.md` | The original brief and setup steps this repo was built from. |

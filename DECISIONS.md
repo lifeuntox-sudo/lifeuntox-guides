@@ -122,3 +122,18 @@ A running log of every call made on my own while building this repo, per stage, 
 2. **Link targets copied as they are on Beehiiv**, which are mostly placeholders today: Newsletter and Recalls go to /archive; Our mission, How we research, Advertise and The Untox Club go to the homepage. One exception: "Free guides" points at the guide library (/) instead of Beehiiv's /archive, because a guides link that leaves the guides site would be wrong. Update nav.json when the Beehiiv links get real destinations.
 3. **Phone type scale.** Beehiiv renders footer text 1.2× larger on phones (16px → 19.2px). The mobile rules reproduce that.
 4. The footer email box posts to the site's subscribe function tagged `footer`, as before.
+
+## Round 9 (2026-09-13): one phone number per subscriber
+
+1. **Why an index was needed.** Beehiiv's API has no filter by custom field, tag or phone (checked against the API reference and by probing the endpoint), so "does another subscriber already have this number?" cannot be answered without scanning all 72,000 subscriptions per opt-in. With your approval the answer lives in a Netlify Blobs store (): key = E.164 number, value = the email that holds it, plus an  key for the reverse lookup. Beehiiv remains the record of truth;  rebuilds the index from Beehiiv.
+2. **Rules:** a number held by a different email is refused before anything is written to Beehiiv (HTTP 409, ; the page says "That number is already linked to a different email. Use the email you first signed up with, or add a different number."). The same email may re-submit its number or change it; changing it releases the old number.
+3. **Netlify Blobs fails loudly on the deployed site** if it is unavailable (no silent fallback), so duplicates cannot slip through. In local  a JSON file under  stands in.
+4. **First npm dependency:** . Netlify installs it at build; run Unknown command: "install"
+
+
+Did you mean one of these?
+  npm install # Install a package
+  npm uninstall # Remove a package
+To see a list of supported npm commands, run:
+  npm help locally once.
+5. **Race window:** two people submitting the same number in the same second could both pass the check. Acceptable for an opt-in form; the rebuild script reports any duplicates it finds.

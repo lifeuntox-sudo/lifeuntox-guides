@@ -9,9 +9,13 @@
     "new-guide": "node scripts/new-guide.js",
     "cover": "node scripts/make-cover.js",
     "index": "node scripts/build-index.js",
-    "check": "node scripts/check-guide.js"
+    "check": "node scripts/check-guide.js",
+    "phone-index": "node scripts/phone-index-rebuild.js"
   },
   "engines": {
     "node": ">=20.12"
+  },
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
   }
 }

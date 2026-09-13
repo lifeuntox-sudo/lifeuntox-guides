@@ -5,9 +5,14 @@
 // request has not finished yet. The number is re-checked here as E.164
 // ("+" then 8 to 15 digits, first digit 1-9) so the browser rules cannot be bypassed.
 //
+// One number, one subscriber: the phone index (Netlify Blobs, see lib/phones.js)
+// is consulted first. A number already held by a different email is refused
+// with { error: "phone_taken" }. The same email may re-submit or change its number.
+//
 // Env: BEEHIIV_API_KEY, BEEHIIV_PUB_ID. Optional: BEEHIIV_PHONE_FIELD and
 // BEEHIIV_SMS_CONSENT_FIELD to use different custom field names.
 const { json, parseBody, allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv');
+const { phoneIndex, ready } = require('./lib/phones');
 
 const PHONE_FIELD = process.env.BEEHIIV_PHONE_FIELD || 'phone';
 const CONSENT_FIELD = process.env.BEEHIIV_SMS_CONSENT_FIELD || 'sms_consent';
@@ -28,6 +33,14 @@ exports.handler = async (event) => {
 
   const consent = 'pending ' + new Date().toISOString().slice(0, 10);
   try {
+    const index = phoneIndex();
+    await ready(index);
+
+    // 1. Is this number already someone else's?
+    const holder = await index.get(phone);
+    if (holder && holder.email && holder.email !== email) return json(409, { ok: false, error: 'phone_taken' });
+
+    // 2. Save to Beehiiv (the record of truth).
     const r = await beehiiv('/subscriptions', {
       email,
       reactivate_existing: true,
@@ -55,6 +68,15 @@ exports.handler = async (event) => {
       console.error(`phone-save: value not stored. Missing or unchanged custom fields: ${missing.join(', ') || PHONE_FIELD}. Create them in Beehiiv (Audience → Custom fields) or set BEEHIIV_PHONE_FIELD / BEEHIIV_SMS_CONSENT_FIELD.`);
       return json(502, { ok: false, error: 'field_missing', missing });
     }
+
+    // 3. Record the number in the index; release any number this email held before.
+    const previous = await index.get('email:' + email);
+    if (previous && previous.phone && previous.phone !== phone) {
+      const old = await index.get(previous.phone);
+      if (old && old.email === email) await index.del(previous.phone);
+    }
+    await index.set(phone, { email, at: new Date().toISOString() });
+    await index.set('email:' + email, { phone, at: new Date().toISOString() });
     return json(200, { ok: true });
   } catch (e) {
     console.error('phone-save error', e);
