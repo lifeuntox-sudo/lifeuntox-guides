@@ -43,7 +43,7 @@ function fileStore() {
 
 function blobStore() {
   const { getStore } = require('@netlify/blobs');
-  const opts = { name: STORE, consistency: 'strong' };
+  const opts = { name: STORE };
   if (process.env.NETLIFY_SITE_ID && process.env.NETLIFY_AUTH_TOKEN) { opts.siteID = process.env.NETLIFY_SITE_ID; opts.token = process.env.NETLIFY_AUTH_TOKEN; }
   const s = getStore(opts);
   return {
