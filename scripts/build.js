@@ -12,6 +12,7 @@
 // guides.json on every build. `reads` and `text` live only in guides.json.
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, PARTNER_PLACEMENTS, loadEnv, siteUrl } = require('./lib/config');
 const { parseFrontmatter } = require('./lib/frontmatter');
 const { renderArticle, inline, esc, escAttr } = require('./lib/markdown');
@@ -164,6 +165,23 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
   return { slug: d.slug, words: art.words, readMin };
 }
 
+// site/_headers from templates/_headers, with the Content Security Policy
+// allowing exactly the inline scripts the build produced (sha256 per script).
+function writeHeaders() {
+  const tpl = fs.readFileSync(path.join(TEMPLATES_DIR, '_headers'), 'utf8');
+  const hashes = new Set();
+  for (const f of fs.readdirSync(SITE_DIR).filter(f => f.endsWith('.html'))) {
+    const html = fs.readFileSync(path.join(SITE_DIR, f), 'utf8');
+    for (const m of html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g)) {
+      if (/\ssrc=/.test(m[0].slice(0, m[0].indexOf('>')))) continue;
+      hashes.add("'sha256-" + crypto.createHash('sha256').update(m[1]).digest('base64') + "'");
+    }
+  }
+  const out = tpl.split('{{CSP_SCRIPT_HASHES}}').join([...hashes].join(' '));
+  fs.writeFileSync(path.join(SITE_DIR, '_headers'), out);
+  return hashes.size;
+}
+
 function build() {
   loadEnv();
   const SITE_URL = siteUrl();
@@ -200,6 +218,7 @@ function build() {
     ...chrome
   }));
 
+  writeHeaders();
   for (const b of built) console.log(`  guide-${b.slug}.html  (${b.words} words, ${b.readMin} min)`);
   console.log(`built ${built.length} guide page${built.length === 1 ? '' : 's'} + index.html + guides.json (${guides.length} guides listed, ${indexed} indexed) → site/  [${SITE_URL}]`);
   return { built, guides };

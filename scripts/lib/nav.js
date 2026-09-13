@@ -75,6 +75,7 @@ function renderFooter(nav, siteUrl) {
       <form class="fform" action="${esc(c.action)}" method="post" data-subscribe>
         <label class="sr" for="footer-email">Email address</label>
         <input id="footer-email" type="email" name="email" placeholder="${esc(c.placeholder)}" required autocomplete="email">
+        <input class="hp" type="text" name="website" id="footer-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <button type="submit">${esc(c.label)}</button>
       </form>
       ${c.note ? `<p class="fnote">${esc(c.note)}</p>` : ''}
@@ -98,7 +99,7 @@ function renderFooter(nav, siteUrl) {
     var btn=f.querySelector('button'), input=f.querySelector('input'), email=input.value.trim(), label=btn.textContent;
     btn.disabled=true; btn.textContent='Joining…';
     try{
-      var r=await fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,slug:'footer'})});
+      var r=await fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,slug:'footer',website:(f.querySelector('input[name=website]')||{}).value||''})});
       var out=r.ok?await r.json():{ok:false};
       if(out.ok){ btn.textContent="You're in"; input.disabled=true; }
       else { btn.disabled=false; btn.textContent=label; }

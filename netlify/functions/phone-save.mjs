@@ -16,22 +16,22 @@
 // BEEHIIV_SMS_CONSENT_FIELD to use different custom field names.
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
-const { allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv.js');
+const { jsonResponse: json, readJson, isBot, allowedOrigin, beehiiv, beehiivGet, EMAIL_RE } = require('./lib/beehiiv.js');
 const { phoneIndex, ready, phoneKey, emailKey } = require('./lib/phones.js');
 
 const PHONE_FIELD = process.env.BEEHIIV_PHONE_FIELD || 'phone';
 const CONSENT_FIELD = process.env.BEEHIIV_SMS_CONSENT_FIELD || 'sms_consent';
 const E164_RE = /^\+[1-9]\d{7,14}$/;
 
-const json = (status, body) => new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+export const config = {
+  rateLimit: { windowLimit: 5, windowSize: 60, aggregateBy: ['ip', 'domain'] }
+};
 
 export default async (req) => {
   if (req.method !== 'POST') return json(405, { ok: false, error: 'method' });
-  const headers = Object.fromEntries(req.headers);
-  if (!allowedOrigin({ headers })) return json(403, { ok: false, error: 'origin' });
-  let body;
-  try { body = await req.json(); } catch (e) { return json(400, { ok: false, error: 'json' }); }
-  if (!body || typeof body !== 'object') return json(400, { ok: false, error: 'json' });
+  if (!allowedOrigin({ headers: req.headers })) return json(403, { ok: false, error: 'origin' });
+  const body = await readJson(req);
+  if (!body) return json(400, { ok: false, error: 'json' });
 
   const email = String(body.email || '').trim().toLowerCase();
   const phone = String(body.phone || '').replace(/[\s()-]/g, '');
@@ -39,6 +39,7 @@ export default async (req) => {
   // North American numbers (+1): area code and exchange must start with 2-9.
   if (phone.startsWith('+1') && !/^\+1[2-9]\d{2}[2-9]\d{6}$/.test(phone)) return json(400, { ok: false, error: 'phone' });
   if (!EMAIL_RE.test(email) || email.length > 254) return json(400, { ok: false, error: 'email' });
+  if (isBot(body)) return json(200, { ok: true });
 
   const consent = 'pending ' + new Date().toISOString().slice(0, 10);
   const now = new Date().toISOString();

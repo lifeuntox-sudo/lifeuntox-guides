@@ -46,9 +46,8 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `nav.json` | Header and footer content, copied from the live Beehiiv site. Rendered into both pages at build by `scripts/lib/nav.js` with `templates/nav.css`. |
 | `scripts/check-guide.js` | Lint: readability grade, banned words, structure, links. |
 | `scripts/dev.js` | Local static server with rebuild-on-change and `/.netlify/functions/*` routed to the function handlers. |
-| `netlify/functions/subscribe.js` | The email gate posts here. Subscribes the email via Beehiiv API v2 with `utm_source=guides`, `utm_campaign=<slug>`. |
-| `netlify/functions/check-subscriber.js` | "Already a subscriber?" posts here; unlocks only if the email is an active Beehiiv subscription. |
-| `netlify/functions/phone-save.js` | Saves an opted-in phone number to Beehiiv custom fields (`phone`, `sms_consent`) with a server-side E.164 check. One number per subscriber: a number already held by another email is refused. |
+| `netlify/functions/subscribe.mjs` | The email gate, the directory strip and the footer box post here. `{email, slug}` subscribes via Beehiiv API v2 (`utm_source=guides`, `utm_campaign=<slug>`); `{email, check:true}` answers whether the address is an active subscriber ("Already a subscriber?"). Rate limited: 10 requests per minute per IP. |
+| `netlify/functions/phone-save.mjs` | Saves an opted-in phone number to Beehiiv custom fields (`phone`, `sms_consent`) with a server-side E.164 check. One number per subscriber: a number already held by another email is refused. Rate limited: 5 requests per minute per IP. |
 | `netlify/functions/lib/phones.js` | The phone → email index in Netlify Blobs (store `phones`) that answers "who holds this number?", which the Beehiiv API cannot. Derived from Beehiiv; rebuild with `npm run phone-index`. Falls back to a local JSON file under `.netlify/` in `npm run dev`. |
 | `netlify/functions/lib/beehiiv.js` | Shared helper: API call, JSON responses, same-origin check. Not a function itself. |
 | `mockup/` | The original hand-built mockup, kept for reference. Safe to delete once the built pages are approved. |
@@ -106,6 +105,15 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 ## Embeds
 
 `beehiiv/free-guides-block.html` is the self-contained "Free guides" block for the lifeuntox.com homepage (a Beehiiv custom HTML section). It fetches `/guides.json`, shows the four newest guides with covers, and links to the library. It is the source of truth for the block: paste the whole file into Beehiiv whenever it changes. It starts with `<base target="_top">` so links navigate the page, not Beehiiv's srcdoc iframe.
+
+## Security
+
+- **Rate limits** (Netlify, enforced at the edge before the function runs): `subscribe` 10/min per IP, `phone-save` 5/min per IP; over the limit returns 429 and the page shows its "try again in a moment" message. The Free plan allows two such rules, which is why the subscriber check lives inside `subscribe`.
+- **Headers** (generated into `site/_headers` by the build from `templates/_headers`): a Content Security Policy that allows scripts only from this site plus the exact sha256 hashes of our own inline scripts, styles from this site and Google Fonts, images from this site, connections to this site only, no framing (`frame-ancestors 'none'`), no plugins, forms only to this site; plus `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy` and `Cross-Origin-Opener-Policy`. Netlify adds HSTS and forces HTTPS.
+- **Functions:** JSON bodies capped at 4 KB, every field validated server-side (email shape and length, E.164 phone, +1 area/exchange rules), same-origin check on browser requests, generic error codes with no stack traces, `Cache-Control: no-store` on responses. The Beehiiv key never leaves the server.
+- **Honeypot:** every form carries a hidden `website` field. If a bot fills it, the function answers "ok" and does nothing.
+- **Secrets:** `.env` is gitignored; keys live only in Netlify's environment (marked secret).
+- Dependencies: one (`@netlify/blobs`), `npm audit` clean.
 
 ## Gate behaviour
 

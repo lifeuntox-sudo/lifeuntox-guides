@@ -227,6 +227,7 @@
     <form class="subform" id="subform" action="/.netlify/functions/subscribe" method="post">
       <label class="sr" for="fe">Email address</label>
       <input id="fe" type="email" placeholder="Email address" required>
+      <input class="hp" type="text" name="website" id="fe-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn btn-solid" type="submit">Subscribe</button>
     </form>
   </div>
@@ -412,7 +413,7 @@ document.getElementById('subform').addEventListener('submit', async e=>{
   const f=e.target, btn=f.querySelector('button'), input=f.querySelector('input'), email=input.value.trim();
   btn.disabled=true; btn.textContent='Joining…';
   try{
-    const r=await fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,slug:'library'})});
+    const r=await fetch(f.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,slug:'library',website:(f.querySelector('input[name=website]')||{}).value||''})});
     const out=r.ok?await r.json():{ok:false};
     if(out.ok){ btn.textContent="You're in"; input.disabled=true; }
     else { btn.disabled=false; btn.textContent='Try again'; }

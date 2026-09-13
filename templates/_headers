@@ -1,0 +1,29 @@
+# Netlify custom headers (https://docs.netlify.com/routing/headers/).
+# This file is a TEMPLATE: scripts/build.js writes site/_headers from it,
+# filling the script-hash placeholder with the sha256 of every inline script
+# in the built pages, so the Content Security Policy allows exactly our own
+# scripts and nothing injected.
+
+# Every page and asset
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' {{CSP_SCRIPT_HASHES}}; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# The directory data, readable from other origins (newsletter site, apps)
+/guides.json
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=300
+
+# Covers, logos and other assets
+/assets/*
+  Cache-Control: public, max-age=86400
+
+# Functions: API responses, never cached, never framed
+/.netlify/functions/*
+  Cache-Control: no-store
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY

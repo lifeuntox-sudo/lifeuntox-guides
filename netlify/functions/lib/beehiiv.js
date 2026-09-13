@@ -4,19 +4,44 @@
 
 const API = 'https://api.beehiiv.com/v2';
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+const MAX_BODY = 4096; // bytes; every request to these functions is a tiny JSON object
 
+// ---- Functions v2 (Request → Response) helpers ----
+function jsonResponse(status, body) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'content-type': 'application/json', 'cache-control': 'no-store', 'x-content-type-options': 'nosniff', 'x-frame-options': 'DENY' }
+  });
+}
+
+// Reads a small JSON body. Returns null when it is missing, oversized or not an object.
+async function readJson(req) {
+  const len = Number(req.headers.get('content-length') || 0);
+  if (len > MAX_BODY) return null;
+  let text;
+  try { text = await req.text(); } catch (e) { return null; }
+  if (text.length > MAX_BODY) return null;
+  try { const v = JSON.parse(text); return v && typeof v === 'object' && !Array.isArray(v) ? v : null; } catch (e) { return null; }
+}
+
+// Honeypot: the forms carry a hidden "website" field that people never see.
+// Anything in it means a bot filled every field. Callers answer "ok" and do nothing.
+function isBot(body) { return !!(body && typeof body.website === 'string' && body.website.trim()); }
+
+// ---- Legacy (Lambda-style) helpers, kept for the local dev server and tests ----
 function json(statusCode, body) {
   return { statusCode, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' }, body: JSON.stringify(body) };
 }
-
 function parseBody(event) {
+  if ((event.body || '').length > MAX_BODY) return null;
   try { return JSON.parse(event.body || '{}') || {}; } catch (e) { return null; }
 }
 
 // Browser requests must come from this site (or a local preview). Requests
 // without an Origin header (curl, server to server) are allowed through.
 function allowedOrigin(event) {
-  const origin = event.headers && (event.headers.origin || event.headers.Origin);
+  const h = event.headers || {};
+  const origin = typeof h.get === 'function' ? h.get('origin') : (h.origin || h.Origin);
   if (!origin) return true;
   const allowed = [process.env.URL, process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL, process.env.SITE_URL]
     .filter(Boolean).map(u => u.replace(/\/+$/, ''));
@@ -53,8 +78,9 @@ function cleanSlug(s) { return String(s || '').toLowerCase().replace(/[^a-z0-9-]
 
 function referrer(event) {
   const h = event.headers || {};
-  const ref = h.referer || h.Referer || h.origin || h.Origin || '';
+  const get = k => typeof h.get === 'function' ? h.get(k) : (h[k] || h[k.charAt(0).toUpperCase() + k.slice(1)]);
+  const ref = get('referer') || get('origin') || '';
   return /^https?:\/\//.test(ref) ? ref.slice(0, 500) : undefined;
 }
 
-module.exports = { json, parseBody, allowedOrigin, beehiiv, beehiivGet, cleanSlug, referrer, EMAIL_RE };
+module.exports = { json, jsonResponse, readJson, isBot, parseBody, allowedOrigin, beehiiv, beehiivGet, cleanSlug, referrer, EMAIL_RE, MAX_BODY };

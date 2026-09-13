@@ -161,9 +161,8 @@ templates/cover-reference.png  the approved house-style cover; make-cover sends 
 scripts/check-guide.js lint                 npm run check -- <slug>
 site/assets/partner-notoxchef.png  the NOTOXCHEF × Lifeuntox lockup shown in every guide header (replaces the text pill)
 scripts/dev.js        local preview with functions   npm run dev  → http://localhost:8888
-netlify/functions/    subscribe.js (the gate and the directory box post here → Beehiiv API v2)
-                      check-subscriber.js ("Already a subscriber?" → looks the email up, unlocks only if active)
-                      phone-save.js (Beehiiv custom fields, server-side E.164 check)
+netlify/functions/    subscribe.mjs (gate, directory strip and footer box post here → Beehiiv API v2; {check:true} = "Already a subscriber?")
+                      phone-save.mjs (Beehiiv custom fields, E.164 check, one number per subscriber via Netlify Blobs)
                       lib/beehiiv.js (shared helper, not a function)
 ```
 
@@ -207,6 +206,8 @@ Both pages get their header and footer from `nav.json` at build time (`{{HEADER}
 ### Rules for working in this repo
 
 - Never commit `.env`. Anything that touches an API key runs in `netlify/functions/`.
+- Security headers come from `templates/_headers`; the build hashes every inline script into the CSP, so a new inline `<script>` in a template just works after `npm run build`, but any external script host must be added to `script-src` there. Netlify allows two code-based rate-limit rules on this plan; both are used (subscribe, phone-save).
+- Every form must carry the hidden honeypot field `website` and send it with the request; the functions treat a filled honeypot as a bot.
 - Do not change the design tokens or the page layout. The mockup's look is canonical.
 - Search behaviour on the directory page (typo correction, synonyms, multi-topic OR filters, chips, sticky toolbar, live region, URL state, full-text snippets) lives in `templates/index.html` and must not be altered by a refactor.
 - Beehiiv is the only database. The one derived store is the phone → email index in Netlify Blobs (`netlify/functions/lib/phones.js`), which exists only because Beehiiv cannot look a subscriber up by phone; it can be rebuilt from Beehiiv at any time with `npm run phone-index`.

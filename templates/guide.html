@@ -197,6 +197,7 @@
         <form id="gateform">
           <label class="sr" for="ge">Email address</label>
           <input id="ge" type="email" placeholder="Email address" required autocomplete="email">
+          <input class="hp" type="text" name="website" id="ge-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn btn-solid" type="submit">Unlock the guide</button>
         </form>
         <p class="fine err" id="gate-err" hidden></p>
@@ -276,7 +277,7 @@ function unlock(){
 const params = new URLSearchParams(location.search);
 if(remembered() || params.get('s')==='1') unlock();
 
-const CHECK_SUBSCRIBER = "/.netlify/functions/check-subscriber";
+const hp = () => { const h = gateform && gateform.querySelector('input[name=website]'); return h ? h.value : ''; };
 const SUBSCRIBE_COPY = "Pop your email in and the rest of this guide unlocks straight away. You will also get our daily email: one short, science-first read on the toxins hiding in your water, food, cookware and home, and the exact swap that gets them out. Live cleaner. Feel better. Free, and you can leave any time.";
 const VERIFY_COPY = "Enter the email you subscribed with. We check it against the list and unlock the guide.";
 let verifyMode = false;
@@ -296,7 +297,7 @@ if(gateform) gateform.addEventListener('submit', async e=>{
   const btn = e.target.querySelector('button'); btn.textContent= verifyMode?'Checking…':'Unlocking…'; btn.disabled=true;
   gateErr.hidden=true; ge.removeAttribute('aria-invalid');
   if(verifyMode){
-    const out = await post(CHECK_SUBSCRIBER,{email});
+    const out = await post(SUBSCRIBE_ENDPOINT,{email,check:true,website:hp()});
     if(out.ok && out.subscribed){ subscriberEmail=email; unlock(); const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'}); }
     else if(out.ok) gateFail('We could not find that email on the list. Check the spelling, or subscribe free to unlock.');
     else gateFail('We could not check that just now. Try again in a moment, or subscribe free to unlock.');
@@ -306,7 +307,7 @@ if(gateform) gateform.addEventListener('submit', async e=>{
   unlock();   // unlock first; the subscribe request runs in the background
   const ph=document.getElementById('phone'); ph.hidden=false; ph.scrollIntoView({behavior:'smooth',block:'start'});
   if(SUBSCRIBE_ENDPOINT.startsWith('/')){
-    post(SUBSCRIBE_ENDPOINT,{email,slug:GUIDE_SLUG}).then(out=>{ if(!out.ok) console.warn('subscribe: not saved', out); });
+    post(SUBSCRIBE_ENDPOINT,{email,slug:GUIDE_SLUG,website:hp()}).then(out=>{ if(!out.ok) console.warn('subscribe: not saved', out); });
   } else if(SUBSCRIBE_ENDPOINT){
     try{ await fetch(SUBSCRIBE_ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'email='+encodeURIComponent(email)}); }catch(err){}
   }
@@ -393,7 +394,7 @@ document.getElementById('phoneform').addEventListener('submit',async e=>{
   const res=normalisePhone(phIn.value, ccSel.value);
   if(res.error){ phErr.textContent=res.error; phErr.hidden=false; phIn.setAttribute('aria-invalid','true'); phIn.focus(); return; }
   const btn=e.target.querySelector('button'); btn.disabled=true; btn.textContent='Saving…';
-  const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164});
+  const out=await post(PHONE_SAVE,{email:subscriberEmail,phone:res.e164,website:hp()});
   if(out.ok||out.offline){
     e.target.hidden=true; document.getElementById('phone').classList.add('done');
     document.querySelector('#phone h3').textContent='Added. Watch your phone.';
