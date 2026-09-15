@@ -14,8 +14,8 @@ cover_subject: a raw free-range whole chicken on a wooden board   # the one phot
 keywords: [chicken, meat, poultry, air chilled, chlorine, organic, pasture raised, bell and evans, vital farms, butcher]
 tags: [food safety, antibiotics, chlorine, protein, family meals, gut health, immune health, grocery shopping]   # health and life topics the guide touches, beyond its product category
 desc: Your 'organic' chicken might be bathed in chlorine. These ten air-chilled, pasture-raised brands do it differently, with where to buy each one.
-partner_product_1: https://notoxchef.com    # placement 1 link
-partner_product_2: https://notoxchef.com    # placement 2 link
+partner_product_1: https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479    # placement 1 link
+partner_product_2: https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479    # placement 2 link
 disclosure: This guide is for education only and is not medical advice. Brand availability varies by location. Some links are affiliate links; they never change what we recommend.
 ---
 
@@ -38,9 +38,10 @@ If the package does not say **"air-chilled"**, assume the chicken was water-chil
 :::
 
 :::promo
-Clean chicken, clean pan. NOTOXCHEF stocks cookware with no PFAS coatings, tested to the same standard we hold every brand in this guide to. *[Link a specific product here, e.g. the 10" skillet.]*
+![NOTOXCHEF Thaw Max Defrosting Tray: thaw meat safely, no microwave. $60 today, $159 when the sale ends.](assets/banners/thaw-max-wide-1.jpg)
+Clean chicken deserves a clean thaw. The microwave cooks the edges before the middle has moved, and the counter is never safe. NOTOXCHEF's Thaw Max is a slim aluminum tray with no coating and no cord that speeds up thawing in the fridge. $60 today, $159 when the sale ends.
 
-[Shop NOTOXCHEF](https://notoxchef.com)
+[See the Thaw Max tray](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::
 
 We did the checking so you can skip the detective work. Every brand below meets three tests: air-chilled processing, birds raised on pasture or genuinely free-range, and a company that is open about how it works.
@@ -153,10 +154,11 @@ Shopping somewhere that stocks none of these? Use this four-step test.
 4. **Watch the pan.** Water-chilled chicken leaks liquid as it cooks and steams instead of browning. Air-chilled chicken holds its weight and gets golden.
 :::
 
-:::cta You just chose better chicken. Cook it in a better pan.
-Non-stick coatings can shed PFAS at the exact temperatures you sear chicken. NOTOXCHEF, our official cookware partner, only sells pans that pass the Lifeuntox Standard. *[Link a specific product here.]*
+:::cta You just chose better chicken. Thaw it the clean way.
+![NOTOXCHEF Thaw Max Defrosting Tray: frozen dinner? Thaw it the clean way. $60 today, $159 when the sale ends.](assets/banners/thaw-max-cta-1.jpg)
+Most of the brands above ship frozen, so the thaw is part of the deal. Thaw Max is a plain aluminum tray with a black finish: no coating to peel, no cord, nothing to plug in, so it passes the Lifeuntox Standard because there is nothing in it to leach. Lay the chicken flat on it in the fridge and the aluminum pulls the cold out faster than a plate can. 60-day money-back guarantee and a lifetime warranty. $60 today, $159 when the sale ends.
 
-[Shop NOTOXCHEF cookware](https://notoxchef.com)
+[Get the Thaw Max tray](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::
 
 ## Sources

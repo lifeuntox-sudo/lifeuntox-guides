@@ -10,7 +10,8 @@
     "cover": "node scripts/make-cover.js",
     "index": "node scripts/build-index.js",
     "check": "node scripts/check-guide.js",
-    "phone-index": "node scripts/phone-index-rebuild.js"
+    "phone-index": "node scripts/phone-index-rebuild.js",
+    "banner": "node scripts/make-banner.js"
   },
   "engines": {
     "node": ">=20.12"

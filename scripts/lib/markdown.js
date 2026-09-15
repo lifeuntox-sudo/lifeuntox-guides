@@ -14,8 +14,11 @@
 //   :::protocol ... :::          numbered action steps (no wrapper element)
 //   :::cta Title ... :::         NOTOXCHEF placement 2 (last line "[label](url)" = button)
 //   :::gate Title                marker: everything after it sits behind the email gate
+//   ![alt](assets/banners/x.jpg) a line holding only an image. Inside :::promo or
+//                                :::cta it is the banner ad, linked to the button URL.
 
 const { PARTNER_PLACEMENTS } = require('./config');
+const { imageSize } = require('./images');
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => esc(s).replace(/"/g, '&quot;');
 
@@ -45,6 +48,7 @@ const isHeading = l => /^#{1,6}\s/.test(l);
 const isListItem = l => /^\s*(?:[-*+]|\d+[.)])\s+/.test(l);
 const isTableRow = l => /^\s*\|/.test(l);
 const isRawHtml = l => /^<[a-zA-Z!\/]/.test(l);
+const IMAGE_LINE = /^!\[([^\]]*)\]\(([^)\s]+)\)\s*$/;
 
 function parseBlocks(lines) {
   const nodes = []; let i = 0;
@@ -84,6 +88,7 @@ function parseBlocks(lines) {
       const body = rows.slice(1).filter(r => !/^\s*\|?\s*:?-{2,}/.test(r)).map(cells);
       nodes.push({ type: 'table', head: cells(rows[0]), rows: body, line: i + 1 }); continue;
     }
+    if ((m = line.match(IMAGE_LINE))) { nodes.push({ type: 'image', alt: m[1], src: m[2], line: i + 1 }); i++; continue; }
     if (/^<!--.*-->\s*$/.test(line)) {   // one-line HTML comment (scaffold notes): never swallows the next line
       nodes.push({ type: 'html', raw: line, line: i + 1 }); i++; continue;
     }
@@ -93,7 +98,7 @@ function parseBlocks(lines) {
       nodes.push({ type: 'html', raw: raw.join('\n'), line: start + 1 }); continue;
     }
     const para = []; const start = i;
-    while (i < lines.length && lines[i].trim() && !isFence(lines[i]) && !isHeading(lines[i]) && !isTableRow(lines[i]) && !isListItem(lines[i])) para.push(lines[i++].trim());
+    while (i < lines.length && lines[i].trim() && !isFence(lines[i]) && !isHeading(lines[i]) && !isTableRow(lines[i]) && !isListItem(lines[i]) && !IMAGE_LINE.test(lines[i])) para.push(lines[i++].trim());
     nodes.push({ type: 'para', text: para.join(' '), line: start + 1 });
   }
   return nodes;
@@ -116,10 +121,27 @@ function renderNode(n, ctx) {
       return `<table>\n<thead><tr>${n.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead>\n<tbody>\n` +
         n.rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('\n') + `\n</tbody>\n</table>`;
     case 'html': return n.raw;
+    case 'image': return imageTag(n);
     case 'gate': return '';
     case 'block': return renderBlock(n, ctx);
   }
   return '';
+}
+
+// <img> with its real width and height (read from the file under site/) so the
+// page never shifts while the banner loads. Site-relative paths only.
+function imageTag(n, extra = '') {
+  const d = imageSize(n.src);
+  const size = d ? ` width="${d.width}" height="${d.height}"` : '';
+  return `<img src="${escAttr(n.src)}" alt="${escAttr(n.alt)}"${size} loading="lazy" decoding="async"${extra}>`;
+}
+
+// The banner ad of a promo/cta block: its image nodes, linked to the button URL.
+function splitBanner(children, href) {
+  const images = children.filter(c => c.type === 'image');
+  const rest = children.filter(c => c.type !== 'image');
+  const ad = images.map(img => `<a class="ad" href="${escAttr(href)}" rel="noopener">${imageTag(img)}</a>`).join('\n');
+  return { rest, ad };
 }
 
 // A block whose only child is one paragraph renders it inline (no <p>), matching the mockup.
@@ -145,16 +167,18 @@ function renderBlock(n, ctx) {
     case 'buy': return `<div class="buy"><b>Where to buy:</b> ${body(c, ctx)}</div>`;
     case 'promo': {
       if (ctx.partner === false) return '';
-      const { rest, label, url } = splitButton(c);
+      const { rest: afterButton, label, url } = splitButton(c);
       const href = url || ctx.partner1 || 'https://notoxchef.com';
-      return `<div class="promo">\n<div class="mark">NOTOXCHEF<small>Official partner</small></div>\n${renderNodes(rest, ctx)}\n` +
+      const { rest, ad } = splitBanner(afterButton, href);
+      return `<div class="promo${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}<div class="mark">NOTOXCHEF<small>Official partner</small></div>\n${renderNodes(rest, ctx)}\n` +
         `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF')}</a>\n</div>`;
     }
     case 'cta': {
       if (ctx.partner === false) return '';
-      const { rest, label, url } = splitButton(c);
+      const { rest: afterButton, label, url } = splitButton(c);
       const href = url || ctx.partner2 || 'https://notoxchef.com';
-      return `<div class="cta">\n${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
+      const { rest, ad } = splitBanner(afterButton, href);
+      return `<div class="cta${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
         `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF cookware')}</a>\n` +
         `<small>Lifeuntox earns a commission on partner sales. It never changes what we recommend.</small>\n</div>`;
     }

@@ -1,0 +1,25 @@
+{
+  "brand": "NOTOXCHEF",
+  "product": "Thaw Max Defrosting Tray",
+  "url": "https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479",
+  "subject": "the Thaw Max defrosting tray, a slim matte black grooved aluminum tray, lying flat on a cream plaster counter in front of a deep green wall, with one raw boneless chicken breast thawing on it.",
+  "refs": [
+    "https://cdn.shopify.com/s/files/1/1009/3864/5831/files/image_4127bbe0b904a9bd1315066375e60b4a.png?v=1789343805"
+  ],
+  "text": {
+    "kicker": "NOTOXCHEF THAW MAX DEFROSTING TRAY",
+    "headline": "Thaw meat safely. No microwave.",
+    "price": "$60",
+    "was": "$159",
+    "save": "SAVE 62%",
+    "urgency": "$60 today. $159 when the sale ends.",
+    "button": "Shop the sale",
+    "footer": "60-day money-back guarantee. Lifetime warranty."
+  },
+  "formats": {
+    "wide": { "headline": "Thaw meat safely. No microwave." },
+    "cta": { "headline": "Frozen dinner? Thaw it the clean way.", "button": "Get the Thaw Max" },
+    "square": { "headline": "Skip the microwave. Thaw it clean." }
+  },
+  "note": "Plain aluminum, no coating, no cord. Keep the panel flat and the type large enough to read on a phone."
+}

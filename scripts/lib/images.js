@@ -39,4 +39,35 @@ function deriveCover(cover) {
   return { full, small, width: dim.width, height: dim.height, smallWidth: SMALL_WIDTH, smallHeight: Math.round(dim.height * SMALL_WIDTH / dim.width) };
 }
 
-module.exports = { deriveCover, SMALL_WIDTH };
+// Width and height of a JPEG from its first SOF marker (baseline or progressive).
+function jpegDimensions(buf) {
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) throw new Error('not a JPEG');
+  let i = 2;
+  while (i < buf.length) {
+    if (buf[i] !== 0xff) { i++; continue; }
+    const marker = buf[i + 1];
+    if (marker === 0xd8 || marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) { i += 2; continue; }
+    const len = buf.readUInt16BE(i + 2);
+    if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {
+      return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+    }
+    i += 2 + len;
+  }
+  throw new Error('JPEG has no SOF marker');
+}
+
+// { width, height } of a site-relative image ("assets/banners/x.jpg"), or null
+// if the file is missing or not a PNG/JPEG. Used to write width/height on <img>.
+function imageSize(sitePath) {
+  if (!sitePath || /^(https?:)?\/\//i.test(sitePath)) return null;
+  const file = path.join(SITE_DIR, sitePath.replace(/^\/+/, ''));
+  if (!fs.existsSync(file)) return null;
+  try {
+    const buf = fs.readFileSync(file);
+    if (/\.png$/i.test(file)) return png.dimensions(buf);
+    if (/\.jpe?g$/i.test(file)) return jpegDimensions(buf);
+  } catch (e) { /* unreadable: no size attributes */ }
+  return null;
+}
+
+module.exports = { deriveCover, imageSize, jpegDimensions, SMALL_WIDTH };

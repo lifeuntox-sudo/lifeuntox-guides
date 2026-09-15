@@ -48,6 +48,8 @@ async function headOk(url) {
   try {
     let r = await fetch(url, { ...opts, method: 'HEAD' });
     if (r.status === 405 || r.status === 403 || r.status === 404) r = await fetch(url, { ...opts, method: 'GET' });
+    // Some sites answer 403 to anything that is not a browser (americangrassfed.org); a reader still gets the page.
+    if (r.status === 403) r = await fetch(url, { ...opts, method: 'GET', headers: { 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0 Safari/537.36', accept: 'text/html,*/*' } });
     return { ok: r.ok, status: r.status };
   } catch (e) { return { ok: false, status: e.name === 'TimeoutError' ? 'timeout' : e.message }; }
 }
@@ -108,7 +110,7 @@ async function checkGuide(slug, net) {
   // editorial
   lines.forEach((l, i) => { if (l.includes('—') && !/^\s*(```|<)/.test(l)) fail('em dash (use a comma, full stop or colon)', L(i + 1)); });
   lines.forEach((l, i) => {
-    if (/^\s*<!--/.test(l) || /^\s*:::/.test(l)) return;
+    if (/^\s*<!--/.test(l) || /^\s*:::/.test(l) || /^!\[[^\]]*\]\([^)\s]+\)\s*$/.test(l)) return;   // image lines are not prose
     const clean = l.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/https?:\/\/\S+/g, '');
     const fp = clean.match(FIRST_PERSON); if (fp) fail(`first-person singular ("${fp[0]}")`, L(i + 1));
     if (/!/.test(clean.replace(/!\[/g, ''))) warn('exclamation mark', L(i + 1));
@@ -134,6 +136,10 @@ async function checkGuide(slug, net) {
   if (first.inside > 0) { const before = seq.slice(0, first.inside).filter(s => s !== 'html'); if (before.length) warn(':::inside should be the first block'); }
   const introParas = first.warn > 0 ? seq.slice(first.inside + 1, first.warn).filter(s => s === 'para').length : 0;
   if (first.warn > 0 && (introParas < 3 || introParas > 5)) warn(`intro has ${introParas} paragraphs (design system: 3–5)`);
+
+  // images (banner ads): the file must exist under site/
+  const walk = (ns, f) => ns.forEach(n => { f(n); if (n.children) walk(n.children, f); });
+  walk(nodes, n => { if (n.type === 'image' && !/^https?:\/\//i.test(n.src) && !fs.existsSync(path.join(SITE_DIR, n.src))) fail(`image file missing: site/${n.src}`, L(n.line)); });
 
   // placements
   const promos = seq.filter(s => s === 'promo').length, ctas = seq.filter(s => s === 'cta').length;

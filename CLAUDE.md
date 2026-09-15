@@ -157,6 +157,8 @@ scripts/build-index.js fills each guide's `text` (full-text search) from its bui
 scripts/lib/images.js + jpeg.js  derive <cover>.jpg and <cover>-600.jpg from each cover PNG at build (gitignored)
 scripts/new-guide.js  scaffold a guide      npm run new-guide -- "Title" --code WORD --cat Topic
 scripts/make-cover.js Kie.ai covers         npm run cover -- <slug>
+scripts/make-banner.js Kie.ai partner banners   npm run banner -- <campaign>   (spec in banners/<campaign>.json → site/assets/banners/<campaign>-<format>-<n>.jpg)
+banners/<campaign>.json  one partner campaign: product, prices, offer lines, reference photo URLs (current: thaw-max)
 templates/cover-reference.png  the approved house-style cover; make-cover sends it as a reference on every run
 scripts/check-guide.js lint                 npm run check -- <slug>
 site/assets/partner-notoxchef.png  the NOTOXCHEF × Lifeuntox lockup shown in every guide header (replaces the text pill)
@@ -175,6 +177,7 @@ netlify/functions/    subscribe.mjs (gate, directory strip and footer box post h
 - A list directly under `## Sources` gets the sources styling automatically.
 - Inline: `**bold**`, `*em*`, `[text](url)`. External links get `rel="noopener"` automatically. No raw inline HTML; a line starting with a tag is passed through as a raw block.
 - `&` is escaped for you: write `Bell & Evans`.
+- A line holding only `![alt text](assets/banners/thaw-max-wide-1.jpg)` is an image. Inside `:::promo` or `:::cta` it is the banner ad: rendered full-bleed at the top of the card, linked to the block's button URL, with width/height read from the file. The promo takes the `wide` banner, the CTA the `cta` banner. `check-guide` fails if the file is missing under `site/`.
 
 ### Required frontmatter field beyond section 7: `tags`
 
@@ -201,7 +204,11 @@ Both pages get their header and footer from `nav.json` at build time (`{{HEADER}
 
 ### Sponsor placements switch
 
-`PARTNER_PLACEMENTS` in `scripts/lib/config.js` is currently **false**: the build leaves out the NOTOXCHEF header lockup, the `:::promo` card, the `:::cta` block and the Partners footer column. Guides still carry `:::promo` and `:::cta` in Markdown (the design system and `check-guide` still require them) so everything returns with one change: set it to true and rebuild. While it is off, `check-guide` fails if "NOTOXCHEF" appears on a built page.
+`PARTNER_PLACEMENTS` in `scripts/lib/config.js` is currently **true**: every guide shows the NOTOXCHEF header lockup, the `:::promo` card and the `:::cta` block, each with its banner ad. Set it to false and rebuild to hide all of them; guides keep their `:::promo` and `:::cta` blocks in Markdown either way (the design system and `check-guide` require them). While it is off, `check-guide` fails if "NOTOXCHEF" appears on a built page; while it is on, it fails if the header lockup is missing.
+
+### Partner banners
+
+The current campaign is the **Thaw Max Defrosting Tray** (`banners/thaw-max.json`): $60, compare-at $159, 60-day money-back guarantee, lifetime warranty. Both guides use `thaw-max-wide-1.jpg` in the promo and `thaw-max-cta-1.jpg` in the CTA, and their placement copy quotes the same prices. Prices are baked into the images and the copy, so when the store price changes: edit the spec, run `npm run banner -- thaw-max`, pick the options, and update the two price sentences in each guide. Urgency in the banners comes only from the compare-at price ("$60 today. $159 when the sale ends."); never add a deadline or a stock count that is not on the product page.
 
 ### Rules for working in this repo
 

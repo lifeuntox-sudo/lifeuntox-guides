@@ -42,6 +42,7 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | `scripts/build-index.js` | Fills each guide's `text` from its built page for full-text search and snippets. |
 | `scripts/new-guide.js` | Scaffolds a guide in the canonical section order. |
 | `scripts/make-cover.js` | Generates three cover options with Kie.ai and sets `cover`. |
+| `scripts/make-banner.js`, `banners/<campaign>.json` | Generates the partner banner ads (wide for the promo card, cta for the closing block, square for the newsletter) with Kie.ai from a campaign spec, at exact sizes, as JPEGs in `site/assets/banners/` (tracked). |
 | `scripts/lib/images.js`, `jpeg.js` | At build, derive a full-size JPEG (header, Open Graph) and a 600px JPEG (grid) from each cover PNG. Gitignored; rebuilt on Netlify. |
 | `nav.json` | Header and footer content, copied from the live Beehiiv site. Rendered into both pages at build by `scripts/lib/nav.js` with `templates/nav.css`. |
 | `scripts/check-guide.js` | Lint: readability grade, banned words, structure, links. |
@@ -58,10 +59,10 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 
 | Variable | Used by |
 |---|---|
-| `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` | `netlify/functions/subscribe.js` and `phone-save.js` |
+| `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` | `netlify/functions/subscribe.mjs` and `phone-save.mjs` |
 | `BEEHIIV_FORM_ACTION` (optional) | An https URL to post gate emails to instead of the subscribe function. Leave empty to use the function. |
 | `BEEHIIV_PHONE_FIELD`, `BEEHIIV_SMS_CONSENT_FIELD` (optional) | Custom field names phone-save writes to. Defaults `phone`, `sms_consent`. |
-| `KIE_API_KEY` | `scripts/make-cover.js` |
+| `KIE_API_KEY` | `scripts/make-cover.js`, `scripts/make-banner.js` |
 | `SITE_URL` (optional) | Canonical / Open Graph / JSON-LD URLs. Netlify's own `URL` is used when unset. |
 
 Set the same variables in Netlify → Site configuration → Environment variables. On Netlify only `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` and `SITE_URL` are needed: covers are generated on your machine, so `KIE_API_KEY` stays local.
@@ -105,6 +106,10 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 ## Embeds
 
 `beehiiv/free-guides-block.html` is the self-contained "Free guides" block for the lifeuntox.com homepage (a Beehiiv custom HTML section). It fetches `/guides.json`, shows the four newest guides with covers, and links to the library. It is the source of truth for the block: paste the whole file into Beehiiv whenever it changes. It starts with `<base target="_top">` so links navigate the page, not Beehiiv's srcdoc iframe.
+
+## Partner banners
+
+`npm run banner -- thaw-max` reads `banners/thaw-max.json` (product, prices, offer lines, a reference photo URL) and asks Kie.ai for two options of each format: `wide` (1600×686, the `:::promo` card), `cta` (1600×900, the `:::cta` block) and `square` (1200×1200, newsletter and social). A guide shows one with a line holding only `![alt](assets/banners/thaw-max-wide-1.jpg)` inside the block; the image links to the block's button URL. Prices live in the images and in the placement copy, so a price change means a regenerate plus two sentences per guide. `PARTNER_PLACEMENTS` in `scripts/lib/config.js` switches every placement (lockup, promo, CTA) on or off.
 
 ## Security
 
