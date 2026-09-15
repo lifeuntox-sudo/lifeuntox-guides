@@ -254,7 +254,7 @@ const SYNONYMS = {
   "duvet":"sleep","pillow":"sleep","bedroom":"sleep",
   "veg":"produce","veggies":"produce","groceries":"produce",
   "frying oil":"oils","cooking oil":"oils","lunchbox":"storage",
-  "beef":"chicken","steak":"chicken","turkey":"chicken","poultry":"chicken"
+  "turkey":"chicken","poultry":"chicken"
 };
 
 const PAGE_SIZE = 12;
@@ -295,6 +295,7 @@ function score(g,t){ if(!t) return 1; const code=g.code.toLowerCase(),title=g.ti
 const VOCAB=[...new Set(GUIDES.flatMap(g=>[g.code,g.cat,...g.keywords,...g.title.split(/\s+/),...(g.text||'').split(/\s+/)]).map(w=>w.toLowerCase().replace(/[^a-z\s]/g,'').trim()).filter(w=>w.length>2))];
 function suggest(t){ const lim=t.length<=5?1:2; let best=null,bd=99; VOCAB.forEach(w=>{const d=distance(t,w); if(d<bd&&d<=lim){bd=d;best=w;}}); return best; }
 function resolve(raw){ const t=raw.trim().toLowerCase(); if(!t) return {term:'',corrected:null};
+  if(GUIDES.some(g=>g.code.toLowerCase()===t||g.keywords.some(k=>k===t))) return {term:t,corrected:null};   // a comment word or keyword always wins over a synonym
   if(SYNONYMS[t]) return {term:SYNONYMS[t],corrected:null};
   if(GUIDES.some(g=>score(g,t)>0)||forceExact) return {term:t,corrected:null};
   const fix=suggest(t); return fix?{term:fix,corrected:fix}:{term:t,corrected:null}; }
@@ -322,7 +323,7 @@ function coverHTML(g){
   </div></div>`;
 }
 function cardHTML(g,term){
-  const href = g.page ? 'guide-'+g.slug+'.html' : '#';
+  const href = g.page ? '/guide-'+g.slug : '#';
   return `<li class="card"><a href="${href}">
     ${coverHTML(g)}
     <h2>${highlight(g.title,term)}</h2>

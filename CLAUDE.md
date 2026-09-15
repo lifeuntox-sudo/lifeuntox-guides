@@ -128,7 +128,7 @@ partner_product_2: https://notoxchef.com/...    # placement 2 link
 ---
 ```
 
-Slug and file naming: lowercase, hyphens, no dates, e.g. `tap-water-filter-guide`. Page file `guide-<slug>.html`. Cover `assets/covers/<slug>-N.png`.
+Slug and file naming: lowercase, hyphens, no dates, e.g. `tap-water-filter-guide`. Page file `guide-<slug>.html`, served at `/guide-<slug>` (no `.html` in any URL). Cover `assets/covers/<slug>-N.png`.
 
 ### 8. Quality checklist (`check-guide` automates the starred items)
 
@@ -206,9 +206,11 @@ Both pages get their header and footer from `nav.json` at build time (`{{HEADER}
 
 `PARTNER_PLACEMENTS` in `scripts/lib/config.js` is currently **true**: every guide shows the NOTOXCHEF header lockup, the `:::promo` card and the `:::cta` block, each with its banner ad. Set it to false and rebuild to hide all of them; guides keep their `:::promo` and `:::cta` blocks in Markdown either way (the design system and `check-guide` require them). While it is off, `check-guide` fails if "NOTOXCHEF" appears on a built page; while it is on, it fails if the header lockup is missing.
 
-### Partner banners
+### Partner ads (square) and the copy standard
 
-The current campaign is the **Thaw Max Defrosting Tray** (`banners/thaw-max.json`): $60, compare-at $159, 60-day money-back guarantee, lifetime warranty. Both guides use `thaw-max-wide-1.jpg` in the promo and `thaw-max-cta-1.jpg` in the CTA, and their placement copy quotes the same prices. Prices are baked into the images and the copy, so when the store price changes: edit the spec, run `npm run banner -- thaw-max`, pick the options, and update the two price sentences in each guide. Urgency in the banners comes only from the compare-at price ("$60 today. $159 when the sale ends."); never add a deadline or a stock count that is not on the product page.
+Ads are **square, 1:1, 1200×1200**, never wide banners: `promo` sits at 200px beside the promo copy, `cta` at 260px beside the CTA copy, both full width on phones. The current campaign is the **Thaw Max Defrosting Tray** (`banners/thaw-max.json`): $60, compare-at $159, 60-day money-back guarantee, lifetime warranty. Both guides use `thaw-max-promo-1.jpg` in the promo and `thaw-max-cta-1.jpg` in the CTA, and their placement copy quotes the same prices.
+
+**Placement copy must sell.** Write the `:::promo` and `:::cta` text the way the great direct-response copywriters would (Hopkins, Ogilvy, Schwartz, Halbert, Sugarman, Bencivenga, Kennedy): open on a vivid picture of the reader's problem tonight, agitate it with a specific consequence, present the product as the clean way out, give proof (what it is made of, what it passes), state the real price and the real guarantee as risk reversal, and close with one plain call to act now. Emotional, specific, honest: no invented deadlines or stock counts, no exclamation marks, no first person singular, no ALL CAPS. The promo is moderate (one paragraph); the CTA is stronger (three short paragraphs: the quiet truth, the third way, the offer and the call). The ad headline in the spec should carry the same idea in six words or fewer. Prices are baked into the images and the copy, so when the store price changes: edit the spec, run `npm run banner -- thaw-max`, pick the options, and update the two price sentences in each guide. Urgency in the banners comes only from the compare-at price ("$60 today. $159 when the sale ends."); never add a deadline or a stock count that is not on the product page.
 
 ### Rules for working in this repo
 
@@ -217,4 +219,5 @@ The current campaign is the **Thaw Max Defrosting Tray** (`banners/thaw-max.json
 - Every form must carry the hidden honeypot field `website` and send it with the request; the functions treat a filled honeypot as a bot.
 - Do not change the design tokens or the page layout. The mockup's look is canonical.
 - Search behaviour on the directory page (typo correction, synonyms, multi-topic OR filters, chips, sticky toolbar, live region, URL state, full-text snippets) lives in `templates/index.html` and must not be altered by a refactor.
+- Definition of done for any round: (1) the footer matches the live lifeuntox.com footer (re-copy it into `nav.json` first), (2) every guide URL is clean (`/guide-<slug>`), (3) placement copy meets the standard above, (4) ads are square, (5) the directory search finds each guide by its comment word (`code`), by its tags and category, and by words in its body text; test all three after every content change.
 - Beehiiv is the only database. The one derived store is the phone → email index in Netlify Blobs (`netlify/functions/lib/phones.js`), which exists only because Beehiiv cannot look a subscriber up by phone; it can be rebuilt from Beehiiv at any time with `npm run phone-index`.

@@ -87,7 +87,7 @@ function renderFooter(nav, siteUrl) {
       ${logo ? `${a(logo, siteUrl, 'flogo', `aria-label="${esc(logo.alt)} home"`)}<img src="${esc(logo.src)}" alt="${esc(logo.alt)}" width="${logo.width || 300}" height="${logo.height || 62}" loading="lazy"></a>` : ''}
       <ul class="fsocial">${social}</ul>
     </div>
-    ${f.legal ? `<p class="flegal">${esc(f.legal)}</p>` : ''}
+    ${f.legal ? `<p class="flegal">${esc(f.legal)}${f.copyright ? `<br>${esc(f.copyright)}` : ''}</p>` : ''}
   </div>
 </footer>
 <script>

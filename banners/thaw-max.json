@@ -17,9 +17,14 @@
     "footer": "60-day money-back guarantee. Lifetime warranty."
   },
   "formats": {
-    "wide": { "headline": "Thaw meat safely. No microwave." },
-    "cta": { "headline": "Frozen dinner? Thaw it the clean way.", "button": "Get the Thaw Max" },
-    "square": { "headline": "Skip the microwave. Thaw it clean." }
+    "promo": {
+      "headline": "Your microwave is ruining good meat.",
+      "button": "Shop the sale"
+    },
+    "cta": {
+      "headline": "Thaw it clean. Never microwave again.",
+      "button": "Get the Thaw Max"
+    }
   },
-  "note": "Plain aluminum, no coating, no cord. Keep the panel flat and the type large enough to read on a phone."
+  "note": "Plain aluminum, no coating, no cord. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
 }

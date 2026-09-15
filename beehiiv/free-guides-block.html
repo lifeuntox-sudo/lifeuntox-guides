@@ -104,7 +104,7 @@
     var html = '';
     for (var i = 0; i < guides.length; i++) {
       var g = guides[i];
-      var href = SITE + 'guide-' + encodeURIComponent(String(g.slug)) + '.html';
+      var href = SITE + 'guide-' + encodeURIComponent(String(g.slug));
       html += '<li><a class="lu-card" href="' + esc(href) + '" rel="noopener">' +
         '<span class="lu-cover"><img src="' + esc(coverUrl(g.cover)) + '" alt="' + esc(g.title) + '" width="1200" height="1600" loading="lazy" decoding="async"></span>' +
         '<span class="lu-title">' + esc(g.title) + '</span></a></li>';

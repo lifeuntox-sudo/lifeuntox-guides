@@ -38,10 +38,10 @@ If the package does not say **"air-chilled"**, assume the chicken was water-chil
 :::
 
 :::promo
-![NOTOXCHEF Thaw Max Defrosting Tray: thaw meat safely, no microwave. $60 today, $159 when the sale ends.](assets/banners/thaw-max-wide-1.jpg)
-Clean chicken deserves a clean thaw. The microwave cooks the edges before the middle has moved, and the counter is never safe. NOTOXCHEF's Thaw Max is a slim aluminum tray with no coating and no cord that speeds up thawing in the fridge. $60 today, $159 when the sale ends.
+![NOTOXCHEF Thaw Max Defrosting Tray: your microwave is ruining good meat. $60 today, $159 when the sale ends.](assets/banners/thaw-max-promo-1.jpg)
+Every bird on this list ships frozen, and this is where good chicken goes wrong: a microwave defrost that turns the edges rubbery while the middle stays ice. Thaw Max is a slab of plain aluminum, no coating, no cord, that pulls the cold out in the fridge far faster than any plate, so tonight's chicken thaws clean and cooks evenly. $60 today, $159 when the sale ends, and 60 days to send it back if it does not earn its place.
 
-[See the Thaw Max tray](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
+[Claim the sale price](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::
 
 We did the checking so you can skip the detective work. Every brand below meets three tests: air-chilled processing, birds raised on pasture or genuinely free-range, and a company that is open about how it works.
@@ -154,11 +154,15 @@ Shopping somewhere that stocks none of these? Use this four-step test.
 4. **Watch the pan.** Water-chilled chicken leaks liquid as it cooks and steams instead of browning. Air-chilled chicken holds its weight and gets golden.
 :::
 
-:::cta You just chose better chicken. Thaw it the clean way.
-![NOTOXCHEF Thaw Max Defrosting Tray: frozen dinner? Thaw it the clean way. $60 today, $159 when the sale ends.](assets/banners/thaw-max-cta-1.jpg)
-Most of the brands above ship frozen, so the thaw is part of the deal. Thaw Max is a plain aluminum tray with a black finish: no coating to peel, no cord, nothing to plug in, so it passes the Lifeuntox Standard because there is nothing in it to leach. Lay the chicken flat on it in the fridge and the aluminum pulls the cold out faster than a plate can. 60-day money-back guarantee and a lifetime warranty. $60 today, $159 when the sale ends.
+:::cta You just chose chicken with no chlorine bath. Do not ruin it in the microwave.
+![NOTOXCHEF Thaw Max Defrosting Tray: thaw it clean, never microwave again. $60 today, $159 when the sale ends.](assets/banners/thaw-max-cta-1.jpg)
+You went to the trouble of finding air-chilled chicken. Then it comes out of the freezer and the microwave undoes the work: rubbery edges, an icy middle, and the juice that should have stayed in the meat pooling on the plate. The counter is worse: hours at room temperature are exactly what bacteria wait for.
 
-[Get the Thaw Max tray](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
+Thaw Max is the third way. A slim slab of plain aluminum with a black finish, no coating, no cord, nothing that can leach into your food, which is why it passes the Lifeuntox Standard. Lay tonight's chicken on it in the fridge and the metal draws the cold out far faster than a plate ever could, so dinner is ready when you are.
+
+Right now it is $60 instead of $159, and that price goes when the sale ends. The risk sits with NOTOXCHEF, not you: 60 days to return it for a full refund, and a lifetime warranty after that. Order it today, and the next bird you buy gets the thaw it deserves.
+
+[Get the Thaw Max for $60](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::
 
 ## Sources

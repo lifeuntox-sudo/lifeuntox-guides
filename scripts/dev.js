@@ -57,6 +57,7 @@ async function runFunction(name, req, res, url) {
 function serveStatic(req, res, url) {
   let p = decodeURIComponent(url.pathname);
   if (p.endsWith('/')) p += 'index.html';
+  if (!path.extname(p) && fs.existsSync(path.join(SITE_DIR, p + '.html'))) p += '.html';   // clean URLs, as Netlify serves them
   const file = path.normalize(path.join(SITE_DIR, p));
   if (!file.startsWith(SITE_DIR)) { res.writeHead(403); return res.end(); }
   if (!fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404, { 'content-type': 'text/plain' }); return res.end('Not found: ' + p); }

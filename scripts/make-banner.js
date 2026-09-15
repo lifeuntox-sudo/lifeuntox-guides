@@ -5,13 +5,15 @@
 // site/assets/banners/<campaign>-<format>-<n>.jpg at exact pixel sizes.
 //
 //   npm run banner -- thaw-max                 every format in the spec, 2 options each
-//   npm run banner -- thaw-max --formats wide,cta --count 1
+//   npm run banner -- thaw-max --formats promo --count 1
 //   npm run banner -- thaw-max --dry-run       print the prompts, call nothing
 //
-// A guide shows a banner by putting a line holding only
-//   ![alt text](assets/banners/thaw-max-wide-1.jpg)
-// inside its :::promo (wide) or :::cta (cta) block. The square format is for
-// the newsletter and social posts and is not used on the site.
+// Ads are square (1:1, 1200×1200): "promo" for the :::promo card and "cta" for
+// the :::cta block, each with its own headline and button. A guide shows one by
+// putting a line holding only
+//   ![alt text](assets/banners/thaw-max-promo-1.jpg)
+// inside the block; the page lays the square beside the copy. "wide" (21:9)
+// exists for email headers and is not used on the site.
 //
 // Spec (banners/<campaign>.json): see banners/thaw-max.json. Text is rendered
 // by the model, so every string must be short and spelled exactly as it should
@@ -32,11 +34,13 @@ const QUALITY = 86;
 const POLL_MS = 5000;
 const TIMEOUT_MS = 8 * 60 * 1000;
 
-// Output sizes. The article measure is 680px, so 1600px wide covers 2x screens.
+// Output sizes. Squares show at 200px (promo) and 260px (CTA) beside the copy, full width on phones.
+const SQUARE = 'The product photograph fills the top 52% of the image, edge to edge. The bottom 48% is a flat deep forest green (#1a4a1a) panel that holds all of the text, left-aligned, with generous margins.';
 const FORMATS = {
-  wide: { aspect: '21:9', width: 1600, height: 686, layout: 'The product photograph fills the left 45% of the banner, edge to edge. The right 55% is a flat deep forest green (#1a4a1a) panel that holds all of the text, left-aligned, with generous margins.' },
-  cta: { aspect: '16:9', width: 1600, height: 900, layout: 'The product photograph fills the left half of the banner, edge to edge. The right half is a flat deep forest green (#1a4a1a) panel that holds all of the text, left-aligned, with generous margins.' },
-  square: { aspect: '1:1', width: 1200, height: 1200, layout: 'The product photograph fills the top 55% of the image, edge to edge. The bottom 45% is a flat deep forest green (#1a4a1a) panel that holds all of the text, left-aligned, with generous margins.' }
+  promo: { aspect: '1:1', width: 1200, height: 1200, layout: SQUARE },
+  cta: { aspect: '1:1', width: 1200, height: 1200, layout: SQUARE },
+  square: { aspect: '1:1', width: 1200, height: 1200, layout: SQUARE },
+  wide: { aspect: '21:9', width: 1600, height: 686, layout: 'The product photograph fills the left 45% of the banner, edge to edge. The right 55% is a flat deep forest green (#1a4a1a) panel that holds all of the text, left-aligned, with generous margins.' }
 };
 
 function args() {
@@ -157,7 +161,7 @@ async function main() {
     fs.writeFileSync(path.join(OUT_DIR, name), jpg);
     console.log(`  site/assets/banners/${name}  ${(jpg.length / 1024).toFixed(0)} KB  (from ${from.width}×${from.height}${r.credits != null ? ', ' + r.credits + ' credits' : ''})`);
   }
-  console.log(`\nUse a banner in a guide with a line holding only:  ![alt text](assets/banners/${o.campaign}-wide-1.jpg)`);
+  console.log(`\nUse an ad in a guide with a line holding only:  ![alt text](assets/banners/${o.campaign}-promo-1.jpg)`);
 }
 
 main().catch(e => { console.error('make-banner failed:', e.message); process.exit(1); });

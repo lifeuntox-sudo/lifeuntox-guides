@@ -79,7 +79,7 @@ If the label does not say "the exact words", assume the worst. Look for the exac
 
 :::promo
 <!-- TODO: one bridge sentence (this guide's problem → cookware), one sentence on what NOTOXCHEF sells and the standard it meets, then a specific product link. -->
-<!-- Optional banner ad above the text: a line holding only "![alt](assets/banners/<campaign>-wide.jpg)" (npm run banner -- <campaign>). -->
+<!-- Square ad beside the text: a line holding only "![alt](assets/banners/<campaign>-promo-1.jpg)" (npm run banner -- <campaign>). Copy must sell: picture the problem, agitate it, present the fix, name the price and the guarantee, one clear call. -->
 Bridge sentence that connects this problem to the pan it is cooked in. NOTOXCHEF sells cookware with no PFAS coatings, tested to the Lifeuntox Standard.
 
 [See the 10-inch skillet](https://notoxchef.com/)
@@ -153,7 +153,7 @@ Shopping somewhere that stocks none of these? Use this 4-step test this week.
 
 :::cta You just chose better ${g.cat.toLowerCase() === 'food' ? 'food' : 'products'}. Cook with a better pan.
 <!-- TODO: two sentences on the product and why it passes the Lifeuntox Standard. A real offer or code only if one exists. -->
-<!-- Optional banner ad above the heading: a line holding only "![alt](assets/banners/<campaign>-cta.jpg)". -->
+<!-- Square ad beside the copy: a line holding only "![alt](assets/banners/<campaign>-cta-1.jpg)". Stronger than the promo: the quiet truth, the third way, the price that ends, the risk reversal, then the call. -->
 Two sentences on the product and the standard it meets.
 
 [See the 10-inch skillet](https://notoxchef.com/)

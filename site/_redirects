@@ -1,0 +1,4 @@
+# Guide pages live at /guide-<slug> (Netlify serves guide-<slug>.html there).
+# The old .html addresses and index.html redirect permanently to the clean form.
+/index.html          /                301!
+/guide-*.html        /guide-:splat    301!

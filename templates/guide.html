@@ -66,9 +66,10 @@
   .promo .mark small{font-weight:300;display:block;color:var(--ink-mute);font-size:12px;letter-spacing:0;}
   .promo p{margin:0;font-size:15.5px;}
   .promo .btn{min-height:40px;padding:0 16px;font-size:14px;}
-  .promo .ad{grid-column:1 / -1;display:block;margin:-18px -20px 2px;}
-  .promo .ad img,.cta .ad img{display:block;width:100%;height:auto;}
-  @media (max-width:600px){.promo{grid-template-columns:1fr;}}
+  .promo.has-ad{grid-template-columns:200px 1fr auto;}
+  .promo .ad{display:block;width:200px;margin:-18px 0 -18px -20px;align-self:stretch;}
+  .promo .ad img,.cta .ad img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;}
+  @media (max-width:600px){.promo,.promo.has-ad{grid-template-columns:1fr;}.promo .ad{width:auto;margin:-18px -20px 4px;}.promo .ad img{height:auto;}}
 
   /* body */
   .body{max-width:var(--measure);padding:36px 0 0;font-size:18px;font-weight:300;}
@@ -98,7 +99,11 @@
   .cta .btn{background:var(--gold);color:#fff;}
   .cta .btn:hover{background:#b9961f;}
   .cta small{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.65);}
-  .cta .ad{display:block;margin:-28px -28px 22px;border-radius:2px 2px 0 0;overflow:hidden;}
+  .cta.has-ad{display:grid;grid-template-columns:260px 1fr;gap:0 28px;align-items:center;}
+  .cta.has-ad .ad{grid-row:1 / span 4;display:block;width:260px;margin:-28px 0 -28px -28px;align-self:stretch;}
+  .cta.has-ad h3,.cta.has-ad p,.cta.has-ad .btn,.cta.has-ad small{grid-column:2;}
+  .cta.has-ad .btn{justify-self:start;}
+  @media (max-width:600px){.cta.has-ad{grid-template-columns:1fr;}.cta.has-ad .ad{grid-row:auto;width:auto;margin:-28px -28px 20px;}.cta.has-ad .ad img{height:auto;}.cta.has-ad h3,.cta.has-ad p,.cta.has-ad .btn,.cta.has-ad small{grid-column:1;}}
   .sources{font-size:15px;color:var(--ink-soft);}
   .sources li{margin-bottom:6px;}
   .fine{font-size:13.5px;color:var(--ink-mute);margin:40px 0 0;}
@@ -168,7 +173,7 @@
 {{HEADER}}
 
 <main class="wrap" id="page">
-  <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; <a href="index.html">Guides</a> &nbsp;›&nbsp; {{TITLE}}</p>
+  <p class="crumbs"><a href="https://lifeuntox.com">Home</a> &nbsp;›&nbsp; <a href="/">Guides</a> &nbsp;›&nbsp; {{TITLE}}</p>
 
   <header class="ahead">
     {{COVER}}

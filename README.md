@@ -107,9 +107,9 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 `beehiiv/free-guides-block.html` is the self-contained "Free guides" block for the lifeuntox.com homepage (a Beehiiv custom HTML section). It fetches `/guides.json`, shows the four newest guides with covers, and links to the library. It is the source of truth for the block: paste the whole file into Beehiiv whenever it changes. It starts with `<base target="_top">` so links navigate the page, not Beehiiv's srcdoc iframe.
 
-## Partner banners
+## Partner ads
 
-`npm run banner -- thaw-max` reads `banners/thaw-max.json` (product, prices, offer lines, a reference photo URL) and asks Kie.ai for two options of each format: `wide` (1600×686, the `:::promo` card), `cta` (1600×900, the `:::cta` block) and `square` (1200×1200, newsletter and social). A guide shows one with a line holding only `![alt](assets/banners/thaw-max-wide-1.jpg)` inside the block; the image links to the block's button URL. Prices live in the images and in the placement copy, so a price change means a regenerate plus two sentences per guide. `PARTNER_PLACEMENTS` in `scripts/lib/config.js` switches every placement (lockup, promo, CTA) on or off.
+`npm run banner -- thaw-max` reads `banners/thaw-max.json` (product, prices, offer lines, a reference photo URL) and asks Kie.ai for two options of each square ad (1200×1200): `promo` for the `:::promo` card and `cta` for the `:::cta` block, each with its own headline. A guide shows one with a line holding only `![alt](assets/banners/thaw-max-promo-1.jpg)` inside the block; the page lays the square beside the copy and links it to the block's button URL. `wide` (21:9) is still available for email headers. Prices live in the images and in the placement copy, so a price change means a regenerate plus two sentences per guide. `PARTNER_PLACEMENTS` in `scripts/lib/config.js` switches every placement (lockup, promo, CTA) on or off.
 
 ## Security
 
@@ -119,6 +119,10 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 - **Honeypot:** every form carries a hidden `website` field. If a bot fills it, the function answers "ok" and does nothing.
 - **Secrets:** `.env` is gitignored; keys live only in Netlify's environment (marked secret).
 - Dependencies: one (`@netlify/blobs`), `npm audit` clean.
+
+## URLs
+
+Guide pages are served at `/guide-<slug>` with no extension (Netlify serves `guide-<slug>.html` there); `site/_redirects` sends the `.html` addresses and `/index.html` to the clean forms with a 301. Canonical, Open Graph, JSON-LD, directory cards, share links and the Beehiiv embed all use the clean form. `npm run dev` resolves clean URLs the same way.
 
 ## Gate behaviour
 

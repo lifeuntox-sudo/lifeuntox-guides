@@ -1,12 +1,32 @@
 {
   "_comment": "Single source of truth for the header and footer of guides.lifeuntox.com. Copied from the live Beehiiv site (lifeuntox.com) on 2026-09-12 after the footer redesign; Beehiiv is the source of truth, this file follows it. Relative hrefs are on the guide site; absolute ones go to lifeuntox.com. No target attributes anywhere: same-tab navigation so the two sites feel like one.",
-  "logo": { "src": "assets/lifeuntox-header-logo.png", "href": "https://lifeuntox.com/", "alt": "Lifeuntox", "width": 1000, "height": 208 },
+  "logo": {
+    "src": "assets/lifeuntox-header-logo.png",
+    "href": "https://lifeuntox.com/",
+    "alt": "Lifeuntox",
+    "width": 1000,
+    "height": 208
+  },
   "primary": [
-    { "label": "Read",         "href": "https://lifeuntox.com/archive" },
-    { "label": "Guides",       "href": "/", "current": true },
-    { "label": "Testimonials", "href": "https://lifeuntox.com/" }
+    {
+      "label": "Read",
+      "href": "https://lifeuntox.com/archive"
+    },
+    {
+      "label": "Guides",
+      "href": "/",
+      "current": true
+    },
+    {
+      "label": "Testimonials",
+      "href": "https://lifeuntox.com/"
+    }
   ],
-  "cta": { "label": "Subscribe", "href": "https://lifeuntox.com/subscribe", "icon": "arrow-square-in" },
+  "cta": {
+    "label": "Subscribe",
+    "href": "https://lifeuntox.com/subscribe",
+    "icon": "arrow-square-in"
+  },
   "footer": {
     "cta": {
       "icon": "leaf",
@@ -18,29 +38,89 @@
       "action": "/.netlify/functions/subscribe"
     },
     "columns": [
-      { "title": "Read", "links": [
-        { "label": "Newsletter",  "href": "https://lifeuntox.com/archive" },
-        { "label": "Free guides", "href": "/" },
-        { "label": "Recalls",     "href": "https://lifeuntox.com/archive" }
-      ]},
-      { "title": "About", "links": [
-        { "label": "Our mission",           "href": "https://lifeuntox.com/" },
-        { "label": "How we research",       "href": "https://lifeuntox.com/" },
-        { "label": "Advertise",             "href": "https://lifeuntox.com/" },
-        { "label": "support@lifeuntox.com", "href": "mailto:support@lifeuntox.com" }
-      ]},
-      { "title": "Community", "links": [
-        { "label": "Instagram",      "href": "https://www.instagram.com/lifeuntox/" },
-        { "label": "The Untox Club", "href": "https://lifeuntox.com/" }
-      ]}
+      {
+        "title": "Read",
+        "links": [
+          {
+            "label": "Newsletter",
+            "href": "https://lifeuntox.com/archive"
+          },
+          {
+            "label": "Free guides",
+            "href": "/"
+          }
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          {
+            "label": "Our mission",
+            "href": "https://lifeuntox.com/about-us"
+          },
+          {
+            "label": "How we research",
+            "href": "https://lifeuntox.com/about-us"
+          },
+          {
+            "label": "support@lifeuntox.com",
+            "href": "mailto:support@lifeuntox.com"
+          }
+        ]
+      },
+      {
+        "title": "Community",
+        "links": [
+          {
+            "label": "Join The Community",
+            "href": "https://www.facebook.com/groups/theuntoxclub/"
+          }
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          {
+            "label": "Terms & Conditions",
+            "href": "https://lifeuntox.com/terms-and-conditions"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "https://lifeuntox.com/privacy-policy"
+          }
+        ]
+      }
     ],
-    "logo": { "src": "assets/lifeuntox-header-logo.png", "href": "https://lifeuntox.com/", "alt": "Lifeuntox", "width": 1000, "height": 208 },
+    "logo": {
+      "src": "assets/lifeuntox-header-logo.png",
+      "href": "https://lifeuntox.com/",
+      "alt": "Lifeuntox",
+      "width": 1000,
+      "height": 208
+    },
     "social": [
-      { "label": "X",         "href": "https://x.com/lifeuntoxdaily",            "icon": "x" },
-      { "label": "Facebook",  "href": "https://www.facebook.com/Lifeuntox/",     "icon": "facebook" },
-      { "label": "Instagram", "href": "https://www.instagram.com/lifeuntox/",    "icon": "instagram" },
-      { "label": "TikTok",    "href": "https://www.tiktok.com/@lifeuntox",       "icon": "tiktok" }
+      {
+        "label": "X",
+        "href": "https://x.com/lifeuntoxdaily",
+        "icon": "x"
+      },
+      {
+        "label": "Facebook",
+        "href": "https://www.facebook.com/Lifeuntox/",
+        "icon": "facebook"
+      },
+      {
+        "label": "Instagram",
+        "href": "https://www.instagram.com/lifeuntox/",
+        "icon": "instagram"
+      },
+      {
+        "label": "TikTok",
+        "href": "https://www.tiktok.com/@lifeuntox",
+        "icon": "tiktok"
+      }
     ],
-    "legal": "Lifeuntox is for education, not medical advice. Every claim links to its source. Some links are affiliate links; they never change what we recommend."
+    "legal": "Lifeuntox is for education, not medical advice. Every claim links to its source. Some links are affiliate links; they never change what we recommend.",
+    "copyright": "© 2026 Lifeuntox. All Rights Reserved."
   }
 }

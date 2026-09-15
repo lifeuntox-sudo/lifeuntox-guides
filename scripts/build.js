@@ -73,7 +73,7 @@ function moreGuides(fm, guides, pages) {
     list = others.sort((a, b) => shared(b) - shared(a) || (b.cat === fm.cat) - (a.cat === fm.cat) || (b.reads || 0) - (a.reads || 0));
   }
   return list.slice(0, 4).map(g => {
-    const href = pages.has(g.slug) ? `guide-${g.slug}.html` : `index.html?code=${encodeURIComponent(g.code)}`;
+    const href = pages.has(g.slug) ? `/guide-${g.slug}` : `/?code=${encodeURIComponent(g.code)}`;
     const d = deriveCover(g.cover);
     const mini = d
       ? `<div class="mini has-cover"><img src="${escAttr(d.small)}" width="${d.smallWidth}" height="${d.smallHeight}" alt="" loading="lazy" decoding="async"></div>`
@@ -112,7 +112,7 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
   const art = renderArticle(d.body, fm);
   const readMin = Math.max(1, Math.round(art.words / WORDS_PER_MINUTE));
   const updated = fm.updated || fm.added;
-  const pageUrl = `${SITE_URL}/guide-${d.slug}.html`;
+  const pageUrl = `${SITE_URL}/guide-${d.slug}`;   // clean URL; the .html form redirects (site/_redirects)
   const derived = deriveCover(g.cover);
   const ogImage = derived ? `${SITE_URL}/${derived.full}` : g.cover ? `${SITE_URL}/${g.cover}` : `${SITE_URL}/assets/lifeuntox-logo.png`;
   const jsonld = {
