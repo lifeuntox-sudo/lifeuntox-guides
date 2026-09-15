@@ -19,6 +19,7 @@
 
 const { PARTNER_PLACEMENTS } = require('./config');
 const { imageSize } = require('./images');
+const LOGO = imageSize('assets/notoxchef-logo.png') || { width: 512, height: 512 };   // the NOTOXCHEF logo shown in the promo mark
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => esc(s).replace(/"/g, '&quot;');
 
@@ -170,7 +171,10 @@ function renderBlock(n, ctx) {
       const { rest: afterButton, label, url } = splitButton(c);
       const href = url || ctx.partner1 || 'https://notoxchef.com';
       const { rest, ad } = splitBanner(afterButton, href);
-      return `<div class="promo${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}<div class="mark">NOTOXCHEF<small>Official partner</small></div>\n${renderNodes(rest, ctx)}\n` +
+      const mark = ad
+        ? `<div class="mark"><img src="assets/notoxchef-logo.png" alt="NOTOXCHEF" width="${LOGO.width}" height="${LOGO.height}" loading="lazy" decoding="async"><small>Official partner of Lifeuntox</small></div>`
+        : `<div class="mark">NOTOXCHEF<small>Official partner</small></div>`;
+      return `<div class="promo${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${mark}\n${renderNodes(rest, ctx)}\n` +
         `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF')}</a>\n</div>`;
     }
     case 'cta': {

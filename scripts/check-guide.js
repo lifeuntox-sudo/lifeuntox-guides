@@ -141,7 +141,16 @@ async function checkGuide(slug, net) {
   const walk = (ns, f) => ns.forEach(n => { f(n); if (n.children) walk(n.children, f); });
   walk(nodes, n => { if (n.type === 'image' && !/^https?:\/\//i.test(n.src) && !fs.existsSync(path.join(SITE_DIR, n.src))) fail(`image file missing: site/${n.src}`, L(n.line)); });
 
-  // placements
+  // placements: every paragraph in :::promo and :::cta must fit in two lines (about 150 characters at the article width)
+  const MAX_PLACEMENT_PARA = 150;
+  nodes.forEach(n => {
+    if (n.type === 'block' && (n.name === 'promo' || n.name === 'cta')) (n.children || []).forEach(ch => {
+      if (ch.type !== 'para') return;
+      const plain = ch.text.replace(/\[([^\]]*)\]\([^)]*\)/g, '$1').replace(/[*_]/g, '');
+      if (/^\[[^\]]+\]\([^)\s]+\)$/.test(ch.text.trim())) return;   // the button line
+      if (plain.length > MAX_PLACEMENT_PARA) fail(`:::${n.name} paragraph is ${plain.length} characters; placement copy is spaced out in paragraphs of two lines at most (${MAX_PLACEMENT_PARA})`, L(n.line));
+    });
+  });
   const promos = seq.filter(s => s === 'promo').length, ctas = seq.filter(s => s === 'cta').length;
   if (promos !== 1 || ctas !== 1) fail(`NOTOXCHEF placements: found ${promos} :::promo and ${ctas} :::cta (need exactly one of each)`);
   nodes.forEach(n => {

@@ -41,7 +41,13 @@ The fix is not to give up beef. The fix is to read the pack like an inspector an
 
 :::promo
 ![NOTOXCHEF Thaw Max Defrosting Tray: your microwave is ruining good meat. $60 today, $159 when the sale ends.](assets/banners/thaw-max-promo-1.jpg)
-Picture tonight. The steak you chose so carefully is still a brick at six, so it goes in the microwave and comes out grey at the edges and frozen in the middle. Thaw Max ends that for good: a slab of plain aluminum, no coating, no cord, that pulls the cold out of meat in the fridge far faster than any plate. $60 today, $159 when the sale ends, and 60 days to send it back if it does not earn its place.
+Picture tonight. The steak you chose so carefully is still a brick at six.
+
+So it goes in the microwave, and comes out grey at the edges and frozen in the middle.
+
+Thaw Max ends that for good: a slab of plain aluminum, no coating, no cord, that pulls the cold out in the fridge far faster than any plate.
+
+$60 today, $159 when the sale ends. 60 days to send it back if it does not earn its place.
 
 [Claim the sale price](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::
@@ -116,11 +122,21 @@ A butcher who buys whole cuts from a named packer can answer all three in a minu
 
 :::cta You just learned to buy better beef. Do not ruin it in the microwave.
 ![NOTOXCHEF Thaw Max Defrosting Tray: thaw it clean, never microwave again. $60 today, $159 when the sale ends.](assets/banners/thaw-max-cta-1.jpg)
-Here is the quiet truth about frozen meat. The microwave does not thaw it, it starts cooking it. The edges turn grey and tough while the centre stays ice, and the beef you paid extra for ends up chewy. The counter is worse: hours at room temperature are exactly what bacteria wait for.
+Here is the quiet truth about frozen meat. The microwave does not thaw it, it starts cooking it.
 
-Thaw Max is the third way. A slim slab of plain aluminum with a black finish, no coating, no cord, nothing that can leach into your food, which is why it passes the Lifeuntox Standard. Lay tonight's steak on it in the fridge and the metal draws the cold out far faster than a plate ever could, so dinner is ready when you are.
+The edges turn grey and tough while the centre stays ice, and the beef you paid extra for ends up chewy.
 
-Right now it is $60 instead of $159, and that price goes when the sale ends. The risk sits with NOTOXCHEF, not you: 60 days to return it for a full refund, and a lifetime warranty after that. Order it today, and the next steak you buy gets the thaw it deserves.
+The counter is worse: hours at room temperature are exactly what bacteria wait for.
+
+Thaw Max is the third way: a slim slab of plain aluminum, no coating, no cord, nothing that can leach into your food.
+
+That is why it passes the Lifeuntox Standard. Lay tonight's steak on it in the fridge and the metal pulls the cold out far faster than a plate.
+
+Right now it is $60 instead of $159, and that price goes when the sale ends.
+
+The risk sits with NOTOXCHEF, not you: 60 days to return it for a full refund, and a lifetime warranty after that.
+
+Order it today, and the next steak you buy gets the thaw it deserves.
 
 [Get the Thaw Max for $60](https://notoxchef.com/products/thaw-max-defrosting-tray?variant=55005333553479)
 :::

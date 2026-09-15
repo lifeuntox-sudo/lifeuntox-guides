@@ -66,17 +66,16 @@
   .promo .mark small{font-weight:300;display:block;color:var(--ink-mute);font-size:12px;letter-spacing:0;}
   .promo p{margin:0;font-size:15.5px;}
   .promo .btn{min-height:40px;padding:0 16px;font-size:14px;}
-  /* Square ad: on desktop it floats left at its natural size and the copy wraps round it; on phones it sits on top, full width. */
-  .promo .ad{display:block;}
+  /* Square ad first, full width, then the partner mark, the copy and the button under it (same on every screen). */
+  .promo.has-ad{display:block;}
+  .promo.has-ad .ad{display:block;margin:-18px -20px 18px;}
   .promo .ad img,.cta .ad img{display:block;width:100%;height:auto;}
-  @media (min-width:601px){
-    .promo.has-ad{display:block;}
-    .promo.has-ad::after{content:"";display:block;clear:both;}
-    .promo.has-ad .ad{float:left;width:220px;margin:-18px 20px -18px -20px;}
-    .promo.has-ad .mark{margin:0 0 8px;}
-    .promo.has-ad p{margin:0 0 14px;}
-  }
-  @media (max-width:600px){.promo,.promo.has-ad{grid-template-columns:1fr;}.promo .ad{margin:-18px -20px 4px;}}
+  .promo.has-ad .mark{display:flex;align-items:center;gap:12px;margin:0 0 12px;white-space:normal;}
+  .promo .mark img{display:block;height:26px;width:auto;}
+  .promo.has-ad .mark small{display:block;}
+  .promo.has-ad p{margin:0 0 12px;max-width:60ch;}
+  .promo.has-ad .btn{margin-top:4px;}
+  @media (max-width:600px){.promo{grid-template-columns:1fr;}}
 
   /* body */
   .body{max-width:var(--measure);padding:36px 0 0;font-size:18px;font-weight:300;}
@@ -106,12 +105,8 @@
   .cta .btn{background:var(--gold);color:#fff;}
   .cta .btn:hover{background:#b9961f;}
   .cta small{display:block;margin-top:10px;font-size:13px;color:rgba(255,255,255,.65);}
-  .cta.has-ad .ad{display:block;}
-  @media (min-width:601px){
-    .cta.has-ad::after{content:"";display:block;clear:both;}
-    .cta.has-ad .ad{float:left;width:280px;margin:-28px 26px -28px -28px;border-radius:2px 0 0 2px;overflow:hidden;}
-  }
-  @media (max-width:600px){.cta.has-ad .ad{margin:-28px -28px 20px;}}
+  .cta.has-ad .ad{display:block;margin:-28px -28px 24px;border-radius:2px 2px 0 0;overflow:hidden;}
+  .cta.has-ad p{max-width:60ch;}
   .sources{font-size:15px;color:var(--ink-soft);}
   .sources li{margin-bottom:6px;}
   .fine{font-size:13.5px;color:var(--ink-mute);margin:40px 0 0;}

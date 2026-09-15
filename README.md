@@ -109,7 +109,7 @@ The prompt is built from the guide's frontmatter (`title`, `sub`, `badge`, `cove
 
 ## Partner ads
 
-`npm run banner -- thaw-max` reads `banners/thaw-max.json` (product, prices, offer lines, a reference photo URL) and asks Kie.ai for two options of each square ad (1200×1200): `promo` for the `:::promo` card and `cta` for the `:::cta` block, each with its own headline. A guide shows one with a line holding only `![alt](assets/banners/thaw-max-promo-1.jpg)` inside the block; the page lays the square beside the copy and links it to the block's button URL. `wide` (21:9) is still available for email headers. Prices live in the images and in the placement copy, so a price change means a regenerate plus two sentences per guide. `PARTNER_PLACEMENTS` in `scripts/lib/config.js` switches every placement (lockup, promo, CTA) on or off.
+`npm run banner -- thaw-max` reads `banners/thaw-max.json` (product, prices, offer lines, a reference photo URL) and asks Kie.ai for two options of each square ad (1200×1200): `promo` for the `:::promo` card and `cta` for the `:::cta` block, each with its own headline. A guide shows one with a line holding only `![alt](assets/banners/thaw-max-promo-1.jpg)` inside the block; the page shows the square first at full width, then the copy, and links the image to the block's button URL. In the promo card the mark under the ad is the NOTOXCHEF logo (`site/assets/notoxchef-logo.png`). `wide` (21:9) is still available for email headers. Prices live in the images and in the placement copy, so a price change means a regenerate plus two sentences per guide. `PARTNER_PLACEMENTS` in `scripts/lib/config.js` switches every placement (lockup, promo, CTA) on or off.
 
 ## Security
 
