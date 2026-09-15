@@ -9,6 +9,7 @@ node_modules/
 site/*.html
 site/guides.json
 site/_headers
+site/_redirects
 # Derived cover JPEGs (built from the PNGs at build time)
 site/assets/covers/*.jpg
 

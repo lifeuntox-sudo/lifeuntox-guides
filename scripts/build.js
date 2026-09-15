@@ -165,6 +165,14 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
   return { slug: d.slug, words: art.words, readMin };
 }
 
+// site/_redirects from templates/_redirects plus one permanent redirect per
+// guide from the .html address to the clean /guide-<slug> URL.
+function writeRedirects(slugs) {
+  const tpl = fs.readFileSync(path.join(TEMPLATES_DIR, '_redirects'), 'utf8').replace(/\s+$/, '');
+  const lines = slugs.map(s => `/guide-${s}.html    /guide-${s}    301!`);
+  fs.writeFileSync(path.join(SITE_DIR, '_redirects'), tpl + '\n' + lines.join('\n') + '\n');
+}
+
 // site/_headers from templates/_headers, with the Content Security Policy
 // allowing exactly the inline scripts the build produced (sha256 per script).
 function writeHeaders() {
@@ -219,6 +227,8 @@ function build() {
   }));
 
   writeHeaders();
+
+  writeRedirects(built.map(b => b.slug));
   for (const b of built) console.log(`  guide-${b.slug}.html  (${b.words} words, ${b.readMin} min)`);
   console.log(`built ${built.length} guide page${built.length === 1 ? '' : 's'} + index.html + guides.json (${guides.length} guides listed, ${indexed} indexed) → site/  [${SITE_URL}]`);
   return { built, guides };

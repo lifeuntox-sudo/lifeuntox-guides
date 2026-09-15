@@ -3,5 +3,3 @@
 # allows a splat at the end of a path, so the build writes one line per guide
 # below this header (site/_redirects is generated; edit this template).
 /index.html          /                301!
-/guide-clean-meat-directory.html    /guide-clean-meat-directory    301!
-/guide-safe-beef-buyers-guide.html    /guide-safe-beef-buyers-guide    301!
