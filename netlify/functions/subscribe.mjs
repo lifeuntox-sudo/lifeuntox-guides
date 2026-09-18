@@ -5,11 +5,18 @@
 //   { email, check: true }   → { ok:true, subscribed:true|false }; only active or
 //                              still-validating subscriptions count.
 // Both modes share one Netlify rate limit (the Free plan allows two code-based
-// rules per project; phone-save uses the other). Env: BEEHIIV_API_KEY, BEEHIIV_PUB_ID.
+// rules per project; phone-save uses the other). Env: BEEHIIV_API_KEY, BEEHIIV_PUB_ID,
+// BEEHIIV_AUTOMATION_IDS (comma-separated aut_… ids; every automation listed must
+// carry the "Add by API" trigger in Beehiiv, or Beehiiv ignores it). Subscribers
+// created through the API do not fire Beehiiv's "signup" trigger, so this is how
+// guide-site signups enter the onboarding automations.
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 const { jsonResponse: json, readJson, isBot, allowedOrigin, beehiiv, beehiivGet, cleanSlug, referrer, EMAIL_RE } = require('./lib/beehiiv.js');
 const { rateLimit } = require('./lib/ratelimit.js');
+
+// Automations to enrol every new subscriber in (see the note above).
+const AUTOMATION_IDS = String(process.env.BEEHIIV_AUTOMATION_IDS || '').split(',').map(s => s.trim()).filter(s => /^aut_[0-9a-f-]{36}$/.test(s));
 
 export const config = {
   path: '/.netlify/functions/subscribe',
@@ -45,7 +52,8 @@ export default async (req) => {
       utm_source: 'guides',
       utm_medium: 'gate',
       utm_campaign: slug || 'library',
-      referring_site: referrer({ headers: req.headers })
+      referring_site: referrer({ headers: req.headers }),
+      ...(AUTOMATION_IDS.length ? { automation_ids: AUTOMATION_IDS } : {})
     });
     if (!r.ok) {
       console.error('beehiiv subscribe failed', r.status, JSON.stringify(r.data));
