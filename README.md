@@ -60,12 +60,13 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | Variable | Used by |
 |---|---|
 | `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` | `netlify/functions/subscribe.mjs` and `phone-save.mjs` |
+| `BEEHIIV_AUTOMATION_IDS` | Comma-separated Beehiiv automation ids (`aut_…`) that every new subscriber from the site is enrolled in. Subscribers created through the API never fire Beehiiv's "signup" trigger, so each listed automation must carry the **Add by API** trigger (published, not just drafted) or Beehiiv ignores it. Currently the six onboarding automations (Day 3 survey nudge, Day 7 Facebook invite, Day 10 SMS ask, Day 14 check-in, 30-day testimonial, anniversaries). |
 | `BEEHIIV_FORM_ACTION` (optional) | An https URL to post gate emails to instead of the subscribe function. Leave empty to use the function. |
 | `BEEHIIV_PHONE_FIELD`, `BEEHIIV_SMS_CONSENT_FIELD` (optional) | Custom field names phone-save writes to. Defaults `phone`, `sms_consent`. |
 | `KIE_API_KEY` | `scripts/make-cover.js`, `scripts/make-banner.js` |
 | `SITE_URL` (optional) | Canonical / Open Graph / JSON-LD URLs. Netlify's own `URL` is used when unset. |
 
-Set the same variables in Netlify → Site configuration → Environment variables. On Netlify only `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` and `SITE_URL` are needed: covers are generated on your machine, so `KIE_API_KEY` stays local.
+Set the same variables in Netlify → Site configuration → Environment variables. On Netlify only `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID`, `BEEHIIV_AUTOMATION_IDS` and `SITE_URL` are needed: covers are generated on your machine, so `KIE_API_KEY` stays local.
 
 ## Hosting and DNS
 

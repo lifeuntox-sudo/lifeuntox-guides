@@ -163,7 +163,7 @@ templates/cover-reference.png  the approved house-style cover; make-cover sends 
 scripts/check-guide.js lint                 npm run check -- <slug>
 site/assets/partner-notoxchef.png  the NOTOXCHEF × Lifeuntox lockup shown in every guide header (replaces the text pill)
 scripts/dev.js        local preview with functions   npm run dev  → http://localhost:8888
-netlify/functions/    subscribe.mjs (gate, directory strip and footer box post here → Beehiiv API v2; {check:true} = "Already a subscriber?")
+netlify/functions/    subscribe.mjs (gate, directory strip and footer box post here → Beehiiv API v2 with automation_ids from BEEHIIV_AUTOMATION_IDS; {check:true} = "Already a subscriber?")
                       phone-save.mjs (Beehiiv custom fields, E.164 check, one number per subscriber via Netlify Blobs)
                       lib/beehiiv.js (shared helper, not a function)
 ```
@@ -220,4 +220,5 @@ Ads are **square, 1:1, 1200×1200**, never wide banners. On every screen size th
 - Do not change the design tokens or the page layout. The mockup's look is canonical.
 - Search behaviour on the directory page (typo correction, synonyms, multi-topic OR filters, chips, sticky toolbar, live region, URL state, full-text snippets) lives in `templates/index.html` and must not be altered by a refactor.
 - Definition of done for any round: (1) the footer matches the live lifeuntox.com footer (re-copy it into `nav.json` first), (2) every guide URL is clean (`/guide-<slug>`), (3) placement copy meets the standard above, (4) ads are square, (5) the directory search finds each guide by its comment word (`code`), by its tags and category, and by words in its body text; test all three after every content change.
+- API-created subscribers never fire Beehiiv's "signup" automation trigger. The subscribe function passes `automation_ids` (env `BEEHIIV_AUTOMATION_IDS`) so they enter the onboarding automations; a new automation that should include site signups needs the **Add by API** trigger published in Beehiiv and its id added to that variable (local .env and Netlify).
 - Beehiiv is the only database. The one derived store is the phone → email index in Netlify Blobs (`netlify/functions/lib/phones.js`), which exists only because Beehiiv cannot look a subscriber up by phone; it can be rebuilt from Beehiiv at any time with `npm run phone-index`.
