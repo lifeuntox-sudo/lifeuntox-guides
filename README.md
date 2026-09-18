@@ -60,7 +60,7 @@ The design system every guide follows, plus the Markdown block syntax, lives in 
 | Variable | Used by |
 |---|---|
 | `BEEHIIV_API_KEY`, `BEEHIIV_PUB_ID` | `netlify/functions/subscribe.mjs` and `phone-save.mjs` |
-| `BEEHIIV_AUTOMATION_IDS` | Comma-separated Beehiiv automation ids (`aut_…`) that every new subscriber from the site is enrolled in. Subscribers created through the API never fire Beehiiv's "signup" trigger, so each listed automation must carry the **Add by API** trigger (published, not just drafted) or Beehiiv ignores it. Currently all seven: the six onboarding automations (Day 3 survey nudge, Day 7 Facebook invite, Day 10 SMS ask, Day 14 check-in, 30-day testimonial, anniversaries) plus the Instagram lead-magnet welcome. |
+| `BEEHIIV_AUTOMATION_IDS` | Comma-separated Beehiiv automation ids (`aut_…`) that every new subscriber from the site is enrolled in. Subscribers created through the API never fire Beehiiv's "signup" trigger, so each listed automation must carry the **Add by API** trigger (published, not just drafted) or Beehiiv ignores it. Currently the six onboarding automations (Day 3 survey nudge, Day 7 Facebook invite, Day 10 SMS ask, Day 14 check-in, 30-day testimonial, anniversaries). Not the Instagram lead-magnet welcome: site signups already get the publication welcome email, and that automation talks about DMs. |
 | `BEEHIIV_FORM_ACTION` (optional) | An https URL to post gate emails to instead of the subscribe function. Leave empty to use the function. |
 | `BEEHIIV_PHONE_FIELD`, `BEEHIIV_SMS_CONSENT_FIELD` (optional) | Custom field names phone-save writes to. Defaults `phone`, `sms_consent`. |
 | `KIE_API_KEY` | `scripts/make-cover.js`, `scripts/make-banner.js` |
