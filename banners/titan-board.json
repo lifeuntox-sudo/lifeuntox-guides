@@ -1,0 +1,25 @@
+{
+  "brand": "NOTOXCHEF",
+  "product": "Titan Double-Side Titanium Cutting Board",
+  "url": "https://notoxchef.com/discount/UNTOX20?redirect=%2Fproducts%2Ftitan-double-side-titanium-cutting-board%3Fvariant%3D55005332537671",
+  "subject": "the Titan cutting board, a rectangular board with a brushed titanium face, a thin black rim, clipped corners and an oval carry slot at the top, exactly as in the reference image, lying on a cream plaster counter in front of a deep green wall, with a few slices of fresh cucumber and a chef's knife on it.",
+  "match": "same rectangular shape with clipped corners, same brushed silver titanium face, same thin black rim, same oval carry slot near the top edge",
+  "refs": [
+    "https://cdn.shopify.com/s/files/1/1009/3864/5831/files/image_7b6ad07f7200a3cf6a8976543b7aa0d8.png?v=1789343802&width=1600"
+  ],
+  "text": {
+    "kicker": "NOTOXCHEF TITAN TITANIUM CUTTING BOARD",
+    "headline": "Stop chopping on plastic.",
+    "price": "$129",
+    "was": "$240",
+    "save": "SAVE 46%",
+    "urgency": "Code UNTOX20 takes 20% off at checkout.",
+    "button": "Shop with UNTOX20",
+    "footer": "60-day money-back guarantee. Lifetime warranty."
+  },
+  "formats": {
+    "promo": { "headline": "Stop chopping on plastic.", "button": "Shop with UNTOX20" },
+    "cta": { "headline": "A titanium face under every knife.", "button": "Get the Titan board" }
+  },
+  "note": "Titanium face on a composite board. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
+}

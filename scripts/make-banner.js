@@ -62,7 +62,7 @@ function buildPrompt(spec, format, f) {
   const lines = [
     `Digital advertising banner, ${f.aspect} aspect ratio, for the ${spec.brand} ${spec.product}. Clean, modern, editorial style, flat design, no gradients, no textures on the panel.`,
     f.layout,
-    refs.length ? `Product photograph: ${spec.subject} Reproduce the product exactly as it appears in the reference image${refs.length > 1 ? 's' : ''}: same shape, same matte black finish, same shallow grooves, same rounded corners and corner hole. Natural window light, soft shadow.` : `Product photograph: ${spec.subject}`,
+    refs.length ? `Product photograph: ${spec.subject} Reproduce the product exactly as it appears in the reference image${refs.length > 1 ? 's' : ''}: ${spec.match || 'same shape, same finish, same details'}. Natural window light, soft shadow.` : `Product photograph: ${spec.subject}`,
     'All text is in a bold geometric sans-serif typeface (League Spartan style), cream (#faf8f3) unless stated, crisp and perfectly legible, no text over the photograph. From top to bottom on the panel:',
     `1. A small kicker line: "${t.kicker}"`,
     `2. The headline, large, two lines at most: "${t.headline}"`,

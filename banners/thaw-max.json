@@ -10,9 +10,9 @@
     "kicker": "NOTOXCHEF THAW MAX DEFROSTING TRAY",
     "headline": "Thaw meat safely. No microwave.",
     "price": "$60",
-    "was": "$159",
-    "save": "SAVE 62%",
-    "urgency": "$60 today. $159 when the sale ends.",
+    "was": "$161",
+    "save": "SAVE 63%",
+    "urgency": "$60 today. $161 when the sale ends.",
     "button": "Shop the sale",
     "footer": "60-day money-back guarantee. Lifetime warranty."
   },
@@ -26,5 +26,6 @@
       "button": "Get the Thaw Max"
     }
   },
-  "note": "Plain aluminum, no coating, no cord. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
+  "note": "Plain aluminum, no coating, no cord. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%.",
+  "match": "same shape, same matte black finish, same shallow grooves, same rounded corners and corner hole"
 }

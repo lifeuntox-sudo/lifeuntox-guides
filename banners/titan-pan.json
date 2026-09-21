@@ -1,0 +1,25 @@
+{
+  "brand": "NOTOXCHEF",
+  "product": "Titan Titanium Pan",
+  "url": "https://notoxchef.com/discount/UNTOX20?redirect=%2Fproducts%2Ftitan-titanium-pan",
+  "subject": "the Titan hand-hammered titanium frying pan with a long brushed-steel handle and a dimpled hammered cooking surface, exactly as in the reference image, resting on a cream plaster counter in front of a deep green wall, with two fried eggs cooking in it.",
+  "match": "same shape, same brushed silver finish, same hammered dimple pattern inside, same long steel handle",
+  "refs": [
+    "https://cdn.shopify.com/s/files/1/1009/3864/5831/files/notoxchef-pan-base.webp?v=1789333630&format=jpg&width=1600"
+  ],
+  "text": {
+    "kicker": "NOTOXCHEF TITAN TITANIUM PAN",
+    "headline": "No coating. Nothing to flake.",
+    "price": "$118",
+    "was": "$247",
+    "save": "SAVE 52%",
+    "urgency": "Code UNTOX20 takes 20% off at checkout.",
+    "button": "Shop with UNTOX20",
+    "footer": "60-day money-back guarantee. Lifetime warranty."
+  },
+  "formats": {
+    "promo": { "headline": "No coating. Nothing to flake.", "button": "Shop with UNTOX20" },
+    "cta": { "headline": "Cook on titanium. Never nonstick again.", "button": "Get the Titan pan" }
+  },
+  "note": "Pure titanium pan, no nonstick coating. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
+}
