@@ -47,7 +47,7 @@ Think about the plastic board every vegetable in your house is chopped on, and t
 
 Titan is a cutting board with a solid titanium face: no plastic under the knife, no stain, no smell, and it wipes clean in seconds.
 
-$129 today, $240 when the sale ends, and code UNTOX20 takes another 20% off at checkout.
+$169 today, $315 when the sale ends, and code UNTOX20 takes another 20% off at checkout.
 
 [See the Titan board](https://notoxchef.com/discount/UNTOX20?redirect=%2Fproducts%2Ftitan-double-side-titanium-cutting-board%3Fvariant%3D55005332537671)
 :::
@@ -129,7 +129,7 @@ Titan is the other way: a board with a solid titanium face, so the knife meets m
 
 That is why it passes the Lifeuntox Standard. It wipes clean in seconds, never holds a smell, and the carry slot takes it straight to the sink.
 
-Right now it is $129 instead of $240, and code UNTOX20 takes another 20% off at checkout while the sale runs.
+Right now it is $169 instead of $315, and code UNTOX20 takes another 20% off at checkout while the sale runs.
 
 The risk sits with NOTOXCHEF, not you: 60 days to return it for a full refund, then a lifetime warranty.
 

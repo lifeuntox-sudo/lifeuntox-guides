@@ -1,0 +1,25 @@
+{
+  "brand": "NOTOXCHEF",
+  "product": "Titan Titanium Saucepan",
+  "url": "https://notoxchef.com/discount/UNTOX20?redirect=%2Fproducts%2Ftitan-titanium-saucepan",
+  "subject": "the Titan titanium saucepan, a deep round pan with a hand-hammered brushed titanium interior, a long brushed-steel handle and two pouring lips, exactly as in the reference image, on a cream plaster counter in front of a deep green wall, with clear water gently boiling in it.",
+  "match": "same deep round shape, same brushed silver finish, same hammered dimple pattern inside, same long steel handle, same pouring lips",
+  "refs": [
+    "https://cdn.shopify.com/s/files/1/1009/3864/5831/files/image_3e4e573aad65994a392ab4e00a97dba7.png?v=1789343789&width=1600"
+  ],
+  "text": {
+    "kicker": "NOTOXCHEF TITAN TITANIUM SAUCEPAN",
+    "headline": "Boil it in nothing but titanium.",
+    "price": "$129",
+    "was": "$257",
+    "save": "SAVE 50%",
+    "urgency": "Code UNTOX20 takes 20% off at checkout.",
+    "button": "Shop with UNTOX20",
+    "footer": "60-day money-back guarantee. Lifetime warranty."
+  },
+  "formats": {
+    "promo": { "headline": "Boil it in nothing but titanium.", "button": "Shop with UNTOX20" },
+    "cta": { "headline": "No coating. Nothing in your water.", "button": "Get the Titan saucepan" }
+  },
+  "note": "Pure titanium saucepan, no nonstick coating. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
+}

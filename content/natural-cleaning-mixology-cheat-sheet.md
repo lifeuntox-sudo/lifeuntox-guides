@@ -47,7 +47,7 @@ Every scrub lifts a little more of that coating, and the flakes end up in the fo
 
 Titan is hand-hammered titanium with no coating at all. Scrub it, scour it, let the kids wash it. There is nothing on it to come off.
 
-$118 for the everyday size, $247 when the sale ends, and code UNTOX20 takes another 20% off at checkout.
+$155 for the everyday size, $325 when the sale ends, and code UNTOX20 takes another 20% off at checkout.
 
 [See the Titan pan](https://notoxchef.com/discount/UNTOX20?redirect=%2Fproducts%2Ftitan-titanium-pan)
 :::
@@ -123,7 +123,7 @@ Titan is the other way: a hand-hammered titanium pan with no coating to wear off
 
 That is why it passes the Lifeuntox Standard. Warm it gently, add a little oil, and it browns like a proper pan should.
 
-Right now the everyday size is $118 instead of $247, and code UNTOX20 takes another 20% off at checkout while the sale runs.
+Right now the everyday size is $155 instead of $325, and code UNTOX20 takes another 20% off at checkout while the sale runs.
 
 The risk sits with NOTOXCHEF, not you: 60 days to return it for a full refund, then a lifetime warranty.
 

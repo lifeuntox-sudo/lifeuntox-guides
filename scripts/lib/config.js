@@ -14,7 +14,7 @@ const DEFAULT_SITE_URL = 'https://guides.lifeuntox.com';
 // lockup, the :::promo card and the :::cta block (with their banner images).
 // false = all of them are left out; guides keep their :::promo and :::cta
 // blocks in Markdown so they are ready to switch back on with one rebuild.
-const PARTNER_PLACEMENTS = true;
+const PARTNER_PLACEMENTS = false;
 
 // Reads .env (if present) into process.env without overriding values already set.
 function loadEnv() {

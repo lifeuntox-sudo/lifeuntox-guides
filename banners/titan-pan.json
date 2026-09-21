@@ -10,16 +10,22 @@
   "text": {
     "kicker": "NOTOXCHEF TITAN TITANIUM PAN",
     "headline": "No coating. Nothing to flake.",
-    "price": "$118",
-    "was": "$247",
+    "price": "$155",
+    "was": "$325",
     "save": "SAVE 52%",
     "urgency": "Code UNTOX20 takes 20% off at checkout.",
     "button": "Shop with UNTOX20",
     "footer": "60-day money-back guarantee. Lifetime warranty."
   },
   "formats": {
-    "promo": { "headline": "No coating. Nothing to flake.", "button": "Shop with UNTOX20" },
-    "cta": { "headline": "Cook on titanium. Never nonstick again.", "button": "Get the Titan pan" }
+    "promo": {
+      "headline": "No coating. Nothing to flake.",
+      "button": "Shop with UNTOX20"
+    },
+    "cta": {
+      "headline": "Cook on titanium. Never nonstick again.",
+      "button": "Get the Titan pan"
+    }
   },
   "note": "Pure titanium pan, no nonstick coating. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
 }

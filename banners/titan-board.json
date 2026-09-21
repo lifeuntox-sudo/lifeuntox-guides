@@ -10,16 +10,22 @@
   "text": {
     "kicker": "NOTOXCHEF TITAN TITANIUM CUTTING BOARD",
     "headline": "Stop chopping on plastic.",
-    "price": "$129",
-    "was": "$240",
+    "price": "$169",
+    "was": "$315",
     "save": "SAVE 46%",
     "urgency": "Code UNTOX20 takes 20% off at checkout.",
     "button": "Shop with UNTOX20",
     "footer": "60-day money-back guarantee. Lifetime warranty."
   },
   "formats": {
-    "promo": { "headline": "Stop chopping on plastic.", "button": "Shop with UNTOX20" },
-    "cta": { "headline": "A titanium face under every knife.", "button": "Get the Titan board" }
+    "promo": {
+      "headline": "Stop chopping on plastic.",
+      "button": "Shop with UNTOX20"
+    },
+    "cta": {
+      "headline": "A titanium face under every knife.",
+      "button": "Get the Titan board"
+    }
   },
   "note": "Titanium face on a composite board. Keep the panel flat and the type large enough to read at 200 pixels wide on a phone: headline at least 8% of the image height, everything else at least 3%."
 }
