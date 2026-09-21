@@ -1,6 +1,6 @@
 ---
 slug: tox-free-bathroom-swap-guide
-code: BATHROOM           # comment word, searchable, never displayed
+code: SOAP               # comment word, searchable, never displayed
 title: The Tox-Free Bathroom Swap Guide
 sub: 20+ clean alternatives you can buy right now
 deck: The ingredients hiding in everyday bathroom products, 20+ clean swaps across soap, oral care, skin and hair, and the one label rule that catches most of them.

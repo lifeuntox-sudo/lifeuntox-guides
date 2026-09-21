@@ -1,6 +1,6 @@
 ---
 slug: pantry-magic-matrix
-code: PANTRY             # comment word, searchable, never displayed
+code: MAGIC              # comment word, searchable, never displayed
 title: The Pantry Magic Matrix
 sub: 10 clean staples, 20 effortless snacks
 deck: Ten humble pantry staples that combine into twenty clean snacks, the simple formula behind all of them, and a ten-minute Sunday routine that carries you through the week.
