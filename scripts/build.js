@@ -215,10 +215,10 @@ function build() {
   // Publish the directory data at /guides.json (CORS + short cache via site/_headers).
   fs.copyFileSync(guidesDb.FILE, path.join(SITE_DIR, 'guides.json'));
 
-  // Directory data: tags join the keyword pool for search; covers point at the derived JPEGs.
+  // Directory data: tags join the keyword pool for search (lowercased, because the search compares lowercase terms, so a tag like "ADHD" matches); covers point at the derived JPEGs.
   const data = guides.map(g => {
     const d = deriveCover(g.cover);
-    return { ...g, page: pages.has(g.slug), keywords: [...(g.keywords || []), ...(g.tags || [])], cover: d ? d.full : g.cover, coverSmall: d ? d.small : '' };
+    return { ...g, page: pages.has(g.slug), keywords: [...new Set([...(g.keywords || []), ...(g.tags || [])].map(k => String(k).toLowerCase()))], cover: d ? d.full : g.cover, coverSmall: d ? d.small : '' };
   });
   fs.writeFileSync(path.join(SITE_DIR, 'index.html'), fill(tplIndex, {
     GUIDES: jsonForScript(data),
