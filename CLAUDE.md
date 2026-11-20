@@ -193,6 +193,7 @@ netlify/functions/    subscribe.mjs (gate, directory strip and footer box post h
 | `disclosure` | The fine-print line at the end of the article | standard education-not-advice line |
 | `cover_subject` | The one photographic subject make-cover puts on the cover ("a raw free-range whole chicken on a wooden board") | a generic subject for the topic |
 | `cover_note` | Extra direction for make-cover ("less shadow, warmer green") | none |
+| `placements` | `untox`: both `:::promo` and `:::cta` advertise our own Untox app instead of NOTOXCHEF (Untox mark, no commission line, buttons default to https://untox.app/waitlist). Shown even while `PARTNER_PLACEMENTS` is false, because it is not a sponsor. Banner: `assets/banners/untox-app-cta-1.jpg` | NOTOXCHEF |
 
 ### Data precedence
 

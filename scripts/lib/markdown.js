@@ -9,7 +9,8 @@
 //   :::warn Title ... :::        red warning box
 //   :::checks A | B | C          one-line verified-attribute pills
 //   :::buy ... :::               where to buy
-//   :::promo ... :::             NOTOXCHEF placement 1 (last line "[label](url)" = button)
+//   :::promo ... :::             NOTOXCHEF placement 1 (last line "[label](url)" = button);
+//                                with frontmatter `placements: untox` both placements advertise the Untox app
 //   :::table ... :::             wraps a Markdown table
 //   :::protocol ... :::          numbered action steps (no wrapper element)
 //   :::cta Title ... :::         NOTOXCHEF placement 2 (last line "[label](url)" = button)
@@ -20,6 +21,7 @@
 const { PARTNER_PLACEMENTS } = require('./config');
 const { imageSize } = require('./images');
 const LOGO = imageSize('assets/notoxchef-logo.png') || { width: 512, height: 512 };   // the NOTOXCHEF logo shown in the promo mark
+const APP_WAITLIST = 'https://untox.app/waitlist';   // default button for guides with `placements: untox`
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => esc(s).replace(/"/g, '&quot;');
 
@@ -167,24 +169,31 @@ function renderBlock(n, ctx) {
     case 'checks': return `<div class="checks">${n.items.map(i => `<span>${inline(i)}</span>`).join('')}</div>`;
     case 'buy': return `<div class="buy"><b>Where to buy:</b> ${body(c, ctx)}</div>`;
     case 'promo': {
-      if (ctx.partner === false) return '';
+      if (!ctx.app && ctx.partner === false) return '';
       const { rest: afterButton, label, url } = splitButton(c);
-      const href = url || ctx.partner1 || 'https://notoxchef.com';
+      const href = url || ctx.partner1 || (ctx.app ? APP_WAITLIST : 'https://notoxchef.com');
       const { rest, ad } = splitBanner(afterButton, href);
-      const mark = ad
+      const mark = ctx.app
+        ? `<div class="mark">Untox<small>The Lifeuntox app</small></div>`
+        : ad
         ? `<div class="mark"><img src="assets/notoxchef-logo.png" alt="NOTOXCHEF" width="${LOGO.width}" height="${LOGO.height}" loading="lazy" decoding="async"><small>Official partner of Lifeuntox</small></div>`
         : `<div class="mark">NOTOXCHEF<small>Official partner</small></div>`;
-      return `<div class="promo${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${mark}\n${renderNodes(rest, ctx)}\n` +
-        `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF')}</a>\n</div>`;
+      // Several paragraphs without an ad stack like the ad layout instead of the one-line grid.
+      const stacked = ad || rest.length > 1;
+      return `<div class="promo${stacked ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${mark}\n${renderNodes(rest, ctx)}\n` +
+        `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || (ctx.app ? 'Join the Untox waitlist' : 'Shop NOTOXCHEF'))}</a>\n</div>`;
     }
     case 'cta': {
-      if (ctx.partner === false) return '';
+      if (!ctx.app && ctx.partner === false) return '';
       const { rest: afterButton, label, url } = splitButton(c);
-      const href = url || ctx.partner2 || 'https://notoxchef.com';
+      const href = url || ctx.partner2 || (ctx.app ? APP_WAITLIST : 'https://notoxchef.com');
       const { rest, ad } = splitBanner(afterButton, href);
+      const note = ctx.app
+        ? 'Untox is built by the Lifeuntox team. Joining the waitlist is free.'
+        : 'Lifeuntox earns a commission on partner sales. It never changes what we recommend.';
       return `<div class="cta${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
-        `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF cookware')}</a>\n` +
-        `<small>Lifeuntox earns a commission on partner sales. It never changes what we recommend.</small>\n</div>`;
+        `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || (ctx.app ? 'Join the Untox waitlist' : 'Shop NOTOXCHEF cookware'))}</a>\n` +
+        `<small>${note}</small>\n</div>`;
     }
     case 'table':
     case 'protocol': return renderNodes(c, ctx);
@@ -199,7 +208,9 @@ const textOf = html => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').repl
 function renderArticle(md, fm = {}) {
   const nodes = parseBlocks(md.split(/\r?\n/));
   const gi = nodes.findIndex(n => n.type === 'gate');
-  const ctx = { lastH2: null, partner: PARTNER_PLACEMENTS, partner1: fm.partner_product_1, partner2: fm.partner_product_2 };
+  // placements: untox → both blocks advertise our own Untox app (always shown; the sponsor switch does not apply).
+  const app = String(fm.placements || '').toLowerCase() === 'untox';
+  const ctx = { lastH2: null, partner: PARTNER_PLACEMENTS, app, partner1: fm.partner_product_1, partner2: fm.partner_product_2 };
   const pre = renderNodes(gi < 0 ? nodes : nodes.slice(0, gi), ctx);
   const post = gi < 0 ? '' : renderNodes(nodes.slice(gi + 1), ctx);
   const text = textOf(pre + ' ' + post);
