@@ -1,6 +1,6 @@
 ---
 slug: hidden-corn-and-soy-pantry-audit
-code: CORN               # comment word, searchable, never displayed
+code: CORN               # comment word, searchable, never displayed (confirmed 2026-11-20)
 title: The Hidden Corn and Soy Pantry Audit
 sub: The 28 names they hide behind, and a clean swap for each
 deck: Corn and soy rarely say their own names on a label. Learn the 28 names they use instead, swap the 16 products where they hide most, and run the whole audit in one pass.

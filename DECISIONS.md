@@ -212,7 +212,7 @@ Your note "for next time" is recorded as a standing rule set (CLAUDE.md, "Defini
 
 ## Round 18 (2026-11-20): the Hidden Corn and Soy Pantry Audit
 
-1. **One guide from the Word checklist**, in the Food topic. No comment word came with the request, so it ships with **CORN** as a provisional word; changing it is one line of frontmatter and a rebuild.
+1. **One guide from the Word checklist**, in the Food topic, with the comment word **CORN** (proposed with the guide, confirmed by you the same day).
 2. **Both calls to action go to the Untox app waitlist** (untox.app/waitlist), as you asked, instead of NOTOXCHEF cookware. A new frontmatter field, `placements: untox`, switches a guide's `:::promo` and `:::cta` to the app: an "Untox, the Lifeuntox app" mark instead of the NOTOXCHEF logo, no commission line, and the blocks show even though sponsor placements are off site-wide (Untox is ours, not a sponsor). Every other guide is unchanged.
 3. **The CTA banner is the square image you supplied** ("Add it. Grade it. Swap it."), saved as `site/assets/banners/untox-app-cta-1.jpg` at its native 1080×1080. The promo is text only.
 4. **Waitlist facts come from the live waitlist page** (read 2026-11-20): early access opens Tuesday, November 24 at 7 am PST, 1,000 Founding spots, 24 hours for waitlist members first, a waitlist-only bonus revealed at launch. The Founding lifetime price comes from the checklist itself; the page does not mention it. The bonus is not named on the page, because the waitlist page says it will be revealed at launch. **This copy goes stale after November 25** and needs a rewrite once the beta is open.
