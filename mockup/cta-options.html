@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Untox CTA box options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+  /* Site tokens (guide.html) */
+  :root{--ink:#1a1a1a;--ink-soft:#5f5f5c;--ink-mute:#8d8a80;--forest:#1a4a1a;--moss:#2d5a2d;--leaf:#7cb342;--paper:#faf8f3;--paper-2:#f5f2ea;--line:#e2ded1;--gold:#a8871c;--red:#8b2c2c;
+    /* Untox brand, sampled from the banner */
+    --ux:#147967;--ux-deep:#0d4f43;--ux-ink:#0b2b25;--lime:#d1ef84;--lime-2:#e6f7b9;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font:300 18px/1.6 'League Spartan',system-ui,sans-serif;}
+  .opt{max-width:680px;margin:0 auto;padding:48px 20px 56px;border-bottom:1px solid var(--line);}
+  .opt-h{font:600 15px/1.2 'League Spartan';letter-spacing:.06em;color:var(--ink-mute);margin:0 0 4px}
+  .opt-h b{color:var(--forest);font-size:26px;letter-spacing:0;margin-right:8px}
+  .opt-d{font-size:15px;color:var(--ink-soft);margin:0 0 26px}
+  .art p{margin:0 0 16px;color:var(--ink)}
+  .art h2{font:600 26px/1.2 'League Spartan';color:var(--forest);margin:28px 0 10px}
+  .gap{height:6px}
+  a{color:inherit}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 24px;font-weight:700;text-decoration:none;border-radius:999px;font-size:16px;cursor:pointer}
+  .ad img{display:block;width:100%;height:auto}
+  .arrow::after{content:"→";font-weight:700}
+  ul.offer{list-style:none;padding:0;margin:0 0 18px}
+  ul.offer li{display:flex;gap:10px;align-items:flex-start;margin:0 0 8px;font:600 15.5px/1.4 'Plus Jakarta Sans'}
+  ul.offer li::before{content:"";flex:0 0 20px;height:20px;border-radius:50%;margin-top:1px;background:var(--lime) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%230b2b25' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+  .note{display:block;font-size:13px;margin-top:12px;opacity:.75}
+  @media (max-width:600px){body{font-size:17px}}
+
+  /* ---------- 1. App card ---------- */
+  .o1 .promo{background:#fff;border:2px solid var(--ux);border-radius:22px;padding:22px 24px;margin:30px 0;box-shadow:0 10px 30px -12px rgba(20,121,103,.35)}
+  .o1 .head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .o1 .icon{width:44px;height:44px;border-radius:12px;background:url(../site/assets/banners/untox-mascot.jpg) center/cover;flex:0 0 44px}
+  .o1 .head b{display:block;font:800 18px/1.1 'Plus Jakarta Sans';color:var(--ux-ink)}
+  .o1 .head small{font:500 13px/1.2 'Plus Jakarta Sans';color:var(--ux)}
+  .o1 .promo p{font:400 16px/1.55 'Plus Jakarta Sans';margin:0 0 10px;color:#2a3a36}
+  .o1 .btn{background:var(--lime);color:var(--ux-ink);margin-top:6px;font-family:'Plus Jakarta Sans'}
+  .o1 .cta{background:var(--ux);border-radius:26px;padding:14px 14px 28px;margin:36px 0;color:#fff}
+  .o1 .cta .ad img{border-radius:16px}
+  .o1 .cta .in{padding:20px 14px 0}
+  .o1 .cta h3{font:800 25px/1.2 'Plus Jakarta Sans';margin:0 0 12px}
+  .o1 .cta p{font:400 16px/1.55 'Plus Jakarta Sans';color:rgba(255,255,255,.88);margin:0 0 12px}
+  .o1 .cta .note{font-family:'Plus Jakarta Sans';color:#cfe9e2}
+
+  /* ---------- 2. Full teal, breaks the column ---------- */
+  .o2 .promo,.o2 .cta{background:var(--ux);color:#fff;border-radius:28px;margin:40px -32px;position:relative}
+  .o2 .promo{padding:30px 200px 30px 36px;overflow:visible}
+  .o2 .promo .toxy{position:absolute;right:-6px;top:-34px;width:200px;height:175px;background:url(../site/assets/banners/untox-mascot.jpg) center/cover;border-radius:24px;transform:rotate(4deg);box-shadow:0 14px 28px -10px rgba(0,0,0,.35)}
+  .o2 .kick{font:700 13px/1 'Plus Jakarta Sans';letter-spacing:.08em;color:var(--lime);margin:0 0 12px}
+  .o2 .promo p,.o2 .cta p{font:400 16.5px/1.55 'Plus Jakarta Sans';color:rgba(255,255,255,.9);margin:0 0 10px}
+  .o2 .promo p.kick{font:700 13px/1 'Plus Jakarta Sans';letter-spacing:.08em;color:var(--lime);margin:0 0 12px}
+  .o2 .btn{background:var(--lime);color:var(--ux-ink);font-family:'Plus Jakarta Sans';margin-top:8px}
+  .o2 .cta{overflow:hidden;padding-bottom:34px}
+  .o2 .cta .in{padding:28px 40px 0}
+  .o2 .cta h3{font:800 28px/1.15 'Plus Jakarta Sans';margin:0 0 14px}
+  .o2 .note{font-family:'Plus Jakarta Sans';color:#bfe3da}
+  @media (max-width:760px){.o2 .promo,.o2 .cta{margin-left:-20px;margin-right:-20px;border-radius:0}.o2 .promo{padding:150px 22px 28px}.o2 .promo .toxy{left:22px;right:auto;top:-24px;width:150px;height:131px}.o2 .cta .in{padding:24px 22px 0}}
+
+  /* ---------- 3. Lime pop ---------- */
+  .o3 .promo{background:var(--lime);color:var(--ux-ink);border-radius:20px;padding:26px 28px;margin:32px 0;position:relative}
+  .o3 .tag{display:inline-block;background:var(--ux-ink);color:var(--lime);font:700 12px/1 'Plus Jakarta Sans';letter-spacing:.06em;padding:7px 11px;border-radius:999px;margin-bottom:14px}
+  .o3 .promo p{font:500 16.5px/1.55 'Plus Jakarta Sans';margin:0 0 10px}
+  .o3 .promo p:first-of-type{font:800 21px/1.3 'Plus Jakarta Sans'}
+  .o3 .btn{background:var(--ux-ink);color:var(--lime);font-family:'Plus Jakarta Sans';margin-top:8px}
+  .o3 .cta{background:var(--lime);color:var(--ux-ink);border-radius:24px;padding:30px;margin:36px 0}
+  .o3 .cta .frame{background:var(--ux-ink);padding:10px;border-radius:20px;transform:rotate(-1.5deg);margin:0 6px 26px;box-shadow:0 18px 30px -16px rgba(11,43,37,.6)}
+  .o3 .cta .frame img{border-radius:12px}
+  .o3 .cta h3{font:800 28px/1.15 'Plus Jakarta Sans';margin:0 0 14px}
+  .o3 .cta p{font:500 16.5px/1.55 'Plus Jakarta Sans';margin:0 0 12px}
+  .o3 ul.offer li::before{background-color:#fff}
+
+  /* ---------- 4. Founding ticket ---------- */
+  .o4 .ticket{--hole:var(--paper);position:relative;background:#fff;border-radius:18px;margin:34px 0;filter:drop-shadow(0 8px 18px rgba(0,0,0,.12));
+    -webkit-mask:radial-gradient(circle 14px at 0 var(--cut),#0000 98%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle 14px at 100% var(--cut),#0000 98%,#000) 100% 0/51% 100% no-repeat;
+            mask:radial-gradient(circle 14px at 0 var(--cut),#0000 98%,#000) 0 0/51% 100% no-repeat,radial-gradient(circle 14px at 100% var(--cut),#0000 98%,#000) 100% 0/51% 100% no-repeat}
+  .o4 .promo{--cut:calc(100% - 92px)}
+  .o4 .top{padding:24px 28px 22px;border-left:6px solid var(--ux);border-radius:18px 18px 0 0}
+  .o4 .top .kick{font:700 12px/1 'Plus Jakarta Sans';letter-spacing:.1em;color:var(--ux);margin-bottom:12px}
+  .o4 .top p{font:400 16px/1.55 'Plus Jakarta Sans';margin:0 0 10px;color:#26332f}
+  .o4 .stub{border-top:2px dashed #cfd8d2;background:var(--ux);color:#fff;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-radius:0 0 18px 18px}
+  .o4 .stub .when{font:800 20px/1.15 'Plus Jakarta Sans'}
+  .o4 .stub .when small{display:block;font:500 13px/1.3 'Plus Jakarta Sans';color:var(--lime-2);opacity:.9}
+  .o4 .btn{background:var(--lime);color:var(--ux-ink);font-family:'Plus Jakarta Sans'}
+  .o4 .cta{--cut:calc(100% - 118px)}
+  .o4 .cta .ad img{border-radius:18px 18px 0 0}
+  .o4 .cta .top{border-left:0;border-radius:0}
+  .o4 .cta h3{font:800 26px/1.2 'Plus Jakarta Sans';color:var(--ux-ink);margin:4px 0 12px}
+  .o4 .cta .note{color:#cfe9e2;margin-top:6px;font-family:'Plus Jakarta Sans'}
+
+  /* ---------- 5. Notification + app listing ---------- */
+  .o5 .promo{background:rgba(255,255,255,.72);backdrop-filter:blur(10px);border:1px solid rgba(0,0,0,.06);border-radius:24px;padding:16px 18px 18px;margin:32px 0;box-shadow:0 20px 40px -18px rgba(0,0,0,.28),0 2px 6px rgba(0,0,0,.05);font-family:'Plus Jakarta Sans'}
+  .o5 .bar{display:flex;align-items:center;gap:10px;font:600 13px/1 'Plus Jakarta Sans';color:#6b716f;margin-bottom:10px}
+  .o5 .bar i{width:28px;height:28px;border-radius:8px;background:url(../site/assets/banners/untox-mascot.jpg) center/cover}
+  .o5 .bar span{margin-left:auto;font-weight:500}
+  .o5 .promo b.t{display:block;font:800 17px/1.3 'Plus Jakarta Sans';margin-bottom:6px;color:#111}
+  .o5 .promo p{font:400 15.5px/1.5 'Plus Jakarta Sans';margin:0 0 8px;color:#2b2f2e}
+  .o5 .btn{background:var(--ux);color:#fff;font-family:'Plus Jakarta Sans';min-height:44px;font-size:15px;margin-top:6px}
+  .o5 .cta{background:#fff;border-radius:28px;padding:26px;margin:36px 0;box-shadow:0 24px 50px -24px rgba(0,0,0,.3);border:1px solid #ececec;font-family:'Plus Jakarta Sans'}
+  .o5 .listing{display:flex;gap:16px;align-items:center;margin-bottom:20px}
+  .o5 .listing i{flex:0 0 84px;height:84px;border-radius:20px;background:url(../site/assets/banners/untox-mascot.jpg) center/cover;box-shadow:0 0 0 1px rgba(0,0,0,.06)}
+  .o5 .listing b{display:block;font:800 22px/1.15 'Plus Jakarta Sans';color:#111}
+  .o5 .listing small{display:block;font:500 14px/1.3 'Plus Jakarta Sans';color:#6b716f;margin:3px 0 10px}
+  .o5 .listing .btn{min-height:36px;padding:0 18px;font-size:14px;margin:0;background:var(--ux)}
+  .o5 .cta .ad img{border-radius:18px;margin-bottom:22px}
+  .o5 .cta h3{font:800 23px/1.25 'Plus Jakarta Sans';margin:0 0 12px;color:#111}
+  .o5 .cta p{font:400 16px/1.55 'Plus Jakarta Sans';margin:0 0 12px;color:#2b2f2e}
+
+  /* ---------- 6. Dark launch ---------- */
+  .o6 .promo,.o6 .cta{background:radial-gradient(120% 90% at 100% 0,#1d5c50 0,#0b201c 55%);color:#e9f3ef;border-radius:22px;margin:34px 0;font-family:'Plus Jakarta Sans';border:1px solid #1f3b35}
+  .o6 .promo{display:grid;grid-template-columns:96px 1fr;gap:22px;padding:26px 28px}
+  .o6 .cal{background:#fff;border-radius:16px;overflow:hidden;text-align:center;height:max-content;box-shadow:0 0 0 4px rgba(209,239,132,.25)}
+  .o6 .cal span{display:block;background:var(--lime);color:var(--ux-ink);font:800 13px/1 'Plus Jakarta Sans';letter-spacing:.12em;padding:8px 0}
+  .o6 .cal b{display:block;font:800 40px/1 'Plus Jakarta Sans';color:var(--ux-ink);padding:10px 0 2px}
+  .o6 .cal small{display:block;font:600 11.5px/1 'Plus Jakarta Sans';color:#5d6b67;padding:0 0 10px}
+  .o6 .promo p{font:400 16px/1.55 'Plus Jakarta Sans';margin:0 0 10px;color:#c9dad5}
+  .o6 .promo p:first-child{color:#fff;font-weight:600}
+  .o6 .btn{background:var(--lime);color:var(--ux-ink);font-family:'Plus Jakarta Sans';box-shadow:0 0 24px rgba(209,239,132,.35);margin-top:6px}
+  .o6 .cta{padding:0 0 30px;overflow:hidden}
+  .o6 .cta .in{padding:26px 30px 0}
+  .o6 .cta h3{font:800 27px/1.2 'Plus Jakarta Sans';margin:0 0 14px;color:#fff}
+  .o6 .cta h3 em{font-style:normal;color:var(--lime)}
+  .o6 .cta p{font:400 16px/1.55 'Plus Jakarta Sans';color:#c9dad5;margin:0 0 12px}
+  .o6 ul.offer li{color:#fff}
+  @media (max-width:520px){.o6 .promo{grid-template-columns:1fr}.o6 .cal{width:96px}}
+
+  /* ---------- 7. Split ---------- */
+  .o7 .promo{display:grid;grid-template-columns:200px 1fr;border-radius:20px;overflow:hidden;margin:32px 0;background:#fff;border:1px solid #d5e5e0;font-family:'Plus Jakarta Sans'}
+  .o7 .promo .side{background:var(--ux) url(../site/assets/banners/untox-mascot.jpg) center/contain no-repeat;min-height:220px}
+  .o7 .promo .body{padding:22px 24px}
+  .o7 .promo p{font:400 15.5px/1.55 'Plus Jakarta Sans';margin:0 0 10px;color:#26332f}
+  .o7 .btn{background:var(--ux);color:#fff;font-family:'Plus Jakarta Sans';margin-top:4px}
+  .o7 .cta{display:grid;grid-template-columns:1fr 1fr;background:var(--ux-ink);border-radius:22px;overflow:hidden;margin:36px -60px;color:#fff;font-family:'Plus Jakarta Sans'}
+  .o7 .cta .ad{background:var(--ux);display:flex;align-items:center}
+  .o7 .cta .in{padding:28px 28px 30px}
+  .o7 .cta h3{font:800 23px/1.2 'Plus Jakarta Sans';margin:0 0 12px}
+  .o7 .cta p{font:400 15px/1.5 'Plus Jakarta Sans';color:#cfe0db;margin:0 0 10px}
+  .o7 .cta .btn{background:var(--lime);color:var(--ux-ink)}
+  @media (max-width:820px){.o7 .cta{margin:36px 0;grid-template-columns:1fr}.o7 .promo{grid-template-columns:1fr}.o7 .promo .side{min-height:170px}}
+
+  /* ---------- 8. Gradient frame ---------- */
+  .o8 .promo,.o8 .cta{position:relative;border:3px solid transparent;border-radius:24px;background:linear-gradient(#fff,#fff) padding-box,linear-gradient(135deg,var(--ux),var(--lime)) border-box;margin:40px 0;font-family:'Plus Jakarta Sans'}
+  .o8 .promo{padding:30px 28px 26px}
+  .o8 .flag{position:absolute;top:-15px;left:22px;background:linear-gradient(135deg,var(--ux),#3a9a5a);color:#fff;font:700 12.5px/1 'Plus Jakarta Sans';letter-spacing:.04em;padding:8px 14px;border-radius:999px}
+  .o8 .promo p,.o8 .cta p{font:400 16px/1.55 'Plus Jakarta Sans';margin:0 0 10px;color:#27312e}
+  .o8 .btn{background:linear-gradient(135deg,var(--ux),#2f9a72);color:#fff;font-family:'Plus Jakarta Sans';margin-top:6px}
+  .o8 .cta{padding:12px 12px 28px}
+  .o8 .cta .ad img{border-radius:14px}
+  .o8 .cta .in{padding:22px 16px 0}
+  .o8 .cta h3{font:800 25px/1.2 'Plus Jakarta Sans';color:var(--ux-ink);margin:0 0 14px}
+  .o8 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 18px}
+  .o8 .chips span{background:var(--lime-2);color:var(--ux-ink);font:700 13px/1 'Plus Jakarta Sans';padding:9px 12px;border-radius:999px}
+  .o8 .note{color:#6b716f}
+
+  /* ---------- 9. Magazine advertisement ---------- */
+  .o9 .promo,.o9 .cta{margin:40px 0;text-align:center}
+  .o9 .over{font:600 11px/1 'League Spartan';letter-spacing:.24em;color:var(--ink-mute);margin-bottom:8px}
+  .o9 .box{background:#fffdf7;border:1px solid #cfc8b4;outline:6px double #e4dcc4;outline-offset:-14px;padding:40px 46px 36px}
+  .o9 .box .logo{font:800 30px/1 'Plus Jakarta Sans';color:var(--ux);letter-spacing:-.02em;margin-bottom:14px}
+  .o9 .box .logo small{display:block;font:500 12px/1.4 'League Spartan';letter-spacing:.14em;color:var(--ink-mute);margin-top:6px}
+  .o9 .box p{font:400 17px/1.6 'Fraunces',Georgia,serif;margin:0 auto 12px;max-width:46ch;color:#2a2a28}
+  .o9 .btn{background:var(--ux);color:#fff;border-radius:4px;font-family:'Plus Jakarta Sans';margin-top:10px}
+  .o9 .cta .box{padding:22px 22px 36px}
+  .o9 .cta h3{font:700 30px/1.15 'Fraunces',Georgia,serif;color:var(--ux-ink);margin:26px auto 16px;max-width:22ch}
+  .o9 .rule{width:60px;height:2px;background:var(--ux);margin:0 auto 18px}
+  .o9 .note{color:var(--ink-mute)}
+
+  /* ---------- 10. Toxy chat ---------- */
+  .o10 .promo,.o10 .cta{background:#eef6f3;border-radius:24px;margin:34px 0;padding:22px;font-family:'Plus Jakarta Sans'}
+  .o10 .row{display:flex;gap:12px;align-items:flex-end;margin-bottom:8px}
+  .o10 .av{flex:0 0 46px;height:46px;border-radius:50%;background:url(../site/assets/banners/untox-mascot.jpg) center/cover;box-shadow:0 0 0 3px #fff}
+  .o10 .bubbles{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .o10 .who{font:700 12.5px/1 'Plus Jakarta Sans';color:var(--ux);margin:0 0 4px 4px}
+  .o10 .b{background:#fff;border-radius:20px 20px 20px 6px;padding:12px 16px;font:400 15.5px/1.5 'Plus Jakarta Sans';color:#1f2a27;box-shadow:0 1px 2px rgba(0,0,0,.06);max-width:520px}
+  .o10 .b.lime{background:var(--lime)}
+  .o10 .reply{display:flex;justify-content:flex-end;margin-top:12px}
+  .o10 .btn{background:var(--ux);color:#fff;font-family:'Plus Jakarta Sans';border-radius:20px 20px 6px 20px}
+  .o10 .b.pic{padding:6px}
+  .o10 .b.pic img{border-radius:16px;display:block;width:100%;height:auto}
+  .o10 .bubbles{flex:1}
+  .o10 .cta h3{font:800 22px/1.25 'Plus Jakarta Sans';color:var(--ux-ink);margin:0 0 16px 4px}
+  .o10 .note{color:#5c6b67;text-align:right}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const P = [
+  "You have the names now. Picture checking all 28 of them on every box in a 40-item cart, with a tired kid pulling at your sleeve.",
+  "That is why most label audits stall by week two. Reading every package turns into a second job nobody signed up for.",
+  "Untox is the app we built to do it for you. It grades your whole grocery list in plain words and points you to a cleaner swap.",
+  "The private Founding Beta opens Tuesday, November 24 at 7 am PST. Waitlist members get 24 hours to claim a spot first."
+];
+const PB = "Join the Untox waitlist, free";
+const CH = "You know where corn and soy hide. Now let Untox check the rest.";
+const C = [
+  "Here is the quiet truth. This checklist covers two crops, but your cart holds hundreds of ingredients.",
+  "And brands change their recipes without telling you. The jar you checked in spring can carry a new oil by fall.",
+  "You can keep squinting at labels in the aisle, or you can stop checking and hope. Neither one gives you your evenings back.",
+  "Untox is the third way. Add your list, and it grades every item, explains it in plain words, and hands you a better swap.",
+  "Add it. Grade it. Swap it. Your whole shop is checked before you leave the house.",
+  "The private Founding Beta opens Tuesday, November 24 at 7 am PST, with 1,000 Founding spots and no more.",
+  "Waitlist members get 24 hours to claim a spot before the public, plus a waitlist-only bonus and the Founding lifetime price.",
+  "Joining is free and asks only for your first name and email. Join today, and your link will be waiting on Tuesday morning."
+];
+const CB = "Claim your Founding spot";
+const NOTE = "Untox is built by the Lifeuntox team. Joining the waitlist is free.";
+const IMG = '<img src="../site/assets/banners/untox-app-cta-1.jpg" width="1080" height="1080" alt="Untox app: add it, grade it, swap it.">';
+const OFFER = ["Private Founding Beta opens Tuesday, November 24, 7 am PST", "1,000 Founding spots, and no more", "24 hours of early access for the waitlist", "A waitlist-only bonus and the Founding lifetime price"];
+const ps = a => a.map(t => `<p>${t}</p>`).join('');
+const btn = (t, cls = '') => `<a class="btn arrow ${cls}" href="https://untox.app/waitlist">${t}</a>`;
+const offer = () => `<ul class="offer">${OFFER.map(t => `<li>${t}</li>`).join('')}</ul>`;
+
+const OPTIONS = [
+  { name: 'App card', desc: 'Reads like a card from the app itself: white, rounded, teal outline, Toxy as the app icon. The CTA is a teal panel with the banner inset like a screenshot.',
+    promo: () => `<div class="promo"><div class="head"><i class="icon"></i><div><b>Untox</b><small>The grocery list app from Lifeuntox</small></div></div>${ps(P)}${btn(PB)}</div>`,
+    cta: () => `<div class="cta"><a class="ad" href="#">${IMG}</a><div class="in"><h3>${CH}</h3>${ps(C)}${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Full teal, out of the column', desc: 'Both boxes are solid Untox teal and break wider than the article column, so they clearly sit outside the editorial page. Toxy pokes out of the promo corner.',
+    promo: () => `<div class="promo"><i class="toxy"></i><p class="kick">From the Lifeuntox team</p>${ps(P)}${btn(PB)}</div>`,
+    cta: () => `<div class="cta"><a class="ad" href="#">${IMG}</a><div class="in"><h3>${CH}</h3>${ps(C)}${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Lime pop', desc: 'The app\'s lime as the background with deep teal text: the loudest option and impossible to mistake for an article box. The banner sits in a tilted dark frame.',
+    promo: () => `<div class="promo"><span class="tag">The Untox app</span>${ps(P)}${btn(PB)}</div>`,
+    cta: () => `<div class="cta"><div class="frame"><a class="ad" href="#">${IMG}</a></div><h3>${CH}</h3>${ps(C.slice(0,5))}${offer()}${btn(CB)}<small class="note">${NOTE}</small></div>` },
+  { name: 'Founding ticket', desc: 'A torn-off ticket: notched edges, a dashed tear line and a teal stub holding the date and the button. Turns the offer into something you claim.',
+    promo: () => `<div class="ticket promo"><div class="top"><div class="kick">Untox Founding Beta</div>${ps(P.slice(0,3))}</div><div class="stub"><div class="when">Tue, Nov 24 · 7 am PST<small>Waitlist members get 24 hours first</small></div>${btn('Join free')}</div></div>`,
+    cta: () => `<div class="ticket cta"><a class="ad" href="#">${IMG}</a><div class="top"><h3>${CH}</h3>${ps(C.slice(0,5))}${offer()}</div><div class="stub"><div class="when">1,000 Founding spots<small>Doors open Tue, Nov 24 at 7 am PST</small></div>${btn(CB)}</div></div>` },
+  { name: 'Notification and app listing', desc: 'The promo looks like a phone notification from Untox; the CTA looks like an app store listing, with the banner as the screenshot.',
+    promo: () => `<div class="promo"><div class="bar"><i></i>UNTOX<span>now</span></div><b class="t">${P[0]}</b>${ps(P.slice(1))}${btn(PB)}</div>`,
+    cta: () => `<div class="cta"><div class="listing"><i></i><div><b>Untox</b><small>Add it. Grade it. Swap it.</small>${btn('Join waitlist')}</div></div><a class="ad" href="#">${IMG}</a><h3>${CH}</h3>${ps(C)}${btn(CB)}<small class="note">${NOTE}</small></div>` },
+  { name: 'Dark launch', desc: 'Near-black teal with a soft glow and lime accents, plus a calendar tile for the launch date. Feels like a product launch, the opposite of the cream page.',
+    promo: () => `<div class="promo"><div class="cal"><span>NOV</span><b>24</b><small>7 am PST</small></div><div>${ps(P)}${btn(PB)}</div></div>`,
+    cta: () => `<div class="cta"><a class="ad" href="#">${IMG}</a><div class="in"><h3>You know where corn and soy hide. <em>Now let Untox check the rest.</em></h3>${ps(C.slice(0,5))}${offer()}${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Split', desc: 'Picture on one side, copy on the other. The CTA spills wider than the column on desktop. Note: this goes against the earlier "ad first, full width" rule.',
+    promo: () => `<div class="promo"><div class="side"></div><div class="body">${ps(P)}${btn(PB)}</div></div>`,
+    cta: () => `<div class="cta"><a class="ad" href="#">${IMG}</a><div class="in"><h3>${CH}</h3>${ps([C[0],C[3],C[5],C[6]])}${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Gradient frame', desc: 'Clean white inside a teal-to-lime gradient border, with a floating "New from Lifeuntox" flag. The CTA turns the offer into chips.',
+    promo: () => `<div class="promo"><span class="flag">New from Lifeuntox</span>${ps(P)}${btn(PB)}</div>`,
+    cta: () => `<div class="cta"><span class="flag">Founding Beta</span><a class="ad" href="#">${IMG}</a><div class="in"><h3>${CH}</h3>${ps(C.slice(0,5))}<div class="chips"><span>Tue, Nov 24 · 7 am PST</span><span>1,000 spots</span><span>24h early access</span><span>Lifetime price</span></div>${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Magazine advertisement', desc: 'A framed print ad with an "Advertisement" overline, double rule and serif type. Borrows the trust of a magazine while being clearly separate from the article.',
+    promo: () => `<div class="promo"><div class="over">ADVERTISEMENT</div><div class="box"><div class="logo">untox<small>THE LIFEUNTOX APP</small></div>${ps(P)}${btn(PB)}</div></div>`,
+    cta: () => `<div class="cta"><div class="over">ADVERTISEMENT</div><div class="box"><a class="ad" href="#">${IMG}</a><h3>${CH}</h3><div class="rule"></div>${ps(C)}${btn(CB)}<small class="note">${NOTE}</small></div></div>` },
+  { name: 'Chat with Toxy', desc: 'Toxy delivers the pitch as chat bubbles, the banner arrives as a shared picture, and the button is the reply. Friendly, very app-like, easy to skim.',
+    promo: () => `<div class="promo"><div class="row"><i class="av"></i><div class="bubbles"><div class="who">Toxy · Untox</div>${P.map((t,i)=>`<div class="b${i===3?' lime':''}">${t}</div>`).join('')}</div></div><div class="reply">${btn(PB)}</div></div>`,
+    cta: () => `<div class="cta"><h3>${CH}</h3><div class="row"><i class="av"></i><div class="bubbles"><div class="who">Toxy · Untox</div><div class="b pic">${IMG}</div>${[C[0],C[1],C[3],C[4]].map(t=>`<div class="b">${t}</div>`).join('')}<div class="b lime">${C[5]} ${C[6]}</div></div></div><div class="reply">${btn(CB)}</div><small class="note">${NOTE}</small></div>` },
+];
+
+const only = Number(new URLSearchParams(location.search).get('only')) || 0;
+document.getElementById('root').innerHTML = OPTIONS.map((o, i) => (only && only !== i + 1) ? '' : `
+<section class="opt o${i + 1}" id="opt-${i + 1}">
+  <p class="opt-h"><b>${i + 1}</b>${o.name}</p>
+  <p class="opt-d">${o.desc}</p>
+  <div class="art">
+    <p>This guide hands you the fix in two parts. First, a decoder: the real names corn and soy hide behind. Second, an audit: a swap sheet with a clean, whole-food choice for every common offender.</p>
+    ${o.promo()}
+    <h2>Part 1: The hidden names decoder</h2>
+    <p>You cannot avoid what you cannot see, so this decoder comes first. Food makers rarely print corn or soy on the front of the box.</p>
+    <div class="gap"></div>
+    <p>Each clean swap you keep is one less label you ever have to read again. Start with the bottle of oil next to your stove tonight.</p>
+    ${o.cta()}
+    <h2>Sources</h2>
+  </div>
+</section>`).join('');
+</script>
+</body>
+</html>

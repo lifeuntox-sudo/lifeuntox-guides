@@ -159,9 +159,7 @@ Untox is the third way. Add your list, and it grades every item, explains it in 
 
 Add it. Grade it. Swap it. Your whole shop is checked before you leave the house.
 
-The private Founding Beta opens Tuesday, November 24 at 7 am PST, with 1,000 Founding spots and no more.
-
-Waitlist members get 24 hours to claim a spot before the public, plus a waitlist-only bonus and the Founding lifetime price.
+:::checks Tue, Nov 24 · 7 am PST | 1,000 Founding spots, no more | 24 hours early access | Waitlist-only bonus | Founding lifetime price
 
 Joining is free and asks only for your first name and email. Join today, and your link will be waiting on Tuesday morning.
 

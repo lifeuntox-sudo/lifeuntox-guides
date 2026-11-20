@@ -155,6 +155,8 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
     ARTICLE_POST: art.post,
     DISCLOSURE: inline(fm.disclosure || DEFAULT_DISCLOSURE),
     MORE_GUIDES: more,
+    // The Untox boxes use the app's typeface; only pages that carry them load it.
+    EXTRA_FONTS: art.app ? '&family=Plus+Jakarta+Sans:wght@400;600;700;800' : '',
     ...chrome,
     FORM_ACTION: jsonForScript(formAction()),
     SLUG_JSON: jsonForScript(d.slug),

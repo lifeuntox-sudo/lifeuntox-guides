@@ -16,6 +16,17 @@ const DEFAULT_SITE_URL = 'https://guides.lifeuntox.com';
 // blocks in Markdown so they are ready to switch back on with one rebuild.
 const PARTNER_PLACEMENTS = false;
 
+// Untox app placements (guides with `placements: untox`). One place for every guide:
+//   calendar: the date tile in the first box (:::promo). Left out automatically once
+//             the day after `date` has passed, or set it to null.
+//   promoFlag / ctaFlag: the pill labels on the top edge of each box.
+const UNTOX = {
+  calendar: { date: '2026-11-24', time: '7 am PST' },
+  promoFlag: 'New from Lifeuntox',
+  ctaFlag: 'Founding Beta',
+  waitlist: 'https://untox.app/waitlist'
+};
+
 // Reads .env (if present) into process.env without overriding values already set.
 function loadEnv() {
   const file = path.join(ROOT, '.env');
@@ -34,4 +45,4 @@ function siteUrl() {
   return u.replace(/\/+$/, '');
 }
 
-module.exports = { ROOT, SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, COVERS_DIR, DEFAULT_SITE_URL, PARTNER_PLACEMENTS, loadEnv, siteUrl };
+module.exports = { ROOT, SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, COVERS_DIR, DEFAULT_SITE_URL, PARTNER_PLACEMENTS, UNTOX, loadEnv, siteUrl };

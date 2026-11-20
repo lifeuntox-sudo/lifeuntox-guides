@@ -18,10 +18,9 @@
 //   ![alt](assets/banners/x.jpg) a line holding only an image. Inside :::promo or
 //                                :::cta it is the banner ad, linked to the button URL.
 
-const { PARTNER_PLACEMENTS } = require('./config');
+const { PARTNER_PLACEMENTS, UNTOX } = require('./config');
 const { imageSize } = require('./images');
 const LOGO = imageSize('assets/notoxchef-logo.png') || { width: 512, height: 512 };   // the NOTOXCHEF logo shown in the promo mark
-const APP_WAITLIST = 'https://untox.app/waitlist';   // default button for guides with `placements: untox`
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const escAttr = s => esc(s).replace(/"/g, '&quot;');
 
@@ -160,6 +159,35 @@ function splitButton(children) {
   return m ? { rest: children.slice(0, -1), label: m[1], url: m[2] } : { rest: children };
 }
 
+// ---------- Untox app placements (`placements: untox`) ----------
+// The house style for every Untox call to action (chosen 2026-11-20, mockup option 8):
+// white card in a teal-to-lime gradient frame with a pill flag on the top edge.
+// The first box adds the launch-date calendar tile (from mockup option 6); the second
+// box carries the square banner, the headline, the copy, :::checks as offer chips, the button.
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+function untoxCalendar() {
+  const cal = UNTOX.calendar;
+  if (!cal || !cal.date) return '';
+  const d = new Date(cal.date + 'T12:00:00Z');
+  if (Date.now() > d.getTime() + 36 * 3600 * 1000) return '';   // the launch window has passed: drop the tile
+  return `<div class="cal" aria-hidden="true"><span>${MONTHS[d.getUTCMonth()]}</span><b>${d.getUTCDate()}</b><small>${esc(cal.time || '')}</small></div>`;
+}
+function untoxPromo(c, ctx) {
+  const { rest, label, url } = splitButton(c);
+  const href = url || ctx.partner1 || UNTOX.waitlist;
+  const cal = untoxCalendar();
+  return `<div class="promo untox${cal ? '' : ' no-cal'}">\n<span class="flag">${esc(UNTOX.promoFlag)}</span>\n${cal}<div class="ux-copy">\n${renderNodes(rest.filter(x => x.type !== 'image'), ctx)}\n` +
+    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Join the Untox waitlist')}</a>\n</div>\n</div>`;
+}
+function untoxCta(n, c, ctx) {
+  const { rest: afterButton, label, url } = splitButton(c);
+  const href = url || ctx.partner2 || UNTOX.waitlist;
+  const { rest, ad } = splitBanner(afterButton, href);
+  return `<div class="cta untox">\n<span class="flag">${esc(UNTOX.ctaFlag)}</span>\n${ad ? ad + '\n' : ''}<div class="in">\n${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
+    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Join the Untox waitlist')}</a>\n` +
+    `<small>Untox is built by the Lifeuntox team. Joining the waitlist is free.</small>\n</div>\n</div>`;
+}
+
 function renderBlock(n, ctx) {
   const c = n.children || [];
   switch (n.name) {
@@ -169,31 +197,26 @@ function renderBlock(n, ctx) {
     case 'checks': return `<div class="checks">${n.items.map(i => `<span>${inline(i)}</span>`).join('')}</div>`;
     case 'buy': return `<div class="buy"><b>Where to buy:</b> ${body(c, ctx)}</div>`;
     case 'promo': {
-      if (!ctx.app && ctx.partner === false) return '';
+      if (ctx.app) return untoxPromo(c, ctx);
+      if (ctx.partner === false) return '';
       const { rest: afterButton, label, url } = splitButton(c);
-      const href = url || ctx.partner1 || (ctx.app ? APP_WAITLIST : 'https://notoxchef.com');
+      const href = url || ctx.partner1 || 'https://notoxchef.com';
       const { rest, ad } = splitBanner(afterButton, href);
-      const mark = ctx.app
-        ? `<div class="mark">Untox<small>The Lifeuntox app</small></div>`
-        : ad
+      const mark = ad
         ? `<div class="mark"><img src="assets/notoxchef-logo.png" alt="NOTOXCHEF" width="${LOGO.width}" height="${LOGO.height}" loading="lazy" decoding="async"><small>Official partner of Lifeuntox</small></div>`
         : `<div class="mark">NOTOXCHEF<small>Official partner</small></div>`;
-      // Several paragraphs without an ad stack like the ad layout instead of the one-line grid.
-      const stacked = ad || rest.length > 1;
-      return `<div class="promo${stacked ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${mark}\n${renderNodes(rest, ctx)}\n` +
-        `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || (ctx.app ? 'Join the Untox waitlist' : 'Shop NOTOXCHEF'))}</a>\n</div>`;
+      return `<div class="promo${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${mark}\n${renderNodes(rest, ctx)}\n` +
+        `<a class="btn btn-solid" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF')}</a>\n</div>`;
     }
     case 'cta': {
-      if (!ctx.app && ctx.partner === false) return '';
+      if (ctx.app) return untoxCta(n, c, ctx);
+      if (ctx.partner === false) return '';
       const { rest: afterButton, label, url } = splitButton(c);
-      const href = url || ctx.partner2 || (ctx.app ? APP_WAITLIST : 'https://notoxchef.com');
+      const href = url || ctx.partner2 || 'https://notoxchef.com';
       const { rest, ad } = splitBanner(afterButton, href);
-      const note = ctx.app
-        ? 'Untox is built by the Lifeuntox team. Joining the waitlist is free.'
-        : 'Lifeuntox earns a commission on partner sales. It never changes what we recommend.';
       return `<div class="cta${ad ? ' has-ad' : ''}">\n${ad ? ad + '\n' : ''}${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
-        `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || (ctx.app ? 'Join the Untox waitlist' : 'Shop NOTOXCHEF cookware'))}</a>\n` +
-        `<small>${note}</small>\n</div>`;
+        `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Shop NOTOXCHEF cookware')}</a>\n` +
+        `<small>Lifeuntox earns a commission on partner sales. It never changes what we recommend.</small>\n</div>`;
     }
     case 'table':
     case 'protocol': return renderNodes(c, ctx);
@@ -215,7 +238,7 @@ function renderArticle(md, fm = {}) {
   const post = gi < 0 ? '' : renderNodes(nodes.slice(gi + 1), ctx);
   const text = textOf(pre + ' ' + post);
   return {
-    pre, post, nodes,
+    pre, post, nodes, app,
     hasGate: gi >= 0,
     gateTitle: gi >= 0 ? nodes[gi].title : '',
     text,

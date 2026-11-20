@@ -220,3 +220,11 @@ Your note "for next time" is recorded as a standing rule set (CLAUDE.md, "Defini
 6. **Swaps fixed:** the checklist's "aluminum-free baking powder" does not remove corn starch, so the swap is now a corn-free powder (potato or arrowroot starch) or cream of tartar with baking soda. "Magnesium stearate" was dropped from the vitamin row (it is usually not from corn or soy). "Soybean oil is inflammatory" was softened to readers choosing to cut it, because the evidence is contested.
 7. **Dropped because no primary source backs it:** "derivatives reach an estimated three out of four packaged products".
 8. **Cover:** option 1.
+
+## Round 19 (2026-11-20): one house style for Untox calls to action
+
+1. **Ten designs compared** (`mockup/cta-options.html`, rendered to `mockup/cta-renders/`). You chose **option 8** (white card in a teal-to-lime gradient frame with a pill flag) with **option 6's calendar date tile** in the first box, and made it the standing style for every Untox call to action on the site. Recorded in CLAUDE.md ("Untox app placements: the house style").
+2. **Built into the templates, not the guide:** `untoxPromo` / `untoxCta` in `scripts/lib/markdown.js`, the `.untox` CSS block in `templates/guide.html`, and one settings object (`UNTOX` in `scripts/lib/config.js`) for the calendar date, flag labels and waitlist URL. The calendar tile drops off by itself the day after its date, so a guide never shows a past launch date.
+3. **The app typeface (Plus Jakarta Sans) loads only on pages with Untox boxes** (`{{EXTRA_FONTS}}` in the font link); every other guide is unchanged.
+4. **The corn and soy guide's offer lines became chips** (`:::checks` inside `:::cta`): date, 1,000 Founding spots, 24 hours early access, waitlist-only bonus, Founding lifetime price.
+5. **Bug found while testing:** the box's inner wrapper first used the class `body`, which the page already uses for the article column (36px top padding). Renamed to `ux-copy`.

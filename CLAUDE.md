@@ -193,7 +193,17 @@ netlify/functions/    subscribe.mjs (gate, directory strip and footer box post h
 | `disclosure` | The fine-print line at the end of the article | standard education-not-advice line |
 | `cover_subject` | The one photographic subject make-cover puts on the cover ("a raw free-range whole chicken on a wooden board") | a generic subject for the topic |
 | `cover_note` | Extra direction for make-cover ("less shadow, warmer green") | none |
-| `placements` | `untox`: both `:::promo` and `:::cta` advertise our own Untox app instead of NOTOXCHEF (Untox mark, no commission line, buttons default to https://untox.app/waitlist). Shown even while `PARTNER_PLACEMENTS` is false, because it is not a sponsor. Banner: `assets/banners/untox-app-cta-1.jpg` | NOTOXCHEF |
+| `placements` | `untox`: both `:::promo` and `:::cta` advertise our own Untox app instead of NOTOXCHEF, in the Untox house style below. Shown even while `PARTNER_PLACEMENTS` is false, because it is not a sponsor | NOTOXCHEF |
+
+### Untox app placements: the house style (standing rule since 2026-11-20)
+
+Every call to action for the Untox app on this site uses one look, chosen from ten mockups (`mockup/cta-options.html`, option 8 with option 6's calendar tile). Never style an Untox box another way; change it in one place for every guide.
+
+- **Look:** a white card inside a teal-to-lime gradient frame (Untox teal `#147967`, lime `#d1ef84`, sampled from the app banner), 24px corners, a gradient pill flag on the top edge, rounded gradient button with an arrow, app typeface Plus Jakarta Sans (loaded only on pages with Untox boxes). It deliberately looks like an app ad, not part of the cream editorial page.
+- **First box (`:::promo`):** flag "New from Lifeuntox", the launch-date calendar tile on the left (lime month band, big day, time), copy and button on the right; on phones the tile sits above the copy. No image.
+- **Second box (`:::cta`):** flag "Founding Beta", the square banner (`assets/banners/untox-app-cta-1.jpg`) at the top inside the frame, the headline (`:::cta Headline`), the copy, the offer as lime chips (a `:::checks A | B | C` line inside the block), the button, then "Untox is built by the Lifeuntox team. Joining the waitlist is free."
+- **One place to change it:** `UNTOX` in `scripts/lib/config.js` holds the calendar date and time, the two flag labels and the waitlist URL. The calendar tile drops off by itself the day after its date. Markup: `untoxPromo` / `untoxCta` in `scripts/lib/markdown.js`. CSS: the `.untox` block in `templates/guide.html`.
+- **Copy** follows the placement copy standard above (two-line paragraphs, sells, no invented urgency). Launch facts come from the live waitlist page.
 
 ### Data precedence
 
