@@ -219,6 +219,10 @@ For a guide with a content file, its frontmatter is the source of truth for the 
 
 Both pages get their header and footer from `nav.json` at build time (`{{HEADER}}`, `{{FOOTER}}`, `{{NAV_CSS}}`). The content and styling copy the live Beehiiv site, lifeuntox.com, so moving between the two feels like one site. When the Beehiiv header or footer changes, update `nav.json` (and `templates/nav.css` if the look changed) and rebuild. Never the other way round. The item with `"current": true` gets `aria-current="page"`. Links to other hosts get `rel="noopener"`; nothing gets `target="_blank"`.
 
+### Email gate switch
+
+`EMAIL_GATE` in `scripts/lib/config.js` is currently **false** (switched off on 2026-11-27 at the user's request, until they say otherwise): every guide renders already unlocked (`<body class="unlocked">`, the content without `aria-hidden`), so the full text shows with no blur and no email form. The gate markup stays in the page, hidden by the `.unlocked` rules, so the page script, the phone step and the disclosure line keep working, and guides keep their `:::gate` lines (check-guide still requires them). Set it to true and rebuild to bring the gate back on every guide. Note: a `npm run dev` started before a config change keeps rebuilding `site/` with the old setting; restart it, or deploy from a fresh build.
+
 ### Sponsor placements switch
 
 `PARTNER_PLACEMENTS` in `scripts/lib/config.js` is currently **false** (switched off on 2026-09-21 at the user's request, until they say otherwise): the build leaves out the NOTOXCHEF header lockup, the `:::promo` card and the `:::cta` block on every guide. Set it to true and rebuild to show all of them again, ads included; guides keep their `:::promo` and `:::cta` blocks in Markdown either way (the design system and `check-guide` require them). While it is off, `check-guide` fails if "NOTOXCHEF" appears on a built page; while it is on, it fails if the header lockup is missing.

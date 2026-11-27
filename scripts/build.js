@@ -13,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, PARTNER_PLACEMENTS, loadEnv, siteUrl } = require('./lib/config');
+const { SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, PARTNER_PLACEMENTS, EMAIL_GATE, loadEnv, siteUrl } = require('./lib/config');
 const { parseFrontmatter } = require('./lib/frontmatter');
 const { renderArticle, inline, esc, escAttr } = require('./lib/markdown');
 const guidesDb = require('./lib/guides');
@@ -134,6 +134,11 @@ function renderGuide(d, guides, pages, tpl, SITE_URL, chrome) {
   if (!PARTNER_PLACEMENTS) page = page.replace(/\s*<!-- partner:start -->[\s\S]*?<!-- partner:end -->/g, '');
   const more = moreGuides(fm, guides, pages);
   if (!more) page = page.replace(/<!-- more:start -->[\s\S]*?<!-- more:end -->/, '');
+  if (art.hasGate && !EMAIL_GATE) {
+    // Gate switched off site-wide: render the page already unlocked. The gate markup stays
+    // (hidden by the .unlocked rules) so the page script and the disclosure line are untouched.
+    page = page.replace('<body>', '<body class="unlocked">').replace('<div class="content" id="content" aria-hidden="true">', '<div class="content" id="content">');
+  }
   if (!art.hasGate) {
     // No :::gate marker: drop the gate UI and the locked wrapper.
     page = page.replace(/<!-- gate:start -->[\s\S]*?<!-- gate:end -->/, '{{ARTICLE_POST}}');

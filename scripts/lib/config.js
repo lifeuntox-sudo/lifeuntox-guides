@@ -16,6 +16,11 @@ const DEFAULT_SITE_URL = 'https://guides.lifeuntox.com';
 // blocks in Markdown so they are ready to switch back on with one rebuild.
 const PARTNER_PLACEMENTS = false;
 
+// Email gate. true = everything after :::gate is blurred until the reader subscribes.
+// false = every guide renders fully unlocked (switched off 2026-11-27 at the user's
+// request, until they say otherwise). Guides keep their :::gate lines either way.
+const EMAIL_GATE = false;
+
 // Untox app placements (guides with `placements: untox`). One place for every guide:
 //   calendar: the date tile in the first box (:::promo): month, day and a short note.
 //             Left out automatically once the day after `date` has passed, or set it to null.
@@ -50,4 +55,4 @@ function siteUrl() {
   return u.replace(/\/+$/, '');
 }
 
-module.exports = { ROOT, SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, COVERS_DIR, DEFAULT_SITE_URL, PARTNER_PLACEMENTS, UNTOX, loadEnv, siteUrl };
+module.exports = { ROOT, SITE_DIR, CONTENT_DIR, TEMPLATES_DIR, COVERS_DIR, DEFAULT_SITE_URL, PARTNER_PLACEMENTS, EMAIL_GATE, UNTOX, loadEnv, siteUrl };
