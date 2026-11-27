@@ -24,7 +24,7 @@ const PARTNER_PLACEMENTS = false;
 //             untox.app/founding and update it before every rebuild during the launch.
 //   url: the default button link. note: the fine print under the second box's button.
 const UNTOX = {
-  calendar: { date: '2026-12-01', note: 'Closes 7 am PT' },
+  calendar: { date: '2026-12-01', note: 'Closes 7 am PST' },
   promoFlag: "You're invited",
   ctaFlag: 'Private Founding Beta',
   spotsLeft: '486',

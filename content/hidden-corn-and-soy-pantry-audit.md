@@ -45,7 +45,7 @@ That is why most label audits stall by week two. Reading every package turns int
 
 Untox is the iPhone app we have been building for months. It finds the cleaner swap for anything you buy, in seconds.
 
-The private founding beta is open now. {{UNTOX_SPOTS}} of 1,000 spots are left, and the doors close Tuesday, December 1.
+The private founding beta is open now. {{UNTOX_SPOTS}} of 1,000 spots are left, and the doors close Tuesday, December 1 at 7 am PST.
 
 [Claim your Founding spot](https://untox.app/founding)
 :::
@@ -159,9 +159,9 @@ Untox is the third way. It finds the cleaner swap for anything you buy, from the
 
 No hours of research, and no bigger bill: the swaps sit in the same aisles at the same kind of price.
 
-:::checks $37 once, no subscription | {{UNTOX_SPOTS}} of 1,000 spots left | Closes Tue, Dec 1 · 7 am PT | iPhone only
+:::checks {{UNTOX_SPOTS}} of 1,000 spots left | Closes Tue, Dec 1 · 7 am PST
 
-Founding members pay once for [lifetime premium](https://untox.app/terms). After launch, Untox moves to a paid subscription.
+It is a private founding beta for iPhone, and you are invited in before Untox opens to the public.
 
 [Claim your Founding spot](https://untox.app/founding)
 :::

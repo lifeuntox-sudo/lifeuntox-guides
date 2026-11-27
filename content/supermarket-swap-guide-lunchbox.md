@@ -11,7 +11,7 @@ badge: 8 lunchbox swaps
 color: "#1a4a1a"         # placeholder book colour until a cover exists
 cover: assets/covers/supermarket-swap-guide-lunchbox-3.png                # set by make-cover
 cover_subject: an open stainless steel bento lunchbox with apple slices, cubes of natural cheddar, whole-grain seed crackers, carrot sticks and strawberries, beside a small stainless water bottle on a wooden board   # the one photographic subject on the cover
-keywords: [swap, buy this not that, lunchbox, school lunch, kids snacks, oreo, kapo, del valle, juice pouch, juice drink, kraft singles, processed cheese, lunchables, fruit snacks, doritos, red 40, yogurt tubes, cheese crackers, newman-o's, tillamook, ultra-processed]
+keywords: [swap, buy this not that, lunchbox, school lunch, kids snacks, oreo, kapo, del valle, juice pouch, juice drink, kraft singles, processed cheese, lunchables, fruit snacks, doritos, red 40, yogurt tubes, cheese crackers, newman-o's, tillamook, welch's, go-gurt, cheez-it, siete, skinnypop, that's it, stonyfield, apple & eve, bentgo, simple mills, ultra-processed]
 tags: [kids, school lunch, ultra-processed food, added sugar, food dyes, label reading, budget, picky eaters]   # health and life topics the guide touches, beyond its product category
 desc: The lunchbox aisle is built for shelf life, not for kids. Eight side-by-side swaps, from sandwich cookies and juice pouches to processed cheese, each with a real-food pick from a standard grocery store.
 placements: untox        # both placements advertise the Untox app (shown even while sponsor placements are off)
@@ -62,9 +62,9 @@ So we built Untox, an iPhone app we have been working on for months. It finds th
 
 Every swap is a real product from the stores you already shop, so eating cleaner does not have to cost more.
 
-You found this guide during the private founding beta. You are invited in early, before the public price.
+You found this guide during the private founding beta. You are invited in early, before Untox opens to the public.
 
-{{UNTOX_SPOTS}} of 1,000 founding spots are left, and the doors close Tuesday, December 1 at 7 am PT.
+{{UNTOX_SPOTS}} of 1,000 founding spots are left, and the doors close Tuesday, December 1 at 7 am PST.
 
 [Claim your Founding spot](https://untox.app/founding)
 :::
@@ -77,7 +77,7 @@ Before you buy any pouch, including Kapo or Del Valle, find the percent juice li
 
 ![Not that: two foil drink pouches and a glass of bright red-orange fruit drink. Buy this: a stainless water bottle, a halved orange and a glass of water with an orange slice.](assets/guides/supermarket-swap-guide-lunchbox-drinks-1.jpg)
 
-**Buy this:** a reusable bottle of water and a piece of whole fruit. The [American Academy of Pediatrics](https://pubmed.ncbi.nlm.nih.gov/28562300/) says whole fruit beats juice. If you pack juice, choose 100 percent juice and keep it small: up to 4 ounces for ages 1 to 3, 4 to 6 ounces for ages 4 to 6, and 8 ounces for ages 7 and up.
+**Buy this:** a reusable bottle of water and a piece of whole fruit. The [American Academy of Pediatrics](https://pubmed.ncbi.nlm.nih.gov/28562300/) says whole fruit beats juice. If you pack juice, choose 100 percent juice with no added sugar, such as [Apple & Eve 100% Juice](https://appleandeve.com/product/100-juice/100-juice-24-count/), and keep it small: up to 4 ounces for ages 1 to 3, 4 to 6 ounces for ages 4 to 6, and 8 ounces for ages 7 and up.
 
 **The label line:** "100% juice" on the information panel, or no juice at all.
 
@@ -97,7 +97,7 @@ Cheese should be one of the simplest foods in the lunchbox. [Kraft Singles](http
 
 The kits look like a full lunch in one tray. In 2024, [Consumer Reports tested 12 lunch and snack kits](https://www.consumerreports.org/health/lunch-and-snack-packs/should-you-pack-lunchables-for-your-kids-school-lunch-a1165583878/) and found lead, cadmium or both in every one, and most were high in sodium. Months later, [Kraft Heinz stopped making Lunchables](https://www.consumerreports.org/health/lunch-and-snack-packs/lunchables-pulled-from-national-school-lunch-program-a5910914129/) for the National School Lunch Program.
 
-**Buy this:** a reusable bento box and four simple parts. Pack one protein, one fruit or vegetable, one crunchy thing and one small treat. Leftover chicken, apple slices, crackers and cheese cubes take two minutes.
+**Buy this:** a reusable bento box, such as Bentgo Kids, and four simple parts. Pack one protein, one fruit or vegetable, one crunchy thing and one small treat. Leftover chicken, apple slices, Simple Mills crackers and cubes of Tillamook cheddar take two minutes.
 
 **The label line:** there is no label, because you built it.
 
@@ -107,29 +107,29 @@ Bright orange is a color someone chose. The [Doritos Nacho Cheese label](https:/
 
 ![Not that: tortilla chips coated in neon orange powder and a pile of bright gummy fruit snacks. Buy this: plain tortilla chips, popcorn, freeze-dried strawberries and apple chips.](assets/guides/supermarket-swap-guide-lunchbox-snacks-1.jpg)
 
-**Buy this:** plain tortilla chips made from corn, oil and salt, or a bag of popcorn with three ingredients or fewer.
+**Buy this:** [Siete Sea Salt Tortilla Chips](https://sietefoods.com/shop/chips-and-snacks/grain-free-tortilla-chips/sea-salt-grain-free-tortilla-chips/), made from cassava flour and fried in avocado oil, or [SkinnyPop Original](https://shop.newseasonsmarket.com/store/new-seasons-market/products/16755217-skinnypop-original-popcorn-4-4-oz) popcorn, made with three simple ingredients.
 
 **The label line:** no color followed by a number.
 
 ### 6. Gummy fruit snacks
 
-The name promises fruit. Turn the pouch over and many brands list corn syrup and sugar near the top, and some add dyes like Red 40 and Blue 1 for the bright shapes.
+The name promises fruit. Turn over a pouch of [Welch's Mixed Fruit Snacks](https://www.fooducate.com/product/Welch-s-Fruit-Snacks-Mixed-Fruit/5DB1DAEC-0FCD-1340-427B-A6708027B2DE) and corn syrup, sugar and modified corn starch come straight after the fruit puree. Some other brands add dyes like Red 40 for the bright shapes.
 
-**Buy this:** fruit you can see. Freeze-dried strawberries or apple chips with one ingredient have the same crunch and chew. Fruit bars made only from fruit, such as apple and strawberry, work too.
+**Buy this:** fruit you can see. [That's It Apple + Strawberry bars](https://www.thatsitfruit.com/products/apple-strawberry) are made from apples and strawberries and nothing else. Freeze-dried strawberries or apple chips with one ingredient have the same crunch.
 
 **The label line:** fruit is the first ingredient, and there are no colors with numbers.
 
 ### 7. Flavored yogurt tubes
 
-Yogurt has a healthy image, and flavored tubes ride on it. The [Nutrition Facts label](https://www.fda.gov/food/nutrition-facts-label/added-sugars-nutrition-facts-label) now shows "Added Sugars" on its own line, so the sugar in each tube is easy to spot.
+Yogurt has a healthy image, and flavored tubes ride on it. In [Go-GURT Strawberry](https://www.yoplait.com/products/16-count-strawberry-mixed-berry), sugar is the second ingredient, right after the milk, and [each tube](https://www.yoplait.com/products/8-count-strawberry) carries 6 grams of added sugar. The [Nutrition Facts label](https://www.fda.gov/food/nutrition-facts-label/added-sugars-nutrition-facts-label) now shows "Added Sugars" on its own line, so the sugar in each tube is easy to spot.
 
-**Buy this:** plain whole-milk yogurt in a small reusable pot, with berries stirred in at home. A drizzle of honey adds sweetness for children over one year old. Never give honey to a baby under one.
+**Buy this:** [Stonyfield Organic Whole Milk Plain](https://www.stonyfield.com/products/whole-milk-smooth-creamy-plain-32oz/), made from organic whole milk, pectin and vitamin D3, spooned into a small reusable pot with berries stirred in at home. A drizzle of honey adds sweetness for children over one year old. Never give honey to a baby under one.
 
 **The label line:** "Added Sugars 0g" on the plain tub.
 
 ### 8. Cheese crackers
 
-Crackers fill a lot of lunchboxes, and most are refined white flour and oil with a dusting of flavor. They fill the gap without feeding much.
+Crackers fill a lot of lunchboxes, and most are refined white flour and oil with a dusting of flavor. [Cheez-It Original](https://www.cheezit.com/en-us/products/cheez-it-original-crackers-product.html) starts with enriched white flour and vegetable oil kept fresh with TBHQ, a lab-made preservative.
 
 **Buy this:** crackers made from nuts and seeds, such as [Simple Mills Almond Flour Crackers](https://simplemills.com/Products/Product/Fine-Ground-Sea-Salt-Almond-Flour-Crackers.aspx), built on a flour of almonds, sunflower seeds and flax seeds. Or pair whole-grain crackers with your sliced block cheddar.
 
@@ -142,14 +142,14 @@ Print this and keep it on the fridge door or in your phone. Every swap below sit
 :::table
 | Lunchbox staple | Not that | Buy this | The label line |
 |---|---|---|---|
-| Sandwich cookies | Cookies with high fructose corn syrup and artificial flavor | Organic sandwich cookies, or dates and dark chocolate | No high fructose corn syrup |
-| Drinks | Juice drink pouches | Water and whole fruit, or a small 100% juice | "100% juice" |
-| Cheese | Processed cheese slices | Block cheddar, sliced at home | "Cheese," not "cheese product" |
-| Lunch kits | Ready-made kits | A bento box: protein, fruit, crunch, treat | You packed it |
-| Chips | Neon orange cheese chips | Plain tortilla chips or popcorn | No colors with numbers |
-| Fruit snacks | Gummy fruit snacks | Freeze-dried fruit or fruit-only bars | Fruit listed first |
-| Yogurt | Flavored yogurt tubes | Plain whole-milk yogurt with berries | "Added Sugars 0g" |
-| Crackers | Refined-flour cheese crackers | Nut and seed crackers | A whole food first |
+| Sandwich cookies | Oreo | Newman-O's, or dates and dark chocolate | No high fructose corn syrup |
+| Drinks | Kapo, Del Valle and other juice drinks | Water and whole fruit, or a small Apple & Eve 100% Juice | "100% juice" |
+| Cheese | Kraft Singles | Tillamook Medium Cheddar, sliced at home | "Cheese," not "cheese product" |
+| Lunch kits | Lunchables | A Bentgo Kids box: protein, fruit, crunch, treat | You packed it |
+| Chips | Doritos Nacho Cheese | Siete Sea Salt chips or SkinnyPop | No colors with numbers |
+| Fruit snacks | Welch's Fruit Snacks | That's It bars or freeze-dried fruit | Fruit only |
+| Yogurt | Go-GURT | Stonyfield Whole Milk Plain with berries | "Added Sugars 0g" |
+| Crackers | Cheez-It | Simple Mills Almond Flour Crackers | A whole food first |
 :::
 
 ## Your 10-minute Sunday lunchbox reset
@@ -180,11 +180,9 @@ The swaps are real products in your usual store, so cleaner food does not have t
 
 Right now Untox is in a private founding beta, and you are invited. You get in first, before the public launch.
 
-Founding members pay $37 once for [lifetime premium](https://untox.app/terms). After launch, Untox moves to a paid subscription.
+:::checks {{UNTOX_SPOTS}} of 1,000 spots left | Closes Tue, Dec 1 · 7 am PST
 
-:::checks $37 once, no subscription | {{UNTOX_SPOTS}} of 1,000 spots left | Closes Tue, Dec 1 · 7 am PT | iPhone only | Bonus: Clean Grocery Shopping on a Budget
-
-The doors close Tuesday, December 1 at 7 am PT, or sooner if the last spots go first. You are here at the right moment.
+The doors close Tuesday, December 1 at 7 am PST, or sooner if the last spots go first. You are here at the right moment.
 
 [Claim your Founding spot](https://untox.app/founding)
 :::
@@ -205,3 +203,12 @@ The doors close Tuesday, December 1 at 7 am PT, or sooner if the last spots go f
 12. [Newman's Own: Newman-O's, made without high fructose corn syrup](https://newmansown.com/product/chocolate-creme-newman-os/)
 13. [Tillamook Medium Cheddar: ingredient label](https://www.kingsoopers.com/p/tillamook-medium-cheddar-sliced-cheese-farmstyle/0007283000801)
 14. [Simple Mills Almond Flour Crackers: ingredients](https://simplemills.com/Products/Product/Fine-Ground-Sea-Salt-Almond-Flour-Crackers.aspx)
+15. [Apple & Eve: 100% juice with no added sugar](https://appleandeve.com/product/100-juice/100-juice-24-count/)
+16. [Siete: Grain Free Sea Salt Tortilla Chips ingredients](https://sietefoods.com/shop/chips-and-snacks/grain-free-tortilla-chips/sea-salt-grain-free-tortilla-chips/)
+17. [SkinnyPop Original Popcorn: ingredient label](https://shop.newseasonsmarket.com/store/new-seasons-market/products/16755217-skinnypop-original-popcorn-4-4-oz)
+18. [Welch's Mixed Fruit Snacks: ingredient label](https://www.fooducate.com/product/Welch-s-Fruit-Snacks-Mixed-Fruit/5DB1DAEC-0FCD-1340-427B-A6708027B2DE)
+19. [That's It: Apple + Strawberry fruit bar ingredients](https://www.thatsitfruit.com/products/apple-strawberry)
+20. [Yoplait: Go-GURT Strawberry ingredients](https://www.yoplait.com/products/16-count-strawberry-mixed-berry)
+21. [Yoplait: Go-GURT Strawberry nutrition facts, added sugars per tube](https://www.yoplait.com/products/8-count-strawberry)
+22. [Stonyfield: Organic Whole Milk Plain Yogurt ingredients](https://www.stonyfield.com/products/whole-milk-smooth-creamy-plain-32oz/)
+23. [Cheez-It Original: ingredients](https://www.cheezit.com/en-us/products/cheez-it-original-crackers-product.html)
