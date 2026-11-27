@@ -1,0 +1,25 @@
+{
+  "style": "Bright, natural-light food photograph for a clean-eating coffee guide, shot on a warm cream (#faf8f3) linen surface with soft morning window light. Realistic, appetizing, editorial magazine style, soft shadows, no clutter. All packaging is plain, unprinted kraft paper or plain unprinted containers: no brand names, no logos, no words on any package. The only text allowed is the labels described in the prompt, in a clean geometric sans-serif typeface.",
+  "images": [
+    {
+      "name": "shelf",
+      "aspect": "3:2",
+      "prompt": "Shot from directly overhead. The frame is split down the middle into two equal halves with a thin soft gap between them. In the top-left corner of the LEFT half, a small rounded label in muted brick red (#8b2c2c) with white text reading exactly \"Just marketing\". In the top-left corner of the RIGHT half, a small rounded label in deep forest green (#1a4a1a) with white text reading exactly \"Worth buying\". Those two labels are the only text in the image. LEFT half: a large plain unprinted metal can of dull, dusty pre-ground coffee with the lid off, a plastic scoop, and a little spilled grounds. RIGHT half: a plain unprinted kraft paper bag of glossy, evenly roasted whole coffee beans with a one-way valve, a small pile of beans and a white ceramic cup of black coffee."
+    },
+    {
+      "name": "decaf",
+      "aspect": "3:2",
+      "prompt": "Shot from directly overhead. The frame is split down the middle into two equal halves with a thin soft gap between them. In the top-left corner of the LEFT half, a small rounded label in muted brick red (#8b2c2c) with white text reading exactly \"Solvent decaf\". In the top-left corner of the RIGHT half, a small rounded label in deep forest green (#1a4a1a) with white text reading exactly \"Water-processed decaf\". Those two labels are the only text in the image. LEFT half: a small pile of roasted coffee beans next to a clear laboratory glass beaker of clear liquid and a glass dropper, clinical and cold. RIGHT half: a small pile of roasted coffee beans next to a clear glass carafe of fresh water and a few green unroasted coffee beans, warm and natural."
+    },
+    {
+      "name": "tiers",
+      "aspect": "3:2",
+      "prompt": "Front-on view at counter height. Three plain unprinted kraft paper coffee bags standing in a row on a wooden counter, small, medium and large, each with a scoop of whole beans in front of it. Above each bag, a small rounded label in deep forest green (#1a4a1a) with white text: the left one reads exactly \"Budget\", the middle one reads exactly \"Mid\", the right one reads exactly \"Premium\". Those three labels are the only text in the image."
+    },
+    {
+      "name": "morning",
+      "aspect": "3:2",
+      "prompt": "A calm morning kitchen scene: a hand-grinder and a glass pour-over brewer dripping black coffee into a carafe, a plain unprinted airtight ceramic canister with its lid beside it, a small pile of whole beans and a white mug, on a light wooden counter by a window. No text anywhere in the image."
+    }
+  ]
+}
