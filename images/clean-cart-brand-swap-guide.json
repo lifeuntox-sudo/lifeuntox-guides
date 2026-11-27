@@ -1,0 +1,35 @@
+{
+  "style": "Bright, natural-light food photograph for a clean-eating grocery guide, shot from directly overhead on a warm cream (#faf8f3) linen surface. The frame is split down the middle into two equal halves with a thin soft gap between them. In the top-left corner of the LEFT half, a small rounded label in muted brick red (#8b2c2c) with white text reading exactly \"Just marketing\". In the top-left corner of the RIGHT half, a small rounded label in deep forest green (#1a4a1a) with white text reading exactly \"Worth buying\". The labels use a clean geometric sans-serif typeface. Those two labels are the only text in the image. Realistic, appetizing, editorial magazine style, soft shadows, no clutter.",
+  "images": [
+    {
+      "name": "eggs",
+      "aspect": "3:2",
+      "prompt": "LEFT half: a plain unbranded white foam egg carton of pale white eggs, and one egg cracked into a small white bowl showing a pale lemon-yellow yolk. RIGHT half: a plain unbranded brown paper pulp egg carton of brown eggs with a little straw, and one egg cracked into a small white bowl showing a deep orange yolk."
+    },
+    {
+      "name": "butter",
+      "aspect": "3:2",
+      "prompt": "LEFT half: an open plain white plastic tub of pale, glossy, soft vegetable-oil spread with a butter knife resting in it. RIGHT half: a block of deep golden-yellow butter in plain unprinted foil, partly unwrapped on a small wooden board, with a slice cut and a piece of crusty bread."
+    },
+    {
+      "name": "chicken",
+      "aspect": "3:2",
+      "prompt": "LEFT half: pale, wet raw chicken breasts in a plain foam tray with a soggy absorbent pad and pink liquid pooling under clear plastic wrap. RIGHT half: a raw whole chicken with dry, golden-tinged skin resting on brown butcher paper with a sprig of rosemary and a little coarse salt."
+    },
+    {
+      "name": "beef",
+      "aspect": "3:2",
+      "prompt": "LEFT half: bright pink raw ground beef pressed into a plain foam tray under clear plastic wrap. RIGHT half: deep red raw grass-fed ground beef and a raw grass-fed steak on brown butcher paper, with a sprig of thyme and coarse salt."
+    },
+    {
+      "name": "bacon",
+      "aspect": "3:2",
+      "prompt": "LEFT half: thin, glossy, uniformly bright pink raw bacon strips laid in a neat shingled row on a plain plastic tray. RIGHT half: thick-cut raw bacon with a natural deeper red color and creamy fat, on brown butcher paper next to a small bowl of coarse salt and a few celery leaves."
+    },
+    {
+      "name": "cart",
+      "aspect": "3:2",
+      "prompt": "LEFT half: a small shopping basket holding unbranded generic packs: a white foam carton of white eggs, a plastic tub of spread, pale chicken breasts in a foam tray, and a pack of bright pink bacon. RIGHT half: a small woven shopping basket holding a brown pulp carton of brown eggs, a foil-wrapped golden butter block, a whole chicken wrapped in brown butcher paper, deep red ground beef in butcher paper, and thick-cut bacon in butcher paper. All packaging is plain and unprinted."
+    }
+  ]
+}

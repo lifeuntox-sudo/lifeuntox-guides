@@ -10,7 +10,9 @@ function splitList(s) {
   const out = []; let cur = '', q = null;
   for (const ch of s) {
     if (q) { cur += ch; if (ch === q) q = null; }
-    else if (ch === '"' || ch === "'") { q = ch; cur += ch; }
+    // A quote opens a quoted item only at the start of an item, so apostrophes inside
+    // words ("trader joe's", "newman-o's") stay plain text.
+    else if ((ch === '"' || ch === "'") && !cur.trim()) { q = ch; cur += ch; }
     else if (ch === ',') { out.push(cur); cur = ''; }
     else cur += ch;
   }
