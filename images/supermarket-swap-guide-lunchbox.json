@@ -1,0 +1,30 @@
+{
+  "style": "Bright, natural-light food photograph for a parenting and clean-eating guide, shot from directly overhead on a warm cream (#faf8f3) linen surface. The frame is split down the middle into two equal halves with a thin soft gap between them. In the top-left corner of the LEFT half, a small rounded label in muted brick red (#8b2c2c) with white text reading exactly \"Not that\". In the top-left corner of the RIGHT half, a small rounded label in deep forest green (#1a4a1a) with white text reading exactly \"Buy this\". The labels use a clean geometric sans-serif typeface. Those two labels are the only text in the image. Realistic, appetizing, editorial magazine style, soft shadows, no clutter.",
+  "images": [
+    {
+      "name": "lunchbox",
+      "aspect": "3:2",
+      "prompt": "LEFT half: an open plastic kids' lunchbox packed with ultra-processed snacks in plain unbranded wrappers: a foil juice pouch with a straw, bright orange dusted cheese puffs, a small pile of glossy neon gummy fruit snacks, two individually plastic-wrapped orange cheese slices, and dark chocolate sandwich cookies with white filling. RIGHT half: an open stainless steel bento lunchbox with neat compartments holding apple slices, cubes of natural cheddar cheese, whole-grain seed crackers, carrot sticks, strawberries and a few walnuts, with a small stainless water bottle beside it."
+    },
+    {
+      "name": "cookies",
+      "aspect": "3:2",
+      "prompt": "LEFT half: a row of dark chocolate sandwich cookies with bright white creme filling spilling from an open plain unbranded clear plastic sleeve. The cookie wafers have only a simple abstract flower-and-dot embossed pattern, with absolutely no letters, words or brand name pressed into them. RIGHT half: three soft medjool dates, a few squares of dark chocolate and two simple homemade-looking chocolate sandwich cookies on a small linen napkin."
+    },
+    {
+      "name": "drinks",
+      "aspect": "3:2",
+      "prompt": "LEFT half: two plain unbranded foil drink pouches with straws, one lying next to a small glass filled with a bright, unnaturally red-orange fruit drink. RIGHT half: a stainless steel kids' water bottle beside a halved fresh orange, a few orange segments and a small glass of water with an orange slice."
+    },
+    {
+      "name": "cheese",
+      "aspect": "3:2",
+      "prompt": "LEFT half: a short stack of individually plastic-wrapped, uniformly bright orange processed cheese slices, with one slice half unwrapped. RIGHT half: a block of natural pale orange cheddar cheese on a small wooden board, with several hand-cut slices fanned beside it and a small cheese knife."
+    },
+    {
+      "name": "snacks",
+      "aspect": "3:2",
+      "prompt": "LEFT half: a heap of tortilla chips coated in neon orange cheese powder next to a pile of shiny neon gummy fruit snacks in bright red, green and blue. RIGHT half: a bowl of plain golden tortilla chips, a small bowl of air-popped popcorn, and a handful of freeze-dried strawberries and apple chips."
+    }
+  ]
+}

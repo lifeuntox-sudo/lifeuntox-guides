@@ -160,9 +160,16 @@ async function checkGuide(slug, net) {
 
   // gate position
   if (first.promo >= 0 && first.gate >= 0) {
-    const between = seq.slice(first.promo + 1, first.gate);
+    // Untox guides (placements: untox) put the first box after the first point of value,
+    // so the value before the gate is counted from the warning box, not from the promo.
+    const from = art.app && first.warn >= 0 ? first.warn : first.promo;
+    const between = seq.slice(from + 1, first.gate);
     const h3s = between.filter(s => s === 'h3').length, h2s = between.filter(s => s === 'h2').length;
-    if (!(h3s >= 2 || (h3s === 0 && h2s >= 1))) fail(`gate comes before the first value (found ${h3s} numbered items and ${h2s} sections between :::promo and :::gate; need 2 items or 1 full section)`);
+    if (!(h3s >= 2 || (h3s === 0 && h2s >= 1))) fail(`gate comes before the first value (found ${h3s} numbered items and ${h2s} sections between :::${art.app ? 'warn' : 'promo'} and :::gate; need 2 items or 1 full section)`);
+    if (art.app) {
+      const beforePromo = seq.slice(first.warn + 1, first.promo);
+      if (!beforePromo.some(s => s === 'h2' || s === 'h3')) warn('Untox guides: the first box (:::promo) reads best after the first point of value, not straight after the warning');
+    }
     const preWords = textOf(art.pre).split(/\s+/).filter(Boolean).length, allWords = art.words;
     const share = allWords ? preWords / allWords : 0;
     if (share > 0.5) warn(`${Math.round(share * 100)}% of the guide is before the gate (aim for about 30%)`);

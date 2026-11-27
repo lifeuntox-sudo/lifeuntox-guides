@@ -14,9 +14,9 @@ cover_subject: a fresh ear of yellow corn with its husk pulled back and a small 
 keywords: [corn, soy, hidden corn, hidden soy, corn free, soy free, soybean oil, vegetable oil, corn syrup, high fructose corn syrup, maltodextrin, dextrose, modified food starch, xanthan gum, citric acid, soy lecithin, natural flavors, coconut aminos, avocado oil, pantry audit, label reading, gmo]
 tags: [food allergies, food sensitivities, gmo, seed oils, ultra-processed food, label reading, supplements, oral care]   # health and life topics the guide touches, beyond its product category
 desc: Corn and soy hide behind dozens of names, from maltodextrin to soy lecithin. Learn the 28 to watch for, swap the 16 products where they hide most, and audit your whole home in one pass.
-placements: untox        # both placements advertise the Untox app waitlist (shown even while sponsor placements are off)
-partner_product_1: https://untox.app/waitlist    # placement 1 link
-partner_product_2: https://untox.app/waitlist    # placement 2 link
+placements: untox        # both placements advertise the Untox app (shown even while sponsor placements are off)
+partner_product_1: https://untox.app/founding    # placement 1 link
+partner_product_2: https://untox.app/founding    # placement 2 link
 disclosure: This guide is for education only and is not medical advice. If you manage a corn or soy allergy, speak with your doctor or an allergist before you change your diet. Untox is the Lifeuntox app.
 ---
 
@@ -43,11 +43,11 @@ You have the names now. Picture checking all 28 of them on every box in a 40-ite
 
 That is why most label audits stall by week two. Reading every package turns into a second job nobody signed up for.
 
-Untox is the app we built to do it for you. It grades your whole grocery list in plain words and points you to a cleaner swap.
+Untox is the iPhone app we have been building for months. It finds the cleaner swap for anything you buy, in seconds.
 
-The private Founding Beta opens Tuesday, November 24 at 7 am PST. Waitlist members get 24 hours to claim a spot first.
+The private founding beta is open now. {{UNTOX_SPOTS}} of 1,000 spots are left, and the doors close Tuesday, December 1.
 
-[Join the Untox waitlist, free](https://untox.app/waitlist)
+[Claim your Founding spot](https://untox.app/founding)
 :::
 
 ## Part 1: The hidden names decoder
@@ -155,15 +155,15 @@ And brands change their recipes without telling you. The jar you checked in spri
 
 You can keep squinting at labels in the aisle, or you can stop checking and hope. Neither one gives you your evenings back.
 
-Untox is the third way. Add your list, and it grades every item, explains it in plain words, and hands you a better swap.
+Untox is the third way. It finds the cleaner swap for anything you buy, from the shelves you already shop.
 
-Add it. Grade it. Swap it. Your whole shop is checked before you leave the house.
+No hours of research, and no bigger bill: the swaps sit in the same aisles at the same kind of price.
 
-:::checks Tue, Nov 24 · 7 am PST | 1,000 Founding spots, no more | 24 hours early access | Waitlist-only bonus | Founding lifetime price
+:::checks $37 once, no subscription | {{UNTOX_SPOTS}} of 1,000 spots left | Closes Tue, Dec 1 · 7 am PT | iPhone only
 
-Joining is free and asks only for your first name and email. Join today, and your link will be waiting on Tuesday morning.
+Founding members pay once for [lifetime premium](https://untox.app/terms). After launch, Untox moves to a paid subscription.
 
-[Claim your Founding spot](https://untox.app/waitlist)
+[Claim your Founding spot](https://untox.app/founding)
 :::
 
 ## Sources

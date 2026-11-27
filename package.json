@@ -11,7 +11,8 @@
     "index": "node scripts/build-index.js",
     "check": "node scripts/check-guide.js",
     "phone-index": "node scripts/phone-index-rebuild.js",
-    "banner": "node scripts/make-banner.js"
+    "banner": "node scripts/make-banner.js",
+    "image": "node scripts/make-image.js"
   },
   "engines": {
     "node": ">=20.12"

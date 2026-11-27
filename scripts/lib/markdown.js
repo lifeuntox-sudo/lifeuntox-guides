@@ -123,7 +123,7 @@ function renderNode(n, ctx) {
       return `<table>\n<thead><tr>${n.head.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead>\n<tbody>\n` +
         n.rows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('\n') + `\n</tbody>\n</table>`;
     case 'html': return n.raw;
-    case 'image': return imageTag(n);
+    case 'image': return `<figure class="fig">${imageTag(n)}</figure>`;   // in-article photo (banners inside promo/cta are handled by splitBanner)
     case 'gate': return '';
     case 'block': return renderBlock(n, ctx);
   }
@@ -170,22 +170,24 @@ function untoxCalendar() {
   if (!cal || !cal.date) return '';
   const d = new Date(cal.date + 'T12:00:00Z');
   if (Date.now() > d.getTime() + 36 * 3600 * 1000) return '';   // the launch window has passed: drop the tile
-  return `<div class="cal" aria-hidden="true"><span>${MONTHS[d.getUTCMonth()]}</span><b>${d.getUTCDate()}</b><small>${esc(cal.time || '')}</small></div>`;
+  return `<div class="cal" aria-hidden="true"><span>${MONTHS[d.getUTCMonth()]}</span><b>${d.getUTCDate()}</b><small>${esc(cal.note || cal.time || '')}</small></div>`;
 }
+// First box. An optional image line inside the block becomes a banner across the top of the card.
 function untoxPromo(c, ctx) {
-  const { rest, label, url } = splitButton(c);
-  const href = url || ctx.partner1 || UNTOX.waitlist;
+  const { rest: afterButton, label, url } = splitButton(c);
+  const href = url || ctx.partner1 || UNTOX.url;
+  const { rest, ad } = splitBanner(afterButton, href);
   const cal = untoxCalendar();
-  return `<div class="promo untox${cal ? '' : ' no-cal'}">\n<span class="flag">${esc(UNTOX.promoFlag)}</span>\n${cal}<div class="ux-copy">\n${renderNodes(rest.filter(x => x.type !== 'image'), ctx)}\n` +
-    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Join the Untox waitlist')}</a>\n</div>\n</div>`;
+  return `<div class="promo untox${cal ? '' : ' no-cal'}${ad ? ' has-banner' : ''}">\n<span class="flag">${esc(UNTOX.promoFlag)}</span>\n${ad ? ad + '\n' : ''}${cal}<div class="ux-copy">\n${renderNodes(rest, ctx)}\n` +
+    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Claim your Founding spot')}</a>\n</div>\n</div>`;
 }
 function untoxCta(n, c, ctx) {
   const { rest: afterButton, label, url } = splitButton(c);
-  const href = url || ctx.partner2 || UNTOX.waitlist;
+  const href = url || ctx.partner2 || UNTOX.url;
   const { rest, ad } = splitBanner(afterButton, href);
   return `<div class="cta untox">\n<span class="flag">${esc(UNTOX.ctaFlag)}</span>\n${ad ? ad + '\n' : ''}<div class="in">\n${n.arg ? `<h3>${inline(n.arg)}</h3>\n` : ''}${renderNodes(rest, ctx)}\n` +
-    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Join the Untox waitlist')}</a>\n` +
-    `<small>Untox is built by the Lifeuntox team. Joining the waitlist is free.</small>\n</div>\n</div>`;
+    `<a class="btn" href="${escAttr(href)}" rel="noopener">${inline(label || 'Claim your Founding spot')}</a>\n` +
+    `<small>${esc(UNTOX.note)}</small>\n</div>\n</div>`;
 }
 
 function renderBlock(n, ctx) {
@@ -228,8 +230,11 @@ const textOf = html => html.replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').repl
 
 // Renders a guide body. Returns the HTML before and after the gate, the gate
 // title, the sequence of top-level blocks (for check-guide), and a word count.
+// Live launch numbers kept in config.js so one edit updates every guide.
+const fillTokens = md => md.replace(/\{\{UNTOX_SPOTS\}\}/g, UNTOX.spotsLeft);
+
 function renderArticle(md, fm = {}) {
-  const nodes = parseBlocks(md.split(/\r?\n/));
+  const nodes = parseBlocks(fillTokens(md).split(/\r?\n/));
   const gi = nodes.findIndex(n => n.type === 'gate');
   // placements: untox → both blocks advertise our own Untox app (always shown; the sponsor switch does not apply).
   const app = String(fm.placements || '').toLowerCase() === 'untox';
@@ -246,4 +251,4 @@ function renderArticle(md, fm = {}) {
   };
 }
 
-module.exports = { renderArticle, parseBlocks, inline, esc, escAttr, textOf };
+module.exports = { renderArticle, parseBlocks, inline, esc, escAttr, textOf, fillTokens };

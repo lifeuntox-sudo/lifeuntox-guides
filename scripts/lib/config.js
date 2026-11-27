@@ -17,14 +17,19 @@ const DEFAULT_SITE_URL = 'https://guides.lifeuntox.com';
 const PARTNER_PLACEMENTS = false;
 
 // Untox app placements (guides with `placements: untox`). One place for every guide:
-//   calendar: the date tile in the first box (:::promo). Left out automatically once
-//             the day after `date` has passed, or set it to null.
+//   calendar: the date tile in the first box (:::promo): month, day and a short note.
+//             Left out automatically once the day after `date` has passed, or set it to null.
 //   promoFlag / ctaFlag: the pill labels on the top edge of each box.
+//   spotsLeft: replaces {{UNTOX_SPOTS}} anywhere in a guide's Markdown. Read it from
+//             untox.app/founding and update it before every rebuild during the launch.
+//   url: the default button link. note: the fine print under the second box's button.
 const UNTOX = {
-  calendar: { date: '2026-11-24', time: '7 am PST' },
-  promoFlag: 'New from Lifeuntox',
-  ctaFlag: 'Founding Beta',
-  waitlist: 'https://untox.app/waitlist'
+  calendar: { date: '2026-12-01', note: 'Closes 7 am PT' },
+  promoFlag: "You're invited",
+  ctaFlag: 'Private Founding Beta',
+  spotsLeft: '486',
+  url: 'https://untox.app/founding',
+  note: 'Untox is built by the Lifeuntox team. The private beta is iPhone only.'
 };
 
 // Reads .env (if present) into process.env without overriding values already set.
