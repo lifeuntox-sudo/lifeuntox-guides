@@ -17,7 +17,7 @@ desc: Nine everyday brands, nine cleaner swaps. The better pick for rotisserie c
 placements: untox        # both placements advertise the Untox app (shown even while sponsor placements are off)
 partner_product_1: https://untox.app/founding    # placement 1 link
 partner_product_2: https://untox.app/founding    # placement 2 link
-disclosure: This guide is for education only and is not medical advice. No brand paid to be listed, and we earn nothing from these picks. Ingredients were checked on brand and retailer pages in November 2026. Prices are approximate, change often and vary by store and region. Untox is the app built by the Lifeuntox team.
+disclosure: This guide is for education only and is not medical advice. No brand paid to be listed, and we earn nothing from these picks. Ingredients were checked on brand and retailer pages in November 2026. Prices are approximate, change often and vary by store and region. Product photos are each brand's own packaging, shown for comparison; the brands do not endorse this guide. Untox is the app built by the Lifeuntox team.
 ---
 
 :::inside
@@ -34,7 +34,7 @@ None of that is on the front of the box. The front is for selling. The back is w
 
 You do not need a bigger grocery bill to fix it. For each of these 9 brands, there is a cleaner pick a few feet away, often in the same aisle. This sheet names it, tells you about what it costs, and where to find it.
 
-![Two baskets side by side. Usual pick: a rotisserie chicken, squeeze ketchup, chocolate milk, peanut butter, orange cheese slices, a red soda can, frosted pastries, soft bread and fish crackers. Cleaner swap: a raw chicken in butcher paper, glass-bottle ketchup, a carton of chocolate milk, natural peanut butter, real cheddar, a slim soda can, plain pastries, seeded bread and square crackers.](assets/guides/9-for-9-budget-swap-sheet-cart-1.jpg)
+![All 9 swaps at a glance: Kirkland rotisserie chicken to a whole chicken roasted at home, Heinz to Primal Kitchen ketchup, fairlife to Horizon Organic chocolate milk, Jif to Smucker's Natural, Kraft Singles to Tillamook cheddar, Coca-Cola to Olipop, Pop-Tarts to Nature's Path, Nature's Own to Ezekiel 4:9 and Goldfish to Simple Mills.](assets/guides/9-for-9-budget-swap-sheet-cart-1.jpg)
 
 :::warn Three lines to find on the back of any pack
 Look for **high fructose corn syrup**, any **number dye** such as Red 40, Yellow 6 or Blue 1, and **sucralose** or **acesulfame potassium**, two zero-calorie sweeteners. If a label holds one of them, it is worth a swap. Each item below names the cleaner pick and where to buy it.
@@ -77,7 +77,7 @@ Ketchup goes on almost everything kids eat, so a small change here adds up fast.
 
 **On a tighter budget:** the store-brand organic ketchups, Good & Gather Organic at Target and Simply Nature Organic at Aldi, swap the corn syrup for organic sugar. That removes the corn syrup but not the sugar, so treat them as a step up, not the finish line.
 
-![Usual pick: a red squeeze bottle of ketchup and a tub of smooth peanut butter. Cleaner swap: a glass bottle of deep red ketchup with tomatoes, and natural peanut butter with peanuts.](assets/guides/9-for-9-budget-swap-sheet-spreads-1.jpg)
+![Usual pick: Heinz Tomato Ketchup. Cleaner swap: Primal Kitchen Organic Unsweetened Ketchup.](assets/guides/9-for-9-budget-swap-sheet-ketchup-1.jpg)
 
 **Where to buy:** Walmart and Target (Primal Kitchen), Target (Good & Gather Organic), Aldi (Simply Nature Organic).
 
@@ -91,6 +91,8 @@ fairlife sells itself on protein, and it does deliver 13 grams a cup. The sweetn
 
 **The cheapest swap of all:** stir a spoon of plain cocoa and a little maple syrup into the milk you already buy. You choose the sugar, and you pay nothing extra.
 
+![Usual pick: fairlife Chocolate 2% milk. Cleaner swap: Horizon Organic Chocolate 2% milk.](assets/guides/9-for-9-budget-swap-sheet-chocolate-milk-1.jpg)
+
 **Where to buy:** Walmart and Target (Horizon Organic).
 
 ## Swap 4: Jif Creamy Peanut Butter
@@ -103,6 +105,8 @@ Peanut butter needs one ingredient, so every extra is a choice the company made.
 
 **Tip:** natural peanut butter separates. Stir it once, then keep it in the fridge and it stays mixed.
 
+![Usual pick: Jif Creamy Peanut Butter. Cleaner swap: Smucker's Natural Creamy Peanut Butter.](assets/guides/9-for-9-budget-swap-sheet-peanut-butter-1.jpg)
+
 **Where to buy:** Walmart and Target (Smucker's Natural, Crazy Richard's), Costco (Kirkland Signature Organic), Aldi (Simply Nature Organic).
 
 ## Swap 5: Kraft Singles
@@ -113,7 +117,7 @@ Look closely at the wrapper and you will see the words "pasteurized prepared che
 
 **The cleaner swap:** [Tillamook Medium Cheddar slices](https://bashas.instacart.com/store/bashas/products/83266-tillamook-farmstyle-thick-cut-medium-cheddar-cheese-slices-8-oz). The label reads cultured milk, salt, enzymes and annatto, a color from a seed. Expect about $6 for an 8-ounce pack. Cabot and Organic Valley slices are just as simple.
 
-![Usual pick: a sandwich on soft white bread with an orange cheese slice, fish crackers and a frosted pastry with rainbow sprinkles. Cleaner swap: a seeded whole grain sandwich with real cheddar, square crackers and a plain glazed pastry.](assets/guides/9-for-9-budget-swap-sheet-lunch-1.jpg)
+![Usual pick: Kraft Singles American. Cleaner swap: Tillamook Medium Cheddar slices.](assets/guides/9-for-9-budget-swap-sheet-cheese-1.jpg)
 
 **Where to buy:** Walmart, Target and Costco carry Tillamook. For the lowest price, buy a block and slice it yourself.
 
@@ -125,7 +129,7 @@ Soda is the single biggest source of sugar for many families, so this swap moves
 
 **For zero sugar:** [Zevia Cola](https://www.wholefoodsmarket.com/grocery/product/B09XTH44JJ) is sweetened with stevia, a sweetener from a plant leaf, and skips the caramel color. A 24-pack is about $36 at Walmart.
 
-![Usual pick: a bottle of chocolate milk, a red soda can and a glass of cola. Cleaner swap: a carton of chocolate milk, a slim pastel soda can and a glass of sparkling cola with lime.](assets/guides/9-for-9-budget-swap-sheet-drinks-1.jpg)
+![Usual pick: Coca-Cola Original. Cleaner swaps: Olipop Vintage Cola and Zevia Cola.](assets/guides/9-for-9-budget-swap-sheet-cola-1.jpg)
 
 **Where to buy:** Walmart, Target and Costco (Olipop), Walmart and Target (Zevia).
 
@@ -139,6 +143,8 @@ The FDA asked food makers in April 2025 to [remove those exact dyes](https://www
 
 **The honest part:** these pastries carry 38 grams of sugar for two, more than the original. They are a cleaner treat, not a health food. Serve one, not two, and keep them for weekends.
 
+![Usual pick: Pop-Tarts Frosted Strawberry. Cleaner swap: Nature's Path Organic Frosted Berry Strawberry Toaster Pastries.](assets/guides/9-for-9-budget-swap-sheet-toaster-pastries-1.jpg)
+
 **Where to buy:** Walmart and Target (Nature's Path).
 
 ## Swap 8: Nature's Own Honey Wheat
@@ -149,6 +155,8 @@ The FDA asked food makers in April 2025 to [remove those exact dyes](https://www
 
 **The softer swap:** [Dave's Killer Bread 21 Whole Grains and Seeds](https://www.daveskillerbread.com/21-whole-grains-and-seeds) is organic whole wheat first, with 5 grams of fiber a slice. It also has 5 grams of sugar, so it is better for fiber than for sugar. It costs about $6.50 a loaf at Walmart.
 
+![Usual pick: Nature's Own Honey Wheat. Cleaner swaps: Food for Life Ezekiel 4:9 and Dave's Killer Bread 21 Whole Grains and Seeds.](assets/guides/9-for-9-budget-swap-sheet-bread-1.jpg)
+
 **Where to buy:** Walmart and Target (Ezekiel in the freezer, Dave's Killer Bread on the shelf), Costco (Dave's Killer Bread twin packs in many warehouses).
 
 ## Swap 9: Goldfish Cheddar Crackers
@@ -158,6 +166,8 @@ Goldfish get the color right: the orange comes from annatto, not a dye. The swap
 **The cleaner swap:** [Simple Mills Farmhouse Cheddar](https://www.simplemills.com/products/farmhouse-cheddar-almond-flour-crackers) crackers, made from almonds, sunflower seeds and flax, with organic cheddar and no refined flour. A box is about $5 to $6.
 
 **The kid-friendly swap:** [Annie's Organic Cheddar Bunnies](https://www.wholefoodsmarket.com/grocery/product/B076HRWTK2) use organic flour and organic cheddar. The sodium is about the same as Goldfish, so this is a cleaner-ingredients swap, not a lower-salt one. A bag is about $5 to $7 at Walmart.
+
+![Usual pick: Goldfish Cheddar. Cleaner swaps: Simple Mills Farmhouse Cheddar crackers and Annie's Organic Cheddar Bunnies.](assets/guides/9-for-9-budget-swap-sheet-crackers-1.jpg)
 
 **Where to buy:** Walmart, Target and Costco (Annie's, Simple Mills).
 

@@ -158,6 +158,7 @@ scripts/lib/images.js + jpeg.js  derive <cover>.jpg and <cover>-600.jpg from eac
 scripts/new-guide.js  scaffold a guide      npm run new-guide -- "Title" --code WORD --cat Topic
 scripts/make-cover.js Kie.ai covers         npm run cover -- <slug>
 scripts/make-banner.js Kie.ai partner banners   npm run banner -- <campaign>   (spec in banners/<campaign>.json → site/assets/banners/<campaign>-<format>-<n>.jpg)
+scripts/make-packshots.py real product photo comparison cards   python scripts/make-packshots.py images/packshots/<slug>.json   (photos in images/products/<key>.src)
 banners/<campaign>.json  one partner campaign: product, prices, offer lines, reference photo URLs (current: thaw-max)
 templates/cover-reference.png  the approved house-style cover; make-cover sends it as a reference on every run
 scripts/check-guide.js lint                 npm run check -- <slug>
@@ -210,6 +211,8 @@ Every call to action for the Untox app on this site uses one look, chosen from t
 ### In-article photos
 
 A line holding only an image, outside `:::promo` and `:::cta`, renders as a full-width photo in the article column (`<figure class="fig">`). Generate them with `npm run image -- <slug>` from a spec in `images/<slug>.json` (Kie.ai, 1200 px wide JPEGs in `site/assets/guides/`). Describe products as unbranded and check every output for logos or trademarks pressed into the food; regenerate any that show one.
+
+**Real product photos (packshots), since 2026-11-27 at the user's request.** Guides that name brands (first: `9-for-9-budget-swap-sheet`) show the real packages instead: each brand's or retailer's own front-of-pack photo is saved as `images/products/<key>.src`, and `python scripts/make-packshots.py images/packshots/<slug>.json` composes "Usual pick / Cleaner swap" cards (one per swap, plus a grid hero) into `site/assets/guides/<slug>-<name>-1.jpg` in League Spartan (`images/fonts/`, OFL). Needs Pillow. Check every photo is the front of the right product before composing (retailer galleries mix in nutrition panels and other products); `crop` in the spec trims stray strips, `stack: true` stacks wide packs. Products with no packaging (a store rotisserie chicken) keep an unbranded Kie.ai photo. The guide's disclosure says the photos are the brands' own packaging, shown for comparison, with no endorsement. Costco and Aldi block automated downloads; Whole Foods product pages, brand sites, Instacart store pages and Open Food Facts work.
 
 ### Data precedence
 

@@ -2,29 +2,9 @@
   "style": "Bright, natural-light food photograph for a clean-eating grocery guide, shot from directly overhead on a warm cream (#faf8f3) linen surface. The frame is split down the middle into two equal halves with a thin soft gap between them. In the top-left corner of the LEFT half, a small rounded label in muted brick red (#8b2c2c) with white text reading exactly \"Usual pick\". In the top-left corner of the RIGHT half, a small rounded label in deep forest green (#1a4a1a) with white text reading exactly \"Cleaner swap\". The labels use a clean geometric sans-serif typeface. Those two labels are the only text in the image. Every package, bottle, jar and box is plain and unprinted, with no logos, brand names or words anywhere. Realistic, appetizing, editorial magazine style, soft shadows, no clutter.",
   "images": [
     {
-      "name": "cart",
-      "aspect": "3:2",
-      "prompt": "LEFT half: a small wire shopping basket holding generic unbranded items: a clear plastic dome of glossy rotisserie chicken, a red squeeze bottle of ketchup, a plastic bottle of chocolate milk, a plastic tub of peanut butter, a stack of bright orange individually wrapped cheese slices, a red soda can, a box of frosted toaster pastries with pink icing, a soft white-brown sliced loaf in a plastic bag and a bag of orange fish-shaped crackers. RIGHT half: a small woven basket holding a raw whole chicken in brown butcher paper, a short glass bottle of deep red ketchup, a small carton of chocolate milk, a glass jar of natural peanut butter with a layer of oil on top, a block of natural pale cheddar with a few thin slices, a slim plain can of sparkling soda, plain toaster pastries with a light pink glaze, a dense seeded whole grain loaf and a small bowl of golden square crackers."
-    },
-    {
       "name": "chicken",
       "aspect": "3:2",
       "prompt": "LEFT half: a glossy store rotisserie chicken in a clear plastic dome container with a black base, a little liquid pooled under it. RIGHT half: a home-roasted golden whole chicken in a cast iron skillet with lemon halves, garlic and fresh thyme."
-    },
-    {
-      "name": "spreads",
-      "aspect": "3:2",
-      "prompt": "LEFT half: a red plastic squeeze bottle of bright glossy ketchup and a plastic tub of very smooth, uniform peanut butter with a knife in it. RIGHT half: a short glass bottle of deep brick-red ketchup with a few small tomatoes, and an open glass jar of natural peanut butter with a thin layer of oil on top and a handful of roasted peanuts beside it."
-    },
-    {
-      "name": "drinks",
-      "aspect": "3:2",
-      "prompt": "LEFT half: a plastic bottle of chocolate milk and a red aluminum soda can beside a glass of dark cola with ice. RIGHT half: a small carton of chocolate milk poured into a glass, and a slim plain pastel aluminum can of sparkling soda beside a glass of cola-colored sparkling drink with ice and a lime wedge."
-    },
-    {
-      "name": "lunch",
-      "aspect": "3:2",
-      "prompt": "LEFT half: a sandwich on soft pale sliced bread with a bright orange processed cheese slice peeking out, a few orange fish-shaped crackers, and a frosted toaster pastry with bright pink icing and rainbow sprinkles. RIGHT half: a sandwich on dense seeded whole grain bread with natural pale cheddar slices, a few golden square crackers, and a toaster pastry with a light, natural pink glaze."
     }
   ]
 }

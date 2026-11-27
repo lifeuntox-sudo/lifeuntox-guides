@@ -1,0 +1,197 @@
+{
+  "slug": "9-for-9-budget-swap-sheet",
+  "crop": {
+    "pop-tarts": [
+      0.01,
+      0.12,
+      0.74,
+      0.88
+    ],
+    "tillamook": [
+      0,
+      0,
+      1,
+      0.8
+    ],
+    "ezekiel": [
+      0.0,
+      0.0,
+      1.0,
+      1.0
+    ]
+  },
+  "pairs": [
+    {
+      "name": "chicken-pair",
+      "title": "Rotisserie chicken",
+      "usual": [
+        [
+          "chicken-rotisserie",
+          "Store rotisserie chicken"
+        ]
+      ],
+      "swap": [
+        [
+          "chicken-roasted",
+          "Organic whole chicken, roasted at home"
+        ]
+      ],
+      "skipPair": true
+    },
+    {
+      "name": "ketchup",
+      "title": "Ketchup",
+      "usual": [
+        [
+          "heinz",
+          "Heinz Tomato Ketchup"
+        ]
+      ],
+      "swap": [
+        [
+          "primal-kitchen",
+          "Primal Kitchen Organic Unsweetened Ketchup"
+        ]
+      ]
+    },
+    {
+      "name": "chocolate-milk",
+      "title": "Chocolate milk",
+      "usual": [
+        [
+          "fairlife",
+          "fairlife Chocolate 2%"
+        ]
+      ],
+      "swap": [
+        [
+          "horizon",
+          "Horizon Organic Chocolate 2%"
+        ]
+      ]
+    },
+    {
+      "name": "peanut-butter",
+      "title": "Peanut butter",
+      "usual": [
+        [
+          "jif",
+          "Jif Creamy"
+        ]
+      ],
+      "swap": [
+        [
+          "smuckers",
+          "Smucker's Natural Creamy"
+        ]
+      ]
+    },
+    {
+      "name": "cheese",
+      "title": "Cheese slices",
+      "usual": [
+        [
+          "kraft-singles",
+          "Kraft Singles American"
+        ]
+      ],
+      "swap": [
+        [
+          "tillamook",
+          "Tillamook Medium Cheddar slices"
+        ]
+      ]
+    },
+    {
+      "name": "cola",
+      "title": "Cola",
+      "usual": [
+        [
+          "coca-cola",
+          "Coca-Cola Original"
+        ]
+      ],
+      "swap": [
+        [
+          "olipop",
+          "Olipop Vintage Cola"
+        ],
+        [
+          "zevia",
+          "Zevia Cola"
+        ]
+      ]
+    },
+    {
+      "name": "toaster-pastries",
+      "title": "Toaster pastries",
+      "usual": [
+        [
+          "pop-tarts",
+          "Pop-Tarts Frosted Strawberry"
+        ]
+      ],
+      "swap": [
+        [
+          "natures-path",
+          "Nature's Path Frosted Berry Strawberry"
+        ]
+      ]
+    },
+    {
+      "name": "bread",
+      "title": "Sandwich bread",
+      "usual": [
+        [
+          "natures-own",
+          "Nature's Own Honey Wheat"
+        ]
+      ],
+      "swap": [
+        [
+          "ezekiel",
+          "Food for Life Ezekiel 4:9"
+        ],
+        [
+          "daves",
+          "Dave's Killer Bread 21 Whole Grains"
+        ]
+      ],
+      "stack": true
+    },
+    {
+      "name": "crackers",
+      "title": "Cheddar crackers",
+      "usual": [
+        [
+          "goldfish",
+          "Goldfish Cheddar"
+        ]
+      ],
+      "swap": [
+        [
+          "simple-mills",
+          "Simple Mills Farmhouse Cheddar"
+        ],
+        [
+          "annies",
+          "Annie's Organic Cheddar Bunnies"
+        ]
+      ]
+    }
+  ],
+  "hero": {
+    "name": "cart",
+    "pairs": [
+      "chicken-pair",
+      "ketchup",
+      "chocolate-milk",
+      "peanut-butter",
+      "cheese",
+      "cola",
+      "toaster-pastries",
+      "bread",
+      "crackers"
+    ]
+  }
+}
